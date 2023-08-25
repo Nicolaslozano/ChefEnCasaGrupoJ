@@ -1,10 +1,8 @@
-TRABAJO PRACTICO CHEFF RPC GRUPO J 
+# TRABAJO PRACTICO CHEFF RPC GRUPO J
 
-Integrantes
+## Integrantes
 
+- 
 -
--
--
--
-
-
+- 
+- 
