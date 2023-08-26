@@ -17,7 +17,16 @@ CREATE TABLE IF NOT EXISTS `receta` (
   `titulo` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(45) NOT NULL,
   `tiempoPreparacion` INT NOT NULL,
-  PRIMARY KEY (`idReceta`));
+  `ingredientes` VARCHAR(45) NOT NULL,
+  `pasos` VARCHAR(45) NOT NULL,
+  `usuario_idusuario` INT NOT NULL,
+  PRIMARY KEY (`idReceta`),
+  INDEX `fk_receta_usuario1_idx` (`usuario_idusuario` ASC) VISIBLE,
+  CONSTRAINT `fk_receta_usuario1`
+    FOREIGN KEY (`usuario_idusuario`)
+    REFERENCES `usuario` (`idusuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
 
 CREATE TABLE IF NOT EXISTS `foto` (
@@ -46,46 +55,9 @@ CREATE TABLE IF NOT EXISTS `categoria` (
     ON UPDATE NO ACTION);
 
 
-CREATE TABLE IF NOT EXISTS `ingrediente` (
-  `idingrediente` INT NOT NULL,
-  `nombreIngrediente` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idingrediente`));
-
-
-CREATE TABLE IF NOT EXISTS `ingredientesRecetas` (
-  `receta_idReceta` INT NOT NULL,
-  `ingrediente_idingrediente` INT NOT NULL,
-  PRIMARY KEY (`receta_idReceta`, `ingrediente_idingrediente`),
-  INDEX `fk_receta_has_ingrediente_ingrediente1_idx` (`ingrediente_idingrediente` ASC) VISIBLE,
-  INDEX `fk_receta_has_ingrediente_receta1_idx` (`receta_idReceta` ASC) VISIBLE,
-  CONSTRAINT `fk_receta_has_ingrediente_receta1`
-    FOREIGN KEY (`receta_idReceta`)
-    REFERENCES `receta` (`idReceta`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_receta_has_ingrediente_ingrediente1`
-    FOREIGN KEY (`ingrediente_idingrediente`)
-    REFERENCES `ingrediente` (`idingrediente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
 
     
-CREATE TABLE IF NOT EXISTS `recetaDeUsuario` (
-  `usuario_idusuario` INT NOT NULL,
-  `receta_idReceta` INT NOT NULL,
-  PRIMARY KEY (`usuario_idusuario`, `receta_idReceta`),
-  INDEX `fk_usuario_has_receta_receta1_idx` (`receta_idReceta` ASC) VISIBLE,
-  INDEX `fk_usuario_has_receta_usuario1_idx` (`usuario_idusuario` ASC) VISIBLE,
-  CONSTRAINT `fk_usuario_has_receta_usuario1`
-    FOREIGN KEY (`usuario_idusuario`)
-    REFERENCES `usuario` (`idusuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usuario_has_receta_receta1`
-    FOREIGN KEY (`receta_idReceta`)
-    REFERENCES `receta` (`idReceta`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+
 
 
 
@@ -106,7 +78,6 @@ CREATE TABLE IF NOT EXISTS `recetaFavoritas` (
 
 CREATE TABLE IF NOT EXISTS `suscripcion` (
   `idsuscripcion` INT NOT NULL,
-  `nombreUsuario` VARCHAR(45) NOT NULL,
   `usuario_idusuario` INT NOT NULL,
   PRIMARY KEY (`idsuscripcion`, `usuario_idusuario`),
   INDEX `fk_suscripcion_usuario1_idx` (`usuario_idusuario` ASC) VISIBLE,
