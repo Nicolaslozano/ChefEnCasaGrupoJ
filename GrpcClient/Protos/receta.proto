@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "GrpcClient";
+
+// Definir los mensajes y servicios aquí
+service receta{  
+
+    rpc crearReceta(crearRequest) returns (APIResponse);
+}
+
+message crearRequest{ 
+    string titulo = 1;
+    string descripcion = 2;
+    int32 tiempoPreparacion = 3;
+    string ingredientes = 4;
+    string pasos = 5; 
+} 
+ 
+message APIResponse{
+  string responseMessage = 1;
+  string responseCode = 2;
+}
