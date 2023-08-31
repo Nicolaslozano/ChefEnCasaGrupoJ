@@ -1,0 +1,2 @@
+obj\Debug\net6.0/Usuarios.cs \
+obj\Debug\net6.0/UsuariosGrpc.cs: ../gRPC_server/protobufs/usuarios.proto

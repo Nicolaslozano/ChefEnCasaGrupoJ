@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+message Usuario {
+    int32 idusuario = 1;
+    string nombre = 2;
+    string email = 3;
+    string user = 4;
+    string password = 5; 
+    
+}
+
+message Username {
+    string user = 1;
+    string password = 2;  
+}
+
+message Response {
+    string message = 1;
+    int32 idusuario = 2;
+}
+
+message Nulo {
+}
+
+service Usuarios {
+    rpc Listo(Nulo) returns (Nulo);
+    rpc TraerUsuario(Username) returns (Usuario);
+    rpc AltaUsuario(Usuario) returns (Response);
+}
