@@ -13,14 +13,14 @@ CREATE TABLE IF NOT EXISTS usuario (
 
 
 CREATE TABLE IF NOT EXISTS `receta` (
-  `idReceta` INT NOT NULL,
+  `idreceta` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(45) NOT NULL,
   `tiempoPreparacion` INT NOT NULL,
   `ingredientes` VARCHAR(45) NOT NULL,
   `pasos` VARCHAR(45) NOT NULL,
   `usuario_idusuario` INT NOT NULL,
-  PRIMARY KEY (`idReceta`),
+  PRIMARY KEY (`idreceta`),
   INDEX `fk_receta_usuario1_idx` (`usuario_idusuario` ASC) VISIBLE,
   CONSTRAINT `fk_receta_usuario1`
     FOREIGN KEY (`usuario_idusuario`)
@@ -33,11 +33,11 @@ CREATE TABLE IF NOT EXISTS `foto` (
   `idfoto` INT NOT NULL,
   `fotoUrl` VARCHAR(45) NOT NULL,
   `receta_idReceta` INT NOT NULL,
-  PRIMARY KEY (`idfoto`, `receta_idReceta`),
-  INDEX `fk_foto_receta1_idx` (`receta_idReceta` ASC) VISIBLE,
+  PRIMARY KEY (`idfoto`, `receta_idreceta`),
+  INDEX `fk_foto_receta1_idx` (`receta_idreceta` ASC) VISIBLE,
   CONSTRAINT `fk_foto_receta1`
-    FOREIGN KEY (`receta_idReceta`)
-    REFERENCES `receta` (`idReceta`)
+    FOREIGN KEY (`receta_idreceta`)
+    REFERENCES `receta` (`idreceta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -46,11 +46,11 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `idcategoria` INT NOT NULL,
   `nombreCategoria` VARCHAR(45) NOT NULL,
   `receta_idReceta` INT NOT NULL,
-  PRIMARY KEY (`idcategoria`, `receta_idReceta`),
-  INDEX `fk_categoria_receta1_idx` (`receta_idReceta` ASC) VISIBLE,
+  PRIMARY KEY (`idcategoria`, `receta_idreceta`),
+  INDEX `fk_categoria_receta1_idx` (`receta_idreceta` ASC) VISIBLE,
   CONSTRAINT `fk_categoria_receta1`
-    FOREIGN KEY (`receta_idReceta`)
-    REFERENCES `receta` (`idReceta`)
+    FOREIGN KEY (`receta_idreceta`)
+    REFERENCES `receta` (`idreceta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 

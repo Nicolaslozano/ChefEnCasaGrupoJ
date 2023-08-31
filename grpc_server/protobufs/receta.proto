@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+message Receta {
+    int32 idreceta = 1;
+    string titulo = 2;
+    string descripcion = 3;
+    int32 tiempoPreparacion = 4;
+    string ingredientes = 5;
+    string pasos = 6; 
+    
+}
+
+message Responsea {
+    string message = 1;
+    int32 idreceta = 2;
+}
+
+
+service Recetas {
+    rpc AltaReceta(Receta) returns (Responsea);
+}

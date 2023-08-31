@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Protobuf Include="../gRPC_server/protobufs/usuarios.proto" />
+    <Protobuf Include="../gRPC_server/protobufs/receta.proto" />
 
   </ItemGroup>
 

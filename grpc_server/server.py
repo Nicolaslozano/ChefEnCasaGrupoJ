@@ -5,7 +5,8 @@ from datetime import datetime
 from google.protobuf.timestamp_pb2 import Timestamp
 import grpc
 from concurrent import futures
-
+from receta_pb2_grpc import RecetasServicer, add_RecetasServicer_to_server
+from receta_pb2 import Receta, Responsea
 import mysql.connector
 
 class ServicioUsuarios(UsuariosServicer):
@@ -52,9 +53,34 @@ class ServicioUsuarios(UsuariosServicer):
 
 
 
+class ServicioRecetas(RecetasServicer):
+
+    def Listo(self, request, context):
+        return Nulo()
+
+    def AltaReceta(self, request, context):
+        cnx = mysql.connector.connect(user='root', password='root',
+                                      host='localhost', port='3306',
+                                      database='chefencasagrupoj')
+        cursor = cnx.cursor()
+        query = (f"INSERT INTO receta (`titulo`, `descripcion`, `tiempoPreparacion`,  `ingredientes`, `pasos`) VALUES "
+                 f"('{request.titulo}', '{request.descripcion}', '{request.tiempoPreparacion}', '{request.ingredientes}', '{request.pasos}')")
+        cursor.execute(query)
+        cnx.commit()
+        resp = Responsea(message="204", idreceta=cursor.lastrowid)
+        cursor.close()
+        cnx.close()
+        return resp
+
+    
+
+
+
+
 def start():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     add_UsuariosServicer_to_server(ServicioUsuarios(), server)
+    add_RecetasServicer_to_server(ServicioRecetas(), server)
     server.add_insecure_port('[::]:50051')
     print("The server is running!")
     server.start()

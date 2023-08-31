@@ -1,0 +1,2 @@
+obj\Debug\net6.0/Receta.cs \
+obj\Debug\net6.0/RecetaGrpc.cs: ../gRPC_server/protobufs/receta.proto
