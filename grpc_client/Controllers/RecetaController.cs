@@ -27,6 +27,7 @@ namespace grpc_client.Controllers
                     TiempoPreparacion = receta.TiempoPreparacion,
                     Ingredientes = receta.Ingredientes,
                     Pasos = receta.Pasos,
+                    UsuarioIdusuario = receta.UsuarioIdusuario,
                 };
 
                 var recetaResponse = cliente.AltaReceta(postRecipe);

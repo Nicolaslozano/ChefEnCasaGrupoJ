@@ -7,6 +7,7 @@ message Receta {
     int32 tiempoPreparacion = 4;
     string ingredientes = 5;
     string pasos = 6; 
+    int32 usuario_idusuario = 7;
     
 }
 

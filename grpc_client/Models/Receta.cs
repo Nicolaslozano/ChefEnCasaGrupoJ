@@ -15,6 +15,7 @@ namespace grpc_client.Models
         public string ingredientes { get; set; }
         public string pasos { get; set; }
 
+        public Usuario usuario_idusuario { get; set; }
 
     }
 }

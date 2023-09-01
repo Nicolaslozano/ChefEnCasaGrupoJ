@@ -22,16 +22,17 @@ public static partial class RecetaReflection {
   static RecetaReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CgxyZWNldGEucHJvdG8ifwoGUmVjZXRhEhAKCGlkcmVjZXRhGAEgASgFEg4K",
-          "BnRpdHVsbxgCIAEoCRITCgtkZXNjcmlwY2lvbhgDIAEoCRIZChF0aWVtcG9Q",
-          "cmVwYXJhY2lvbhgEIAEoBRIUCgxpbmdyZWRpZW50ZXMYBSABKAkSDQoFcGFz",
-          "b3MYBiABKAkiLgoJUmVzcG9uc2VhEg8KB21lc3NhZ2UYASABKAkSEAoIaWRy",
-          "ZWNldGEYAiABKAUyLAoHUmVjZXRhcxIhCgpBbHRhUmVjZXRhEgcuUmVjZXRh",
-          "GgouUmVzcG9uc2VhYgZwcm90bzM="));
+          "CgxyZWNldGEucHJvdG8imgEKBlJlY2V0YRIQCghpZHJlY2V0YRgBIAEoBRIO",
+          "CgZ0aXR1bG8YAiABKAkSEwoLZGVzY3JpcGNpb24YAyABKAkSGQoRdGllbXBv",
+          "UHJlcGFyYWNpb24YBCABKAUSFAoMaW5ncmVkaWVudGVzGAUgASgJEg0KBXBh",
+          "c29zGAYgASgJEhkKEXVzdWFyaW9faWR1c3VhcmlvGAcgASgFIi4KCVJlc3Bv",
+          "bnNlYRIPCgdtZXNzYWdlGAEgASgJEhAKCGlkcmVjZXRhGAIgASgFMiwKB1Jl",
+          "Y2V0YXMSIQoKQWx0YVJlY2V0YRIHLlJlY2V0YRoKLlJlc3BvbnNlYWIGcHJv",
+          "dG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::Receta), global::Receta.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Receta), global::Receta.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos", "UsuarioIdusuario" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Responsea), global::Responsea.Parser, new[]{ "Message", "Idreceta" }, null, null, null, null)
         }));
   }
@@ -79,6 +80,7 @@ public sealed partial class Receta : pb::IMessage<Receta>
     tiempoPreparacion_ = other.tiempoPreparacion_;
     ingredientes_ = other.ingredientes_;
     pasos_ = other.pasos_;
+    usuarioIdusuario_ = other.usuarioIdusuario_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -160,6 +162,18 @@ public sealed partial class Receta : pb::IMessage<Receta>
     }
   }
 
+  /// <summary>Field number for the "usuario_idusuario" field.</summary>
+  public const int UsuarioIdusuarioFieldNumber = 7;
+  private int usuarioIdusuario_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int UsuarioIdusuario {
+    get { return usuarioIdusuario_; }
+    set {
+      usuarioIdusuario_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -181,6 +195,7 @@ public sealed partial class Receta : pb::IMessage<Receta>
     if (TiempoPreparacion != other.TiempoPreparacion) return false;
     if (Ingredientes != other.Ingredientes) return false;
     if (Pasos != other.Pasos) return false;
+    if (UsuarioIdusuario != other.UsuarioIdusuario) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -194,6 +209,7 @@ public sealed partial class Receta : pb::IMessage<Receta>
     if (TiempoPreparacion != 0) hash ^= TiempoPreparacion.GetHashCode();
     if (Ingredientes.Length != 0) hash ^= Ingredientes.GetHashCode();
     if (Pasos.Length != 0) hash ^= Pasos.GetHashCode();
+    if (UsuarioIdusuario != 0) hash ^= UsuarioIdusuario.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -236,6 +252,10 @@ public sealed partial class Receta : pb::IMessage<Receta>
       output.WriteRawTag(50);
       output.WriteString(Pasos);
     }
+    if (UsuarioIdusuario != 0) {
+      output.WriteRawTag(56);
+      output.WriteInt32(UsuarioIdusuario);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -270,6 +290,10 @@ public sealed partial class Receta : pb::IMessage<Receta>
       output.WriteRawTag(50);
       output.WriteString(Pasos);
     }
+    if (UsuarioIdusuario != 0) {
+      output.WriteRawTag(56);
+      output.WriteInt32(UsuarioIdusuario);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -297,6 +321,9 @@ public sealed partial class Receta : pb::IMessage<Receta>
     }
     if (Pasos.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Pasos);
+    }
+    if (UsuarioIdusuario != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(UsuarioIdusuario);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -327,6 +354,9 @@ public sealed partial class Receta : pb::IMessage<Receta>
     }
     if (other.Pasos.Length != 0) {
       Pasos = other.Pasos;
+    }
+    if (other.UsuarioIdusuario != 0) {
+      UsuarioIdusuario = other.UsuarioIdusuario;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -367,6 +397,10 @@ public sealed partial class Receta : pb::IMessage<Receta>
           Pasos = input.ReadString();
           break;
         }
+        case 56: {
+          UsuarioIdusuario = input.ReadInt32();
+          break;
+        }
       }
     }
   #endif
@@ -404,6 +438,10 @@ public sealed partial class Receta : pb::IMessage<Receta>
         }
         case 50: {
           Pasos = input.ReadString();
+          break;
+        }
+        case 56: {
+          UsuarioIdusuario = input.ReadInt32();
           break;
         }
       }
