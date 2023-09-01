@@ -17,6 +17,8 @@ namespace grpc_client.Models
 
         public Usuario usuario_idusuario { get; set; }
 
+        public Categoria categoria_idcategoria { get; set; }
+
     }
 }
 

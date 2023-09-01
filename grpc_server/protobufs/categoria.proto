@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+message Categoria {
+    int32 idcategoria = 1;
+    string nombreCategoria = 2;
+ 
+}

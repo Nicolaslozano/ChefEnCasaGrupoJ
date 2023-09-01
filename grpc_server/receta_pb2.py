@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0creceta.proto\"\x9a\x01\n\x06Receta\x12\x10\n\x08idreceta\x18\x01 \x01(\x05\x12\x0e\n\x06titulo\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scripcion\x18\x03 \x01(\t\x12\x19\n\x11tiempoPreparacion\x18\x04 \x01(\x05\x12\x14\n\x0cingredientes\x18\x05 \x01(\t\x12\r\n\x05pasos\x18\x06 \x01(\t\x12\x19\n\x11usuario_idusuario\x18\x07 \x01(\x05\".\n\tResponsea\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x10\n\x08idreceta\x18\x02 \x01(\x05\x32,\n\x07Recetas\x12!\n\nAltaReceta\x12\x07.Receta\x1a\n.Responseab\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0creceta.proto\"\xb9\x01\n\x06Receta\x12\x10\n\x08idreceta\x18\x01 \x01(\x05\x12\x0e\n\x06titulo\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scripcion\x18\x03 \x01(\t\x12\x19\n\x11tiempoPreparacion\x18\x04 \x01(\x05\x12\x14\n\x0cingredientes\x18\x05 \x01(\t\x12\r\n\x05pasos\x18\x06 \x01(\t\x12\x19\n\x11usuario_idusuario\x18\x07 \x01(\x05\x12\x1d\n\x15\x63\x61tegoria_idcategoria\x18\x08 \x01(\x05\".\n\tResponsea\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x10\n\x08idreceta\x18\x02 \x01(\x05\x32,\n\x07Recetas\x12!\n\nAltaReceta\x12\x07.Receta\x1a\n.Responseab\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,9 +22,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   _globals['_RECETA']._serialized_start=17
-  _globals['_RECETA']._serialized_end=171
-  _globals['_RESPONSEA']._serialized_start=173
-  _globals['_RESPONSEA']._serialized_end=219
-  _globals['_RECETAS']._serialized_start=221
-  _globals['_RECETAS']._serialized_end=265
+  _globals['_RECETA']._serialized_end=202
+  _globals['_RESPONSEA']._serialized_start=204
+  _globals['_RESPONSEA']._serialized_end=250
+  _globals['_RECETAS']._serialized_start=252
+  _globals['_RECETAS']._serialized_end=296
 # @@protoc_insertion_point(module_scope)
