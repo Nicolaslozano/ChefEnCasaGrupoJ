@@ -10,7 +10,7 @@ namespace grpc_client.Controllers
     public class RecetaController
     {
         [HttpPost]
-        public string PostReceta(Receta receta)
+        public string PostReceta(RecetaClass receta)
         {
             string response;
             try
@@ -22,14 +22,17 @@ namespace grpc_client.Controllers
 
                 var postRecipe = new Receta
                 {
-                    Titulo = receta.Titulo,
-                    Descripcion = receta.Descripcion,
-                    TiempoPreparacion = receta.TiempoPreparacion,
-                    Ingredientes = receta.Ingredientes,
-                    Pasos = receta.Pasos,
-                    UsuarioIdusuario = receta.UsuarioIdusuario,
-                    CategoriaIdcategoria = receta.CategoriaIdcategoria,
-                };
+                    Titulo = receta.titulo,
+                    Descripcion = receta.descripcion,
+                    TiempoPreparacion = receta.tiempoPreparacion,
+                    Ingredientes = receta.ingredientes,
+                    Pasos = receta.pasos,
+                    UsuarioIdusuario = receta.usuario_idusuario,
+                    CategoriaIdcategoria = receta.categoria_idcategoria,
+                    
+
+            };
+                
 
                 var recetaResponse = cliente.AltaReceta(postRecipe);
                 response = JsonConvert.SerializeObject(recetaResponse);

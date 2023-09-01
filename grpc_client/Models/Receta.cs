@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace grpc_client.Models
 {
-    public class Receta
+    public class RecetaClass
     {
         
         public int idreceta { get; set; }
@@ -14,10 +14,9 @@ namespace grpc_client.Models
         public int tiempoPreparacion { get; set; }
         public string ingredientes { get; set; }
         public string pasos { get; set; }
+        public int usuario_idusuario { get; set; }
 
-        public Usuario usuario_idusuario { get; set; }
-
-        public Categoria categoria_idcategoria { get; set; }
+        public int categoria_idcategoria { get; set; }
 
     }
 }
