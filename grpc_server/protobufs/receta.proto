@@ -12,13 +12,19 @@ message Receta {
     int32 categoria_idcategoria = 9;
     
 }
+message NuloReceta {
+}
 
 message Responsea {
     string message = 1;
     int32 idreceta = 2;
 }
 
-
+message RecetaList {
+    repeated Receta recetas = 1;
+}
 service Recetas {
     rpc AltaReceta(Receta) returns (Responsea);
+    rpc TraerRecetas(NuloReceta) returns (stream Receta);
+
 }
