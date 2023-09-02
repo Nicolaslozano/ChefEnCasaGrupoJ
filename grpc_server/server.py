@@ -63,8 +63,15 @@ class ServicioRecetas(RecetasServicer):
                                       host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
-        query = (f"INSERT INTO receta (`titulo`, `descripcion`, `tiempoPreparacion`,  `ingredientes`, `pasos`, `usuario_idusuario`,`categoria_idcategoria`) VALUES "
-                 f"('{request.titulo}', '{request.descripcion}', '{request.tiempoPreparacion}', '{request.ingredientes}', '{request.pasos}', '{request.usuario_idusuario}','{request.categoria_idcategoria}')")
+        stmt = f"INSERT INTO receta (`titulo`, `descripcion`, `tiempoPreparacion`,  `ingredientes`, `pasos`, `usuario_idusuario`,`categoria_idcategoria`"
+        values =  f" VALUES ('{request.titulo}', '{request.descripcion}', '{request.tiempoPreparacion}', '{request.ingredientes}', '{request.pasos}', '{request.usuario_idusuario}','{request.categoria_idcategoria}'"
+          
+        for idx,url_foto in enumerate(request.url_fotos,start=1):
+            stmt += f", `url_foto{idx}`"
+            values += f", '{url_foto}'"
+        stmt += ")"
+        query = stmt+values+")"
+
         cursor.execute(query)
         cnx.commit()
         resp = Responsea(message="204", idreceta=cursor.lastrowid)

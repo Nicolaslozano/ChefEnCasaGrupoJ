@@ -14,6 +14,8 @@ namespace grpc_client.Models
         public int tiempoPreparacion { get; set; }
         public string ingredientes { get; set; }
         public string pasos { get; set; }
+        public List<string> url_fotos { get; set; }
+
         public int usuario_idusuario { get; set; }
 
         public int categoria_idcategoria { get; set; }

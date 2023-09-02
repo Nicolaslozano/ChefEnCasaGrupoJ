@@ -32,7 +32,10 @@ namespace grpc_client.Controllers
                     
 
             };
-                
+                foreach (var stringUrl in receta.url_fotos)
+                {
+                    postRecipe.UrlFotos.Add(stringUrl);
+                }
 
                 var recetaResponse = cliente.AltaReceta(postRecipe);
                 response = JsonConvert.SerializeObject(recetaResponse);
