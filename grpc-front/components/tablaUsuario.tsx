@@ -14,7 +14,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
-import { ActionsIcon,ChevronDownIcon } from "./icons";
+import { ActionsIcon} from "./icons";
 
 
 const rows = [
@@ -63,7 +63,7 @@ const columns = [
   },
 ];
 
-export default function App() {
+export default function tablaUsuario() {
   const itemsPerPage = 2;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -71,17 +71,17 @@ export default function App() {
   const endIndex = startIndex + itemsPerPage;
   const paginatedRows = rows.slice(startIndex, endIndex);
 
-  const handleView = (item) => {
+  const handleView = (item:any) => {
     // Falta implementar el Ver Receta
     alert(`Viewing: ${item.name}`);
   };
 
-  const handleEdit = (item) => {
+  const handleEdit = (item:any) => {
     //Falta implementar el UPDATE
     alert(`Editing: ${item.name}`);
   };
 
-  const handleDelete = (item) => {
+  const handleDelete = (item:any) => {
     //Falta implementar el borrado
     alert(`Deleting: ${item.name}`);
   };

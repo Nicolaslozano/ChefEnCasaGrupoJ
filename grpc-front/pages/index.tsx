@@ -1,5 +1,5 @@
-import { title, subtitle } from "@/components/primitives";
-import TableComponent from "@/components/table";
+import { title} from "@/components/primitives";
+import TablaGeneral from "@/components/tablaGeneral";
 import DefaultLayout from "@/layouts/default";
 import { Spacer } from "@nextui-org/react";
 
@@ -12,7 +12,7 @@ export default function IndexPage() {
           <h1 className={title({ color: "green" })}>Comunidad&nbsp;</h1>
        </div>
       <Spacer/>
-      <TableComponent/>
+      <TablaGeneral/>
       </section>
     </DefaultLayout>
   );
