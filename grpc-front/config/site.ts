@@ -3,33 +3,16 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
 	name: "ChefEnCasa",
 	description: "Recetas por el usuario para el usuario.",
-	navItems: [
-		{
-			label: "Home",
-			href: "/",
-		},
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
-      href: "/about",
-    }
-	],
+	
 	navMenuItems: [
 		{
 			label: "Profile",
 			href: "/profile",
 		},
+		{
+			label: "Login",
+			href: "/login",
+		  },
 		{
 			label: "Dashboard",
 			href: "/dashboard",
@@ -58,6 +41,10 @@ export const siteConfig = {
 			label: "Logout",
 			href: "/logout",
 		},
+		{
+			label: "user",
+			href: "/user",
+		  }
 	],
 	links: {
 		github: "https://github.com/nextui-org/nextui",
