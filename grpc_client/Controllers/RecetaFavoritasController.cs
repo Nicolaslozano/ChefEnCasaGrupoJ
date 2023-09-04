@@ -61,8 +61,14 @@ namespace grpc_client.Controllers
                 {
                     UsuarioIdusuario = idusuario
                 };
-                var call = cliente.TraerRecetasFav(postRecipe);
-                response = JsonConvert.SerializeObject(call);
+                List<RecetaFavCompleta> recetas = new();
+                using (var call = cliente.TraerRecetasFav(postRecipe))
+                    while (await call.ResponseStream.MoveNext())
+                    {
+                        var currentRecipe = call.ResponseStream.Current;
+                        recetas.Add(currentRecipe);
+                    }
+                response = JsonConvert.SerializeObject(recetas);
             }
             catch (Exception e)
             {
