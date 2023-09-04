@@ -8,6 +8,8 @@ from concurrent import futures
 from receta_pb2_grpc import RecetasServicer, add_RecetasServicer_to_server
 from receta_pb2 import Receta, Responsea
 import mysql.connector
+from recetafavoritas_pb2_grpc import RecetaFavServicer, add_RecetaFavServicer_to_server
+from recetafavoritas_pb2 import RecetaFavoritas # aca va el nombre del messege proto
 
 class ServicioUsuarios(UsuariosServicer):
 
@@ -15,8 +17,8 @@ class ServicioUsuarios(UsuariosServicer):
         return Nulo()
 
     def AltaUsuario(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='root',
-                                      host='localhost', port='3306',
+        cnx = mysql.connector.connect(user='root', password='password',
+                                      host='192.168.99.100', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
         query = f"SELECT * FROM usuario WHERE user = '{request.user}'"
@@ -34,8 +36,8 @@ class ServicioUsuarios(UsuariosServicer):
         return resp
 
     def TraerUsuario(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='root',
-                                      host='localhost', port='3306',
+        cnx = mysql.connector.connect(user='root', password='password',
+                                      host='192.168.99.100', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor(dictionary=True)  # Use dictionary cursor
         query = (f"SELECT * FROM usuario WHERE user = '{request.user}' AND password = '{request.password}'")
@@ -50,17 +52,14 @@ class ServicioUsuarios(UsuariosServicer):
         else:
             return Usuario()
 
-
-
-
 class ServicioRecetas(RecetasServicer):
 
     def Listo(self, request, context):
         return Nulo()
 
     def AltaReceta(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='root',
-                                      host='localhost', port='3306',
+        cnx = mysql.connector.connect(user='root', password='password',
+                                      host='192.168.99.100', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
         stmt = f"INSERT INTO receta (`titulo`, `descripcion`, `tiempoPreparacion`,  `ingredientes`, `pasos`, `usuario_idusuario`,`categoria_idcategoria`"
@@ -80,8 +79,8 @@ class ServicioRecetas(RecetasServicer):
         return resp
 
     def TraerRecetas(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='root', 
-                              host='localhost', port='3306',
+        cnx = mysql.connector.connect(user='root', password='password', 
+                              host='192.168.99.100', port='3306',
                               database='chefencasagrupoj')
         cursor = cnx.cursor(named_tuple=True)
         query = (f"SELECT * FROM receta "+
@@ -104,20 +103,32 @@ class ServicioRecetas(RecetasServicer):
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
             tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, categoria_idcategoria = row.categoria_idcategoria, usuario_idusuario = row.usuario_idusuario)
 
+class ServicioRecetasFav(RecetaFavServicer):
 
-
+    def AgregarRecetaFav(self, request, context):
+        cnx = mysql.connector.connect(user='root', password='password',
+                                      host='192.168.99.100', port='3306',
+                                      database='chefencasagrupoj')
+        cursor = cnx.cursor()
+        query = (f"INSERT INTO recetaFavoritas (`idrecetaFavoritas`, `recetasFavoritascol`, `usuario_idusuario`) VALUES "
+                 f"('{request.idrecetaFavoritas}', '{request.recetasFavoritascol}', '{request.usuario_idusuario}')")
+        cursor.execute(query)
+        cnx.commit()
+        resp = Responsea(message="204", idreceta=cursor.lastrowid)
+        cursor.close()
+        cnx.close()
+        return resp
 
 def start():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     add_UsuariosServicer_to_server(ServicioUsuarios(), server)
     add_RecetasServicer_to_server(ServicioRecetas(), server)
+    add_RecetaFavServicer_to_server(ServicioRecetasFav(), server)
     server.add_insecure_port('[::]:50051')
     print("The server is running!")
     server.start()
     server.wait_for_termination()
 
     
-
-
 if __name__ == "__main__":
     start()

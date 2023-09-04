@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+message RecetaFavoritas {
+    int32 idrecetaFavoritas = 1;
+    string recetasFavoritascol = 2;
+    int32 usuario_idusuario = 3;
+}
+
+message Nulos {
+
+}
+
+service RecetaFav {
+    rpc AgregarRecetaFav(RecetaFavoritas) returns (Nulos);
+   
+}
