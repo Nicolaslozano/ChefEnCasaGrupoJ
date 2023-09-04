@@ -78,5 +78,47 @@ namespace grpc_client.Controllers
 
             return response;
         }
+
+       
+
+        [HttpPut]
+        [Route("EditarReceta/")]
+        public string EditarRecetas(RecetaClass receta)
+        {
+            string response;
+            try
+            {
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Recetas.RecetasClient(channel);
+
+
+                
+                var editRecipe = new RecetaEditar
+                {
+                    Idreceta = receta.idreceta,
+                    Titulo = receta.titulo,
+                    Descripcion = receta.descripcion,
+                    TiempoPreparacion = receta.tiempoPreparacion,
+                    Ingredientes = receta.ingredientes,
+                    Pasos = receta.pasos,
+                    CategoriaIdcategoria = receta.categoria_idcategoria,
+                };
+                foreach (var stringUrl in receta.url_fotos)
+                {
+                    editRecipe.UrlFotos.Add(stringUrl);
+                }
+                var productoResponse = cliente.EditarReceta(editRecipe);
+                response = JsonConvert.SerializeObject(productoResponse);
+
+            }
+            catch (Exception e)
+            {
+                response = e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
     }
 }
