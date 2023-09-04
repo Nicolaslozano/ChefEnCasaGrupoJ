@@ -2,15 +2,34 @@ syntax = "proto3";
 
 message RecetaFavoritas {
     int32 idrecetaFavoritas = 1;
-    string recetasFavoritascol = 2;
+    int32 recetasFavoritascol = 2;
     int32 usuario_idusuario = 3;
 }
+
+message RecetaFavCompleta {
+    int32 idreceta = 1;
+    string titulo = 2;
+    string descripcion = 3;
+    int32 tiempoPreparacion = 4;
+    string ingredientes = 5;
+    string pasos = 6; 
+    repeated string url_fotos = 7;
+    int32 usuario_idusuario = 8;
+    int32 categoria_idcategoria = 9;
+    
+}
+
 
 message Nulos {
 
 }
 
+message UsuarioLogueado {
+    int32 usuario_idusuario = 1 ;
+}
+
 service RecetaFav {
     rpc AgregarRecetaFav(RecetaFavoritas) returns (Nulos);
+    rpc TraerRecetasFav(UsuarioLogueado) returns (stream RecetaFavCompleta);
    
 }

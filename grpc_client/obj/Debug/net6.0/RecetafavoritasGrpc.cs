@@ -48,6 +48,10 @@ public static partial class RecetaFav
   static readonly grpc::Marshaller<global::RecetaFavoritas> __Marshaller_RecetaFavoritas = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::RecetaFavoritas.Parser));
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Marshaller<global::Nulos> __Marshaller_Nulos = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Nulos.Parser));
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Marshaller<global::UsuarioLogueado> __Marshaller_UsuarioLogueado = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::UsuarioLogueado.Parser));
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Marshaller<global::RecetaFavCompleta> __Marshaller_RecetaFavCompleta = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::RecetaFavCompleta.Parser));
 
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Method<global::RecetaFavoritas, global::Nulos> __Method_AgregarRecetaFav = new grpc::Method<global::RecetaFavoritas, global::Nulos>(
@@ -56,6 +60,14 @@ public static partial class RecetaFav
       "AgregarRecetaFav",
       __Marshaller_RecetaFavoritas,
       __Marshaller_Nulos);
+
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Method<global::UsuarioLogueado, global::RecetaFavCompleta> __Method_TraerRecetasFav = new grpc::Method<global::UsuarioLogueado, global::RecetaFavCompleta>(
+      grpc::MethodType.ServerStreaming,
+      __ServiceName,
+      "TraerRecetasFav",
+      __Marshaller_UsuarioLogueado,
+      __Marshaller_RecetaFavCompleta);
 
   /// <summary>Service descriptor</summary>
   public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -69,6 +81,12 @@ public static partial class RecetaFav
   {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     public virtual global::System.Threading.Tasks.Task<global::Nulos> AgregarRecetaFav(global::RecetaFavoritas request, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::System.Threading.Tasks.Task TraerRecetasFav(global::UsuarioLogueado request, grpc::IServerStreamWriter<global::RecetaFavCompleta> responseStream, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
@@ -122,6 +140,16 @@ public static partial class RecetaFav
     {
       return CallInvoker.AsyncUnaryCall(__Method_AgregarRecetaFav, null, options, request);
     }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncServerStreamingCall<global::RecetaFavCompleta> TraerRecetasFav(global::UsuarioLogueado request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return TraerRecetasFav(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncServerStreamingCall<global::RecetaFavCompleta> TraerRecetasFav(global::UsuarioLogueado request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncServerStreamingCall(__Method_TraerRecetasFav, null, options, request);
+    }
     /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     protected override RecetaFavClient NewInstance(ClientBaseConfiguration configuration)
@@ -136,7 +164,8 @@ public static partial class RecetaFav
   public static grpc::ServerServiceDefinition BindService(RecetaFavBase serviceImpl)
   {
     return grpc::ServerServiceDefinition.CreateBuilder()
-        .AddMethod(__Method_AgregarRecetaFav, serviceImpl.AgregarRecetaFav).Build();
+        .AddMethod(__Method_AgregarRecetaFav, serviceImpl.AgregarRecetaFav)
+        .AddMethod(__Method_TraerRecetasFav, serviceImpl.TraerRecetasFav).Build();
   }
 
   /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -147,6 +176,7 @@ public static partial class RecetaFav
   public static void BindService(grpc::ServiceBinderBase serviceBinder, RecetaFavBase serviceImpl)
   {
     serviceBinder.AddMethod(__Method_AgregarRecetaFav, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::RecetaFavoritas, global::Nulos>(serviceImpl.AgregarRecetaFav));
+    serviceBinder.AddMethod(__Method_TraerRecetasFav, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::UsuarioLogueado, global::RecetaFavCompleta>(serviceImpl.TraerRecetasFav));
   }
 
 }

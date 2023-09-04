@@ -19,12 +19,23 @@ class RecetaFavStub(object):
                 request_serializer=recetafavoritas__pb2.RecetaFavoritas.SerializeToString,
                 response_deserializer=recetafavoritas__pb2.Nulos.FromString,
                 )
+        self.TraerRecetasFav = channel.unary_stream(
+                '/RecetaFav/TraerRecetasFav',
+                request_serializer=recetafavoritas__pb2.UsuarioLogueado.SerializeToString,
+                response_deserializer=recetafavoritas__pb2.RecetaFavCompleta.FromString,
+                )
 
 
 class RecetaFavServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def AgregarRecetaFav(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TraerRecetasFav(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -37,6 +48,11 @@ def add_RecetaFavServicer_to_server(servicer, server):
                     servicer.AgregarRecetaFav,
                     request_deserializer=recetafavoritas__pb2.RecetaFavoritas.FromString,
                     response_serializer=recetafavoritas__pb2.Nulos.SerializeToString,
+            ),
+            'TraerRecetasFav': grpc.unary_stream_rpc_method_handler(
+                    servicer.TraerRecetasFav,
+                    request_deserializer=recetafavoritas__pb2.UsuarioLogueado.FromString,
+                    response_serializer=recetafavoritas__pb2.RecetaFavCompleta.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -62,5 +78,22 @@ class RecetaFav(object):
         return grpc.experimental.unary_unary(request, target, '/RecetaFav/AgregarRecetaFav',
             recetafavoritas__pb2.RecetaFavoritas.SerializeToString,
             recetafavoritas__pb2.Nulos.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TraerRecetasFav(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/RecetaFav/TraerRecetasFav',
+            recetafavoritas__pb2.UsuarioLogueado.SerializeToString,
+            recetafavoritas__pb2.RecetaFavCompleta.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

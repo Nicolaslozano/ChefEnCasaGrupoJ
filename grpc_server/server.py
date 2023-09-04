@@ -118,6 +118,19 @@ class ServicioRecetasFav(RecetaFavServicer):
         cursor.close()
         cnx.close()
         return resp
+    
+    def TraerRecetasFav(self, request, context):
+        cnx = mysql.connector.connect(user='root', password='password', 
+                              host='192.168.99.100', port='3306',
+                              database='chefencasagrupoj')
+        cursor = cnx.cursor(named_tuple=True)
+        query = (f"SELECT * FROM recetaFavoritas "+
+                 "INNER JOIN usuario AS u"+ "INNER JOIN receta AS r"+
+                 "WHERE recetafavorita.usuario_idusuario = u.idusuario "+
+                 "AND r.idReceta = recetaFavoritas.recetasFavoritascol")
+        cursor.execute(query)
+        records = cursor.fetchall()
+
 
 def start():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))

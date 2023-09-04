@@ -33,11 +33,11 @@ CREATE TABLE IF NOT EXISTS `receta` (
   `usuario_idusuario` INT NOT NULL,
   `categoria_idcategoria` INT NOT NULL,
   PRIMARY KEY (`idreceta`),
-  INDEX `fk_receta_usuario1_idx` (`usuario_idusuario` ASC) VISIBLE,
+  INDEX `fk_receta_usuario1_idx` (`usuario_idusuario` ASC),
   CONSTRAINT `fk_receta_usuario1`
     FOREIGN KEY (`usuario_idusuario`)
     REFERENCES `usuario` (`idusuario`),
-  INDEX `fk_receta_categoria_idx` (`categoria_idcategoria` ASC) VISIBLE,
+  INDEX `fk_receta_categoria_idx` (`categoria_idcategoria` ASC),
   CONSTRAINT `fk_receta_categoria1`
     FOREIGN KEY (`categoria_idcategoria`)
     REFERENCES `categoria` (`idcategoria`)
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `foto` (
   `fotoUrl` VARCHAR(45) NOT NULL,
   `receta_idReceta` INT NOT NULL,
   PRIMARY KEY (`idfoto`, `receta_idreceta`),
-  INDEX `fk_foto_receta1_idx` (`receta_idreceta` ASC) VISIBLE,
+  INDEX `fk_foto_receta1_idx` (`receta_idreceta` ASC) ,
   CONSTRAINT `fk_foto_receta1`
     FOREIGN KEY (`receta_idreceta`)
     REFERENCES `receta` (`idreceta`)
@@ -63,10 +63,10 @@ CREATE TABLE IF NOT EXISTS `foto` (
 
 CREATE TABLE IF NOT EXISTS `recetaFavoritas` (
   `idrecetaFavoritas` INT NOT NULL,
-  `recetasFavoritascol` VARCHAR(45) NULL,
+  `recetasFavoritascol` INT NULL,
   `usuario_idusuario` INT NOT NULL,
   PRIMARY KEY (`idrecetaFavoritas`, `usuario_idusuario`),
-  INDEX `fk_recetaFavoritas_usuario1_idx` (`usuario_idusuario` ASC) VISIBLE,
+  INDEX `fk_recetaFavoritas_usuario1_idx` (`usuario_idusuario` ASC),
   CONSTRAINT `fk_recetaFavoritas_usuario1`
     FOREIGN KEY (`usuario_idusuario`)
     REFERENCES `usuario` (`idusuario`)
@@ -80,11 +80,9 @@ CREATE TABLE IF NOT EXISTS `suscripcion` (
   `idsuscripcion` INT NOT NULL,
   `usuario_idusuario` INT NOT NULL,
   PRIMARY KEY (`idsuscripcion`, `usuario_idusuario`),
-  INDEX `fk_suscripcion_usuario1_idx` (`usuario_idusuario` ASC) VISIBLE,
+  INDEX `fk_suscripcion_usuario1_idx` (`usuario_idusuario` ASC) ,
   CONSTRAINT `fk_suscripcion_usuario1`
     FOREIGN KEY (`usuario_idusuario`)
     REFERENCES `usuario` (`idusuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-
-

@@ -40,5 +40,38 @@ namespace grpc_client.Controllers
             return response;
         }
 
+
+
+
+
+        [HttpPost]
+        [Route("GetRecetasFav")]
+        public async Task<string> GetRecetasFavAsync(int idusuario)
+        {
+            string response;
+            try
+            {
+                // This switch must be set before creating the GrpcChannel/HttpClient.
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new RecetaFav.RecetaFavClient(channel);
+
+                var postRecipe = new UsuarioLogueado
+                {
+                    UsuarioIdusuario = idusuario
+                };
+                var call = cliente.TraerRecetasFav(postRecipe);
+                response = JsonConvert.SerializeObject(call);
+            }
+            catch (Exception e)
+            {
+                return e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
+
+
     }
 }

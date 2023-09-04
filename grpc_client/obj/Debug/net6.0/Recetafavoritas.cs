@@ -24,14 +24,23 @@ public static partial class RecetafavoritasReflection {
         string.Concat(
           "ChVyZWNldGFmYXZvcml0YXMucHJvdG8iZAoPUmVjZXRhRmF2b3JpdGFzEhkK",
           "EWlkcmVjZXRhRmF2b3JpdGFzGAEgASgFEhsKE3JlY2V0YXNGYXZvcml0YXNj",
-          "b2wYAiABKAkSGQoRdXN1YXJpb19pZHVzdWFyaW8YAyABKAUiBwoFTnVsb3My",
-          "OQoJUmVjZXRhRmF2EiwKEEFncmVnYXJSZWNldGFGYXYSEC5SZWNldGFGYXZv",
-          "cml0YXMaBi5OdWxvc2IGcHJvdG8z"));
+          "b2wYAiABKAUSGQoRdXN1YXJpb19pZHVzdWFyaW8YAyABKAUi1wEKEVJlY2V0",
+          "YUZhdkNvbXBsZXRhEhAKCGlkcmVjZXRhGAEgASgFEg4KBnRpdHVsbxgCIAEo",
+          "CRITCgtkZXNjcmlwY2lvbhgDIAEoCRIZChF0aWVtcG9QcmVwYXJhY2lvbhgE",
+          "IAEoBRIUCgxpbmdyZWRpZW50ZXMYBSABKAkSDQoFcGFzb3MYBiABKAkSEQoJ",
+          "dXJsX2ZvdG9zGAcgAygJEhkKEXVzdWFyaW9faWR1c3VhcmlvGAggASgFEh0K",
+          "FWNhdGVnb3JpYV9pZGNhdGVnb3JpYRgJIAEoBSIHCgVOdWxvcyIsCg9Vc3Vh",
+          "cmlvTG9ndWVhZG8SGQoRdXN1YXJpb19pZHVzdWFyaW8YASABKAUydAoJUmVj",
+          "ZXRhRmF2EiwKEEFncmVnYXJSZWNldGFGYXYSEC5SZWNldGFGYXZvcml0YXMa",
+          "Bi5OdWxvcxI5Cg9UcmFlclJlY2V0YXNGYXYSEC5Vc3VhcmlvTG9ndWVhZG8a",
+          "Ei5SZWNldGFGYXZDb21wbGV0YTABYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::RecetaFavoritas), global::RecetaFavoritas.Parser, new[]{ "IdrecetaFavoritas", "RecetasFavoritascol", "UsuarioIdusuario" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::Nulos), global::Nulos.Parser, null, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::RecetaFavCompleta), global::RecetaFavCompleta.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos", "UrlFotos", "UsuarioIdusuario", "CategoriaIdcategoria" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Nulos), global::Nulos.Parser, null, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::UsuarioLogueado), global::UsuarioLogueado.Parser, new[]{ "UsuarioIdusuario" }, null, null, null, null)
         }));
   }
   #endregion
@@ -98,13 +107,13 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
 
   /// <summary>Field number for the "recetasFavoritascol" field.</summary>
   public const int RecetasFavoritascolFieldNumber = 2;
-  private string recetasFavoritascol_ = "";
+  private int recetasFavoritascol_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public string RecetasFavoritascol {
+  public int RecetasFavoritascol {
     get { return recetasFavoritascol_; }
     set {
-      recetasFavoritascol_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      recetasFavoritascol_ = value;
     }
   }
 
@@ -146,7 +155,7 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
   public override int GetHashCode() {
     int hash = 1;
     if (IdrecetaFavoritas != 0) hash ^= IdrecetaFavoritas.GetHashCode();
-    if (RecetasFavoritascol.Length != 0) hash ^= RecetasFavoritascol.GetHashCode();
+    if (RecetasFavoritascol != 0) hash ^= RecetasFavoritascol.GetHashCode();
     if (UsuarioIdusuario != 0) hash ^= UsuarioIdusuario.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -170,9 +179,9 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
       output.WriteRawTag(8);
       output.WriteInt32(IdrecetaFavoritas);
     }
-    if (RecetasFavoritascol.Length != 0) {
-      output.WriteRawTag(18);
-      output.WriteString(RecetasFavoritascol);
+    if (RecetasFavoritascol != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(RecetasFavoritascol);
     }
     if (UsuarioIdusuario != 0) {
       output.WriteRawTag(24);
@@ -192,9 +201,9 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
       output.WriteRawTag(8);
       output.WriteInt32(IdrecetaFavoritas);
     }
-    if (RecetasFavoritascol.Length != 0) {
-      output.WriteRawTag(18);
-      output.WriteString(RecetasFavoritascol);
+    if (RecetasFavoritascol != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(RecetasFavoritascol);
     }
     if (UsuarioIdusuario != 0) {
       output.WriteRawTag(24);
@@ -213,8 +222,8 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
     if (IdrecetaFavoritas != 0) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(IdrecetaFavoritas);
     }
-    if (RecetasFavoritascol.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeStringSize(RecetasFavoritascol);
+    if (RecetasFavoritascol != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(RecetasFavoritascol);
     }
     if (UsuarioIdusuario != 0) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(UsuarioIdusuario);
@@ -234,7 +243,7 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
     if (other.IdrecetaFavoritas != 0) {
       IdrecetaFavoritas = other.IdrecetaFavoritas;
     }
-    if (other.RecetasFavoritascol.Length != 0) {
+    if (other.RecetasFavoritascol != 0) {
       RecetasFavoritascol = other.RecetasFavoritascol;
     }
     if (other.UsuarioIdusuario != 0) {
@@ -259,8 +268,8 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
           IdrecetaFavoritas = input.ReadInt32();
           break;
         }
-        case 18: {
-          RecetasFavoritascol = input.ReadString();
+        case 16: {
+          RecetasFavoritascol = input.ReadInt32();
           break;
         }
         case 24: {
@@ -286,12 +295,486 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
           IdrecetaFavoritas = input.ReadInt32();
           break;
         }
-        case 18: {
-          RecetasFavoritascol = input.ReadString();
+        case 16: {
+          RecetasFavoritascol = input.ReadInt32();
           break;
         }
         case 24: {
           UsuarioIdusuario = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+public sealed partial class RecetaFavCompleta : pb::IMessage<RecetaFavCompleta>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<RecetaFavCompleta> _parser = new pb::MessageParser<RecetaFavCompleta>(() => new RecetaFavCompleta());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<RecetaFavCompleta> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RecetafavoritasReflection.Descriptor.MessageTypes[1]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public RecetaFavCompleta() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public RecetaFavCompleta(RecetaFavCompleta other) : this() {
+    idreceta_ = other.idreceta_;
+    titulo_ = other.titulo_;
+    descripcion_ = other.descripcion_;
+    tiempoPreparacion_ = other.tiempoPreparacion_;
+    ingredientes_ = other.ingredientes_;
+    pasos_ = other.pasos_;
+    urlFotos_ = other.urlFotos_.Clone();
+    usuarioIdusuario_ = other.usuarioIdusuario_;
+    categoriaIdcategoria_ = other.categoriaIdcategoria_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public RecetaFavCompleta Clone() {
+    return new RecetaFavCompleta(this);
+  }
+
+  /// <summary>Field number for the "idreceta" field.</summary>
+  public const int IdrecetaFieldNumber = 1;
+  private int idreceta_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int Idreceta {
+    get { return idreceta_; }
+    set {
+      idreceta_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "titulo" field.</summary>
+  public const int TituloFieldNumber = 2;
+  private string titulo_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Titulo {
+    get { return titulo_; }
+    set {
+      titulo_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "descripcion" field.</summary>
+  public const int DescripcionFieldNumber = 3;
+  private string descripcion_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Descripcion {
+    get { return descripcion_; }
+    set {
+      descripcion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "tiempoPreparacion" field.</summary>
+  public const int TiempoPreparacionFieldNumber = 4;
+  private int tiempoPreparacion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int TiempoPreparacion {
+    get { return tiempoPreparacion_; }
+    set {
+      tiempoPreparacion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "ingredientes" field.</summary>
+  public const int IngredientesFieldNumber = 5;
+  private string ingredientes_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Ingredientes {
+    get { return ingredientes_; }
+    set {
+      ingredientes_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "pasos" field.</summary>
+  public const int PasosFieldNumber = 6;
+  private string pasos_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Pasos {
+    get { return pasos_; }
+    set {
+      pasos_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "url_fotos" field.</summary>
+  public const int UrlFotosFieldNumber = 7;
+  private static readonly pb::FieldCodec<string> _repeated_urlFotos_codec
+      = pb::FieldCodec.ForString(58);
+  private readonly pbc::RepeatedField<string> urlFotos_ = new pbc::RepeatedField<string>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<string> UrlFotos {
+    get { return urlFotos_; }
+  }
+
+  /// <summary>Field number for the "usuario_idusuario" field.</summary>
+  public const int UsuarioIdusuarioFieldNumber = 8;
+  private int usuarioIdusuario_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int UsuarioIdusuario {
+    get { return usuarioIdusuario_; }
+    set {
+      usuarioIdusuario_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "categoria_idcategoria" field.</summary>
+  public const int CategoriaIdcategoriaFieldNumber = 9;
+  private int categoriaIdcategoria_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CategoriaIdcategoria {
+    get { return categoriaIdcategoria_; }
+    set {
+      categoriaIdcategoria_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as RecetaFavCompleta);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(RecetaFavCompleta other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Idreceta != other.Idreceta) return false;
+    if (Titulo != other.Titulo) return false;
+    if (Descripcion != other.Descripcion) return false;
+    if (TiempoPreparacion != other.TiempoPreparacion) return false;
+    if (Ingredientes != other.Ingredientes) return false;
+    if (Pasos != other.Pasos) return false;
+    if(!urlFotos_.Equals(other.urlFotos_)) return false;
+    if (UsuarioIdusuario != other.UsuarioIdusuario) return false;
+    if (CategoriaIdcategoria != other.CategoriaIdcategoria) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Idreceta != 0) hash ^= Idreceta.GetHashCode();
+    if (Titulo.Length != 0) hash ^= Titulo.GetHashCode();
+    if (Descripcion.Length != 0) hash ^= Descripcion.GetHashCode();
+    if (TiempoPreparacion != 0) hash ^= TiempoPreparacion.GetHashCode();
+    if (Ingredientes.Length != 0) hash ^= Ingredientes.GetHashCode();
+    if (Pasos.Length != 0) hash ^= Pasos.GetHashCode();
+    hash ^= urlFotos_.GetHashCode();
+    if (UsuarioIdusuario != 0) hash ^= UsuarioIdusuario.GetHashCode();
+    if (CategoriaIdcategoria != 0) hash ^= CategoriaIdcategoria.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Idreceta != 0) {
+      output.WriteRawTag(8);
+      output.WriteInt32(Idreceta);
+    }
+    if (Titulo.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(Titulo);
+    }
+    if (Descripcion.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(Descripcion);
+    }
+    if (TiempoPreparacion != 0) {
+      output.WriteRawTag(32);
+      output.WriteInt32(TiempoPreparacion);
+    }
+    if (Ingredientes.Length != 0) {
+      output.WriteRawTag(42);
+      output.WriteString(Ingredientes);
+    }
+    if (Pasos.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(Pasos);
+    }
+    urlFotos_.WriteTo(output, _repeated_urlFotos_codec);
+    if (UsuarioIdusuario != 0) {
+      output.WriteRawTag(64);
+      output.WriteInt32(UsuarioIdusuario);
+    }
+    if (CategoriaIdcategoria != 0) {
+      output.WriteRawTag(72);
+      output.WriteInt32(CategoriaIdcategoria);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Idreceta != 0) {
+      output.WriteRawTag(8);
+      output.WriteInt32(Idreceta);
+    }
+    if (Titulo.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(Titulo);
+    }
+    if (Descripcion.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(Descripcion);
+    }
+    if (TiempoPreparacion != 0) {
+      output.WriteRawTag(32);
+      output.WriteInt32(TiempoPreparacion);
+    }
+    if (Ingredientes.Length != 0) {
+      output.WriteRawTag(42);
+      output.WriteString(Ingredientes);
+    }
+    if (Pasos.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(Pasos);
+    }
+    urlFotos_.WriteTo(ref output, _repeated_urlFotos_codec);
+    if (UsuarioIdusuario != 0) {
+      output.WriteRawTag(64);
+      output.WriteInt32(UsuarioIdusuario);
+    }
+    if (CategoriaIdcategoria != 0) {
+      output.WriteRawTag(72);
+      output.WriteInt32(CategoriaIdcategoria);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Idreceta != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Idreceta);
+    }
+    if (Titulo.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Titulo);
+    }
+    if (Descripcion.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Descripcion);
+    }
+    if (TiempoPreparacion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(TiempoPreparacion);
+    }
+    if (Ingredientes.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Ingredientes);
+    }
+    if (Pasos.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Pasos);
+    }
+    size += urlFotos_.CalculateSize(_repeated_urlFotos_codec);
+    if (UsuarioIdusuario != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(UsuarioIdusuario);
+    }
+    if (CategoriaIdcategoria != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(CategoriaIdcategoria);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(RecetaFavCompleta other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Idreceta != 0) {
+      Idreceta = other.Idreceta;
+    }
+    if (other.Titulo.Length != 0) {
+      Titulo = other.Titulo;
+    }
+    if (other.Descripcion.Length != 0) {
+      Descripcion = other.Descripcion;
+    }
+    if (other.TiempoPreparacion != 0) {
+      TiempoPreparacion = other.TiempoPreparacion;
+    }
+    if (other.Ingredientes.Length != 0) {
+      Ingredientes = other.Ingredientes;
+    }
+    if (other.Pasos.Length != 0) {
+      Pasos = other.Pasos;
+    }
+    urlFotos_.Add(other.urlFotos_);
+    if (other.UsuarioIdusuario != 0) {
+      UsuarioIdusuario = other.UsuarioIdusuario;
+    }
+    if (other.CategoriaIdcategoria != 0) {
+      CategoriaIdcategoria = other.CategoriaIdcategoria;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Idreceta = input.ReadInt32();
+          break;
+        }
+        case 18: {
+          Titulo = input.ReadString();
+          break;
+        }
+        case 26: {
+          Descripcion = input.ReadString();
+          break;
+        }
+        case 32: {
+          TiempoPreparacion = input.ReadInt32();
+          break;
+        }
+        case 42: {
+          Ingredientes = input.ReadString();
+          break;
+        }
+        case 50: {
+          Pasos = input.ReadString();
+          break;
+        }
+        case 58: {
+          urlFotos_.AddEntriesFrom(input, _repeated_urlFotos_codec);
+          break;
+        }
+        case 64: {
+          UsuarioIdusuario = input.ReadInt32();
+          break;
+        }
+        case 72: {
+          CategoriaIdcategoria = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Idreceta = input.ReadInt32();
+          break;
+        }
+        case 18: {
+          Titulo = input.ReadString();
+          break;
+        }
+        case 26: {
+          Descripcion = input.ReadString();
+          break;
+        }
+        case 32: {
+          TiempoPreparacion = input.ReadInt32();
+          break;
+        }
+        case 42: {
+          Ingredientes = input.ReadString();
+          break;
+        }
+        case 50: {
+          Pasos = input.ReadString();
+          break;
+        }
+        case 58: {
+          urlFotos_.AddEntriesFrom(ref input, _repeated_urlFotos_codec);
+          break;
+        }
+        case 64: {
+          UsuarioIdusuario = input.ReadInt32();
+          break;
+        }
+        case 72: {
+          CategoriaIdcategoria = input.ReadInt32();
           break;
         }
       }
@@ -315,7 +798,7 @@ public sealed partial class Nulos : pb::IMessage<Nulos>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::RecetafavoritasReflection.Descriptor.MessageTypes[1]; }
+    get { return global::RecetafavoritasReflection.Descriptor.MessageTypes[2]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -446,6 +929,195 @@ public sealed partial class Nulos : pb::IMessage<Nulos>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
+      }
+    }
+  }
+  #endif
+
+}
+
+public sealed partial class UsuarioLogueado : pb::IMessage<UsuarioLogueado>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<UsuarioLogueado> _parser = new pb::MessageParser<UsuarioLogueado>(() => new UsuarioLogueado());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<UsuarioLogueado> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RecetafavoritasReflection.Descriptor.MessageTypes[3]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UsuarioLogueado() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UsuarioLogueado(UsuarioLogueado other) : this() {
+    usuarioIdusuario_ = other.usuarioIdusuario_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UsuarioLogueado Clone() {
+    return new UsuarioLogueado(this);
+  }
+
+  /// <summary>Field number for the "usuario_idusuario" field.</summary>
+  public const int UsuarioIdusuarioFieldNumber = 1;
+  private int usuarioIdusuario_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int UsuarioIdusuario {
+    get { return usuarioIdusuario_; }
+    set {
+      usuarioIdusuario_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as UsuarioLogueado);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(UsuarioLogueado other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (UsuarioIdusuario != other.UsuarioIdusuario) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (UsuarioIdusuario != 0) hash ^= UsuarioIdusuario.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (UsuarioIdusuario != 0) {
+      output.WriteRawTag(8);
+      output.WriteInt32(UsuarioIdusuario);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (UsuarioIdusuario != 0) {
+      output.WriteRawTag(8);
+      output.WriteInt32(UsuarioIdusuario);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (UsuarioIdusuario != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(UsuarioIdusuario);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(UsuarioLogueado other) {
+    if (other == null) {
+      return;
+    }
+    if (other.UsuarioIdusuario != 0) {
+      UsuarioIdusuario = other.UsuarioIdusuario;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          UsuarioIdusuario = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          UsuarioIdusuario = input.ReadInt32();
+          break;
+        }
       }
     }
   }

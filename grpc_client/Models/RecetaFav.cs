@@ -9,7 +9,7 @@ namespace grpc_client.Models
     {
         
         public int idrecetaFavoritas { get; set; }
-        public string recetasFavoritascol { get; set; }
+        public int recetasFavoritascol { get; set; }
         public int usuario_idusuario { get; set; }
     }
 }
