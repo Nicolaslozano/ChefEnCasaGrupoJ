@@ -110,7 +110,7 @@ class ServicioRecetasFav(RecetaFavServicer):
                                       host='192.168.99.100', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
-        query = (f"INSERT INTO recetaFavoritas (`idrecetaFavoritas`, `recetasFavoritascol`, `usuario_idusuario`) VALUES "
+        query = (f"INSERT INTO recetaFavoritas (`idrecetaFavoritas`, `recetasFavoritascol`, `usuario_idusuario1`) VALUES "
                  f"('{request.idrecetaFavoritas}', '{request.recetasFavoritascol}', '{request.usuario_idusuario}')")
         cursor.execute(query)
         cnx.commit()
@@ -120,13 +120,12 @@ class ServicioRecetasFav(RecetaFavServicer):
         return resp
     
     def TraerRecetasFav(self, request, context):
+        print("ID de usuario recibido:", request.idusuario)
         cnx = mysql.connector.connect(user='root', password='password', 
                               host='192.168.99.100', port='3306',
                               database='chefencasagrupoj')
         cursor = cnx.cursor(named_tuple=True)
-        query = (f"SELECT * FROM recetaFavoritas AS rf "+
-                 "INNER JOIN usuario AS u INNER JOIN receta AS r WHERE rf.usuario_idusuario = u.idusuario "+
-                 "AND r.idreceta = rf.recetasFavoritascol")
+        query = (f"SELECT * FROM recetaFavoritas AS rf  INNER JOIN receta AS r WHERE rf.usuario_idusuario1 = {request.idusuario} AND r.idreceta = rf.recetasFavoritascol")
         cursor.execute(query)
         records = cursor.fetchall()
         for row in records:

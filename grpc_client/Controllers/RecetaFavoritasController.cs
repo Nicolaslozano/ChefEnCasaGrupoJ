@@ -19,17 +19,17 @@ namespace grpc_client.Controllers
                 AppContext.SetSwitch(
                     "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
-                var cliente = new RecetaFav.RecetaFavClient(channel);  
+                var cliente = new RecetaFav.RecetaFavClient(channel);
 
-                var postRecipeFav = new RecetaFavoritas 
+                var postRecipeFav = new RecetaFavoritas
                 {
                     IdrecetaFavoritas = recetaFav.idrecetaFavoritas,
                     RecetasFavoritascol = recetaFav.recetasFavoritascol,
                     UsuarioIdusuario = recetaFav.usuario_idusuario,
 
-            };
+                };
 
-                var recetaResponse = cliente.AgregarRecetaFav (postRecipeFav);
+                var recetaResponse = cliente.AgregarRecetaFav(postRecipeFav);
                 response = JsonConvert.SerializeObject(recetaResponse);
             }
             catch (Exception e)
@@ -57,9 +57,9 @@ namespace grpc_client.Controllers
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
                 var cliente = new RecetaFav.RecetaFavClient(channel);
 
-                var postRecipe = new UsuarioLogueado
+                var postRecipe = new Usuariologueado
                 {
-                    UsuarioIdusuario = idusuario
+                    Idusuario = idusuario
                 };
                 List<RecetaFavCompleta> recetas = new();
                 using (var call = cliente.TraerRecetasFav(postRecipe))
