@@ -1,0 +1,52 @@
+/* insert chefencasagrupoj.usuario  */
+
+insert into chefencasagrupoj.usuario (idusuario,nombre,email,user,password)values(1,'Santiago','Santi','SR','1234');
+insert into chefencasagrupoj.usuario (idusuario,nombre,email,user,password)values(2,'Facundo','Facu','FW','1321');
+insert into chefencasagrupoj.usuario (idusuario,nombre,email,user,password)values(4,'Nicolas','Nico','NR','1432');
+insert into chefencasagrupoj.usuario (idusuario,nombre,email,user,password)values(5,'Matias','Mati','MP','14');
+insert into chefencasagrupoj.usuario (idusuario,nombre,email,user,password)values(6,'Agustin','Agus','AS','1276');
+insert into chefencasagrupoj.usuario (idusuario,nombre,email,user,password)values(3,'Julieta ','Juli','JM','1212');
+
+
+/* insert chefencasagrupoj.suscripcion */
+
+INSERT INTO chefencasagrupoj.suscripcion (idsuscripcion,usuario_idusuario) values (1,1);
+INSERT INTO chefencasagrupoj.suscripcion (idsuscripcion,usuario_idusuario) values (2,2);
+INSERT INTO chefencasagrupoj.suscripcion (idsuscripcion,usuario_idusuario) values (3,6);
+INSERT INTO chefencasagrupoj.suscripcion (idsuscripcion,usuario_idusuario) values (4,5);
+INSERT INTO chefencasagrupoj.suscripcion (idsuscripcion,usuario_idusuario) values (5,3);
+
+/* insert chefencasagrupoj.recetaFavoritas  */
+
+insert into chefencasagrupoj.recetaFavoritas (idrecetaFavoritas,recetasFavoritascol,usuario_idusuario)values(1,2,2);
+insert into chefencasagrupoj.recetaFavoritas (idrecetaFavoritas,recetasFavoritascol,usuario_idusuario)values(1,1,2);
+insert into chefencasagrupoj.recetaFavoritas (idrecetaFavoritas,recetasFavoritascol,usuario_idusuario)values(2,3,2);
+insert into chefencasagrupoj.recetaFavoritas (idrecetaFavoritas,recetasFavoritascol,usuario_idusuario)values(2,4,1);
+insert into chefencasagrupoj.recetaFavoritas (idrecetaFavoritas,recetasFavoritascol,usuario_idusuario)values(3,2,1);
+
+/*Insert chefencasagrupoj.receta */
+insert into chefencasagrupoj.receta (idreceta,titulo,descripcion,tiempoPreparacion,ingredientes,pasos,url_foto1,url_foto2,url_foto3,url_foto4,url_foto5,usuario_idusuario,categoria_idcategoria) values
+(1,'Milanesa','Milanesa frita con papas fritas',20,'pollo,aceite,huevo,papas','1.Cocinar el pollo.\n2. Cocinar las papas.','Ruta1','url_foto2','url_foto3','url_foto4','url_foto5',1,1);
+
+insert into chefencasagrupoj.receta (idreceta,titulo,descripcion,tiempoPreparacion,ingredientes,pasos,url_foto1,url_foto2,url_foto3,url_foto4,url_foto5,usuario_idusuario,categoria_idcategoria) values
+(2,'Ensalada César','Una ensalada fresca con pollo',10,'Lechuga romana','1. Cortar la lechuga y el pollo.\n2. Mezclar ','Ruta1','url_foto2','url_foto3','url_foto4','url_foto5',1,2);
+
+insert into chefencasagrupoj.receta (idreceta,titulo,descripcion,tiempoPreparacion,ingredientes,pasos,url_foto1,url_foto2,url_foto3,url_foto4,url_foto5,usuario_idusuario,categoria_idcategoria) values
+(3,'Jugo Naranja','Jugo ultra natural de naranjas frescas',15,'Naranjas y agua','1. Cortar las naranjas','Ruta1','url_foto2','url_foto3','url_foto4','url_foto5',1,4);
+
+insert into chefencasagrupoj.receta (idreceta,titulo,descripcion,tiempoPreparacion,ingredientes,pasos,url_foto1,url_foto2,url_foto3,url_foto4,url_foto5,usuario_idusuario,categoria_idcategoria) values
+(4,'Tacos de Pollo','Riquisimos',45,'Pollo desmenuzado, Tortillas','1. Cortar las pollo , armar la masa','Ruta1','url_foto2','url_foto3','url_foto4','url_foto5',2,5);
+
+insert into chefencasagrupoj.receta (idreceta,titulo,descripcion,tiempoPreparacion,ingredientes,pasos,url_foto1,url_foto2,url_foto3,url_foto4,url_foto5,usuario_idusuario,categoria_idcategoria) values
+(5,'chesse cake','fresca!!!',60,'frutos rojos, manteca,crema','1. preparar la base de la torta, la crema','Ruta1','url_foto2','url_foto3','url_foto4','url_foto5',2,3);
+
+/*Insert chefencasagrupoj.foto */  
+insert into chefencasagrupoj.foto (idfoto,fotoUrl,receta_idReceta) values (1,'ruta1',2);
+insert into chefencasagrupoj.foto (idfoto,fotoUrl,receta_idReceta) values (2,'ruta2',1);
+insert into chefencasagrupoj.foto (idfoto,fotoUrl,receta_idReceta) values (3,'ruta3',3);
+insert into chefencasagrupoj.foto (idfoto,fotoUrl,receta_idReceta) values (4,'ruta4',4);
+insert into chefencasagrupoj.foto (idfoto,fotoUrl,receta_idReceta) values (5,'ruta5',5);
+insert into chefencasagrupoj.foto (idfoto,fotoUrl,receta_idReceta) values (6,'ruta6',9);
+insert into chefencasagrupoj.foto (idfoto,fotoUrl,receta_idReceta) values (7,'ruta7',12);
+
+
