@@ -21,7 +21,7 @@ class RecetaFavStub(object):
                 )
         self.TraerRecetasFav = channel.unary_stream(
                 '/RecetaFav/TraerRecetasFav',
-                request_serializer=recetafavoritas__pb2.UsuarioLogueado.SerializeToString,
+                request_serializer=recetafavoritas__pb2.Usuariologueado.SerializeToString,
                 response_deserializer=recetafavoritas__pb2.RecetaFavCompleta.FromString,
                 )
 
@@ -51,7 +51,7 @@ def add_RecetaFavServicer_to_server(servicer, server):
             ),
             'TraerRecetasFav': grpc.unary_stream_rpc_method_handler(
                     servicer.TraerRecetasFav,
-                    request_deserializer=recetafavoritas__pb2.UsuarioLogueado.FromString,
+                    request_deserializer=recetafavoritas__pb2.Usuariologueado.FromString,
                     response_serializer=recetafavoritas__pb2.RecetaFavCompleta.SerializeToString,
             ),
     }
@@ -93,7 +93,7 @@ class RecetaFav(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/RecetaFav/TraerRecetasFav',
-            recetafavoritas__pb2.UsuarioLogueado.SerializeToString,
+            recetafavoritas__pb2.Usuariologueado.SerializeToString,
             recetafavoritas__pb2.RecetaFavCompleta.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

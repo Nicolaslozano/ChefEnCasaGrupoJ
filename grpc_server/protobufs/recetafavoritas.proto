@@ -24,12 +24,11 @@ message Nulos {
 
 }
 
-message UsuarioLogueado {
-    int32 usuario_idusuario = 1 ;
+message Usuariologueado{
+    int32 idusuario = 1;
 }
-
 service RecetaFav {
     rpc AgregarRecetaFav(RecetaFavoritas) returns (Nulos);
-    rpc TraerRecetasFav(UsuarioLogueado) returns (stream RecetaFavCompleta);
+    rpc TraerRecetasFav(Usuariologueado) returns (stream RecetaFavCompleta);
    
 }

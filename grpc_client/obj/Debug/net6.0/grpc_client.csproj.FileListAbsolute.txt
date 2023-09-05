@@ -130,3 +130,42 @@ C:\Users\July\Documents\TP Distribuidos\ChefEnCasaGrupoJ\grpc_client\obj\Debug\n
 C:\Users\July\Documents\TP Distribuidos\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.csproj.CopyComplete
 C:\Users\July\Documents\TP Distribuidos\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.genruntimeconfig.cache
 C:\Users\July\Documents\TP Distribuidos\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\ref\grpc_client.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\appsettings.Development.json
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\appsettings.json
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\grpc_client.exe
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\grpc_client.deps.json
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\grpc_client.runtimeconfig.json
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\grpc_client.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\grpc_client.pdb
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\Google.Api.CommonProtos.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\Grpc.Core.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\Grpc.Core.Api.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\Grpc.Net.Client.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\Grpc.Net.Common.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\runtimes\linux-arm64\native\libgrpc_csharp_ext.arm64.so
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\runtimes\linux-x64\native\libgrpc_csharp_ext.x64.so
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\runtimes\osx-x64\native\libgrpc_csharp_ext.x64.dylib
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\runtimes\win-x64\native\grpc_csharp_ext.x64.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\bin\Debug\net6.0\runtimes\win-x86\native\grpc_csharp_ext.x86.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.csproj.AssemblyReference.cache
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.AssemblyInfoInputs.cache
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.AssemblyInfo.cs
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.csproj.CoreCompileInputs.cache
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.MvcApplicationPartsAssemblyInfo.cs
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.MvcApplicationPartsAssemblyInfo.cache
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\staticwebassets.build.json
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\staticwebassets.development.json
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\scopedcss\bundle\grpc_client.styles.css
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.csproj.CopyComplete
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\refint\grpc_client.dll
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.pdb
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\grpc_client.genruntimeconfig.cache
+C:\Distribuidos2023\ChefEnCasaGrupoJ\grpc_client\obj\Debug\net6.0\ref\grpc_client.dll

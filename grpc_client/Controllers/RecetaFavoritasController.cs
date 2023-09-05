@@ -57,9 +57,9 @@ namespace grpc_client.Controllers
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
                 var cliente = new RecetaFav.RecetaFavClient(channel);
 
-                var postRecipe = new UsuarioLogueado
+                var postRecipe = new Usuariologueado
                 {
-                    UsuarioIdusuario = idusuario
+                    Idusuario = idusuario
                 };
                 List<RecetaFavCompleta> recetas = new();
                 using (var call = cliente.TraerRecetasFav(postRecipe))

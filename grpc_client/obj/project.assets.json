@@ -652,19 +652,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\July\\.nuget\\packages\\": {}
+    "C:\\Users\\Fiorda\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\July\\Documents\\TP Distribuidos\\ChefEnCasaGrupoJ\\grpc_client\\grpc_client.csproj",
+      "projectUniqueName": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\grpc_client\\grpc_client.csproj",
       "projectName": "grpc_client",
-      "projectPath": "C:\\Users\\July\\Documents\\TP Distribuidos\\ChefEnCasaGrupoJ\\grpc_client\\grpc_client.csproj",
-      "packagesPath": "C:\\Users\\July\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\July\\Documents\\TP Distribuidos\\ChefEnCasaGrupoJ\\grpc_client\\obj\\",
+      "projectPath": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\grpc_client\\grpc_client.csproj",
+      "packagesPath": "C:\\Users\\Fiorda\\.nuget\\packages\\",
+      "outputPath": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\grpc_client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\July\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Fiorda\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -736,7 +736,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -17,8 +17,8 @@ class ServicioUsuarios(UsuariosServicer):
         return Nulo()
 
     def AltaUsuario(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='password',
-                                      host='192.168.99.100', port='3306',
+        cnx = mysql.connector.connect(user='root', password='root', 
+                                      host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
         query = f"SELECT * FROM usuario WHERE user = '{request.user}'"
@@ -36,8 +36,8 @@ class ServicioUsuarios(UsuariosServicer):
         return resp
 
     def TraerUsuario(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='password',
-                                      host='192.168.99.100', port='3306',
+        cnx = mysql.connector.connect(user='root', password='root', 
+                                      host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor(dictionary=True)  # Use dictionary cursor
         query = (f"SELECT * FROM usuario WHERE user = '{request.user}' AND password = '{request.password}'")
@@ -58,8 +58,8 @@ class ServicioRecetas(RecetasServicer):
         return Nulo()
 
     def AltaReceta(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='password',
-                                      host='192.168.99.100', port='3306',
+        cnx = mysql.connector.connect(user='root', password='root', 
+                                      host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
         stmt = f"INSERT INTO receta (`titulo`, `descripcion`, `tiempoPreparacion`,  `ingredientes`, `pasos`, `usuario_idusuario`,`categoria_idcategoria`"
@@ -79,9 +79,9 @@ class ServicioRecetas(RecetasServicer):
         return resp
 
     def TraerRecetas(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='password', 
-                              host='192.168.99.100', port='3306',
-                              database='chefencasagrupoj')
+        cnx = mysql.connector.connect(user='root', password='root', 
+                                      host='localhost', port='3306',
+                                      database='chefencasagrupoj')
         cursor = cnx.cursor(named_tuple=True)
         query = (f"SELECT * FROM receta "+
         "INNER JOIN usuario AS u INNER JOIN categoria AS c WHERE receta.usuario_idusuario = u.idusuario " +
@@ -106,11 +106,11 @@ class ServicioRecetas(RecetasServicer):
 class ServicioRecetasFav(RecetaFavServicer):
 
     def AgregarRecetaFav(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='password',
-                                      host='192.168.99.100', port='3306',
+        cnx = mysql.connector.connect(user='root', password='root',
+                                      host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
-        query = (f"INSERT INTO recetaFavoritas (`idrecetaFavoritas`, `recetasFavoritascol`, `usuario_idusuario`) VALUES "
+        query = (f"INSERT INTO recetaFavoritas (`idrecetaFavoritas`, `recetasFavoritascol`, `usuario_idusuario1`) VALUES "
                  f"('{request.idrecetaFavoritas}', '{request.recetasFavoritascol}', '{request.usuario_idusuario}')")
         cursor.execute(query)
         cnx.commit()
@@ -120,13 +120,12 @@ class ServicioRecetasFav(RecetaFavServicer):
         return resp
     
     def TraerRecetasFav(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='password', 
-                              host='192.168.99.100', port='3306',
+        print("ID de usuario recibido:", request.idusuario)
+        cnx = mysql.connector.connect(user='root', password='root', 
+                              host='localhost', port='3306',
                               database='chefencasagrupoj')
         cursor = cnx.cursor(named_tuple=True)
-        query = (f"SELECT * FROM recetaFavoritas AS rf "+
-                 "INNER JOIN usuario AS u INNER JOIN receta AS r WHERE rf.usuario_idusuario = u.idusuario "+
-                 "AND r.idreceta = rf.recetasFavoritascol")
+        query = (f"SELECT * FROM recetaFavoritas AS rf  INNER JOIN receta AS r WHERE rf.usuario_idusuario1 = {request.idusuario} AND r.idreceta = rf.recetasFavoritascol")
         cursor.execute(query)
         records = cursor.fetchall()
         for row in records:
@@ -143,6 +142,7 @@ class ServicioRecetasFav(RecetaFavServicer):
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
             tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, categoria_idcategoria = row.categoria_idcategoria, usuario_idusuario = row.usuario_idusuario)
+
 
 
 def start():
