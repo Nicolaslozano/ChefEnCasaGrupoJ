@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+message SuscriptorUsuario {
+    int32 idRelacion = 1;
+    int32 idSeguidor = 1;
+    int32 idusuarioSeguido = 1;  
+
+    
+}
+
+message UsuariosSeguidos {
+    int32 idSeguidor = 1;
+    int32 idusuarioSeguido = 2;
+    string user = 4;
+    string nombre = 5;
+    string email = 6;
+
+}
+
+message NuloSU{
+    
+}
+
+
+service Suscripciones {
+    rpc Listo(Nulo) returns (Nulo);
+
+    rpc AgregarUsuarioFavorito(SuscriptorUsuario) returns (NuloSU);
+    rpc TraerSuscripcion(UsuariosSeguidos) returns (SuscriptorUsuario);
+    rpc EliminarUsuarioFavorito(SuscriptorUsuario) returns (NuloSU);
+
+}

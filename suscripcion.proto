@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+message suscripcion {
+    int32 idsuscripcion = 1;
+    int32 usuario_idusuario = 1;
+    
+    
+}
+
+message Suscriptor {
+    int32 idsuscripcion = 1;
+    int32 usuario_idusuario = 2;  
+}
+
+message Response {
+    string message = 1;
+    int32 idsuscripcion = 2;
+}
+
+message Nulo {
+}
+
+service Suscripciones {
+    rpc Listo(Nulo) returns (Nulo);
+    rpc TraerSuscripcion(Suscriptor) returns (suscripcion);
+    rpc AgregarSuscriptor(suscripcion) returns (Response);
+}
