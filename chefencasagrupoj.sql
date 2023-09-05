@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `receta` (
   `tiempoPreparacion` INT NOT NULL,
   `ingredientes` VARCHAR(45) NOT NULL,
   `pasos` VARCHAR(45) NOT NULL,
-`url_foto1` TEXT NULL DEFAULT NULL,
+  `url_foto1` TEXT NULL DEFAULT NULL,
   `url_foto2` TEXT NULL DEFAULT NULL,
   `url_foto3` TEXT NULL DEFAULT NULL,
   `url_foto4` TEXT NULL DEFAULT NULL,
@@ -45,30 +45,15 @@ CREATE TABLE IF NOT EXISTS `receta` (
     ON UPDATE NO ACTION);
 
 
-CREATE TABLE IF NOT EXISTS `foto` (
-  `idfoto` INT NOT NULL,
-  `fotoUrl` VARCHAR(45) NOT NULL,
-  `receta_idReceta` INT NOT NULL,
-  PRIMARY KEY (`idfoto`, `receta_idreceta`),
-  INDEX `fk_foto_receta1_idx` (`receta_idreceta` ASC) ,
-  CONSTRAINT `fk_foto_receta1`
-    FOREIGN KEY (`receta_idreceta`)
-    REFERENCES `receta` (`idreceta`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
-
-
 
 CREATE TABLE IF NOT EXISTS `recetaFavoritas` (
   `idrecetaFavoritas` INT NOT NULL,
   `recetasFavoritascol` INT NULL,
-  `usuario_idusuario` INT NOT NULL,
-  PRIMARY KEY (`idrecetaFavoritas`, `usuario_idusuario`),
-  INDEX `fk_recetaFavoritas_usuario1_idx` (`usuario_idusuario` ASC),
+  `usuario_idusuario1` INT NOT NULL,
+  PRIMARY KEY (`idrecetaFavoritas`, `usuario_idusuario1`),
+  INDEX `fk_recetaFavoritas_usuario1_idx` (`usuario_idusuario1` ASC),
   CONSTRAINT `fk_recetaFavoritas_usuario1`
-    FOREIGN KEY (`usuario_idusuario`)
+    FOREIGN KEY (`usuario_idusuario1`)
     REFERENCES `usuario` (`idusuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
