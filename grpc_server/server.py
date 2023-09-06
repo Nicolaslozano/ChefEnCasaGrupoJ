@@ -153,6 +153,103 @@ class ServicioRecetas(RecetasServicer):
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
             tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
 
+    def TraerRecetasPorCategoria(self, request, context):
+        print("Categoria recibida:", request.usu)
+        cnx = mysql.connector.connect(user='root', password='root', 
+                              host='localhost', port='3306',
+                              database='chefencasagrupoj')
+        cursor = cnx.cursor(named_tuple=True)
+        query = (f"SELECT * FROM receta AS r WHERE r.nombreCategoria1 = '{request.usu}' ")
+        cursor.execute(query)
+        records = cursor.fetchall()
+        for row in records:
+            fotos = []
+            if row.url_foto1 is not None:
+                fotos.append(row.url_foto1)
+            if row.url_foto2 is not None:
+                fotos.append(row.url_foto2)
+            if row.url_foto3 is not None:
+                fotos.append(row.url_foto3)
+            if row.url_foto4 is not None:
+                fotos.append(row.url_foto4)
+            if row.url_foto5 is not None:
+                fotos.append(row.url_foto5)
+            yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
+
+
+    def TraerRecetasPorTitulo(self, request, context):
+        print("titulo recibido:", request.usu)
+        cnx = mysql.connector.connect(user='root', password='root', 
+                              host='localhost', port='3306',
+                              database='chefencasagrupoj')
+        cursor = cnx.cursor(named_tuple=True)
+        query = (f"SELECT * FROM receta AS r WHERE r.titulo LIKE CONCAT('%', '{request.usu}', '%') ")
+        cursor.execute(query)
+        records = cursor.fetchall()
+        for row in records:
+            fotos = []
+            if row.url_foto1 is not None:
+                fotos.append(row.url_foto1)
+            if row.url_foto2 is not None:
+                fotos.append(row.url_foto2)
+            if row.url_foto3 is not None:
+                fotos.append(row.url_foto3)
+            if row.url_foto4 is not None:
+                fotos.append(row.url_foto4)
+            if row.url_foto5 is not None:
+                fotos.append(row.url_foto5)
+            yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
+
+    def TraerRecetasPorTiempo(self, request, context):
+        print("tiempo desde recibido:", request.desde)
+        print("tiempo hasta recibido:", request.hasta)
+        cnx = mysql.connector.connect(user='root', password='root', 
+                              host='localhost', port='3306',
+                              database='chefencasagrupoj')
+        cursor = cnx.cursor(named_tuple=True)
+        query = (f"SELECT * FROM receta AS r WHERE r.tiempoPreparacion >= {request.desde} AND r.tiempoPreparacion <= {request.hasta} ")
+        cursor.execute(query)
+        records = cursor.fetchall()
+        for row in records:
+            fotos = []
+            if row.url_foto1 is not None:
+                fotos.append(row.url_foto1)
+            if row.url_foto2 is not None:
+                fotos.append(row.url_foto2)
+            if row.url_foto3 is not None:
+                fotos.append(row.url_foto3)
+            if row.url_foto4 is not None:
+                fotos.append(row.url_foto4)
+            if row.url_foto5 is not None:
+                fotos.append(row.url_foto5)
+            yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
+
+    def TraerRecetasPorIngredientes(self, request, context):
+        print("Ingrediente recibido:", request.usu)
+        cnx = mysql.connector.connect(user='root', password='root', 
+                              host='localhost', port='3306',
+                              database='chefencasagrupoj')
+        cursor = cnx.cursor(named_tuple=True)
+        query = (f"SELECT * FROM receta AS r WHERE r.ingredientes LIKE CONCAT('%', '{request.usu}', '%') ")
+        cursor.execute(query)
+        records = cursor.fetchall()
+        for row in records:
+            fotos = []
+            if row.url_foto1 is not None:
+                fotos.append(row.url_foto1)
+            if row.url_foto2 is not None:
+                fotos.append(row.url_foto2)
+            if row.url_foto3 is not None:
+                fotos.append(row.url_foto3)
+            if row.url_foto4 is not None:
+                fotos.append(row.url_foto4)
+            if row.url_foto5 is not None:
+                fotos.append(row.url_foto5)
+            yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
 
 
 

@@ -154,6 +154,147 @@ namespace grpc_client.Controllers
 
             return response; 
         }
+       
+
+
+        [HttpPost]
+        [Route("GetRecetasToCategoria")]
+        public async Task<string> GetRecetasToCategoriaAsync(string usu)
+        {
+            string response;
+            try
+            {
+                // This switch must be set before creating the GrpcChannel/HttpClient.
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Recetas.RecetasClient(channel);
+                
+                var postRecipe = new Usuariolog
+                {
+                    Usu = usu
+                };
+                List<Receta> recetas = new();
+                using (var call = cliente.TraerRecetasPorCategoria(postRecipe))
+                    while (await call.ResponseStream.MoveNext())
+                    {
+                        var currentRecipe = call.ResponseStream.Current;
+                        recetas.Add(currentRecipe);
+                    }
+                response = JsonConvert.SerializeObject(recetas);
+            }
+            catch (Exception e)
+            {
+                return e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
+
+
+        [HttpPost]
+        [Route("GetRecetasToTitle")]
+        public async Task<string> GetRecetasToTitleAsync(string usu)
+        {
+            string response;
+            try
+            {
+                // This switch must be set before creating the GrpcChannel/HttpClient.
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Recetas.RecetasClient(channel);
+                
+                var postRecipe = new Usuariolog
+                {
+                    Usu = usu
+                };
+                List<Receta> recetas = new();
+                using (var call = cliente.TraerRecetasPorTitulo(postRecipe))
+                    while (await call.ResponseStream.MoveNext())
+                    {
+                        var currentRecipe = call.ResponseStream.Current;
+                        recetas.Add(currentRecipe);
+                    }
+                response = JsonConvert.SerializeObject(recetas);
+            }
+            catch (Exception e)
+            {
+                return e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
+
+
+        [HttpPost]
+        [Route("GetRecetasToTime")]
+        public async Task<string> GetRecetasToTimeAsync(int desde , int hasta)
+        {
+            string response;
+            try
+            {
+                // This switch must be set before creating the GrpcChannel/HttpClient.
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Recetas.RecetasClient(channel);
+                
+                var postRecipe = new tiempo
+                {
+                    Desde = desde,
+                    Hasta = hasta,
+                };
+                List<Receta> recetas = new();
+                using (var call = cliente.TraerRecetasPorTiempo(postRecipe))
+                    while (await call.ResponseStream.MoveNext())
+                    {
+                        var currentRecipe = call.ResponseStream.Current;
+                        recetas.Add(currentRecipe);
+                    }
+                response = JsonConvert.SerializeObject(recetas);
+            }
+            catch (Exception e)
+            {
+                return e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
+        
+        [HttpPost]
+        [Route("GetRecetasToIngredients")]
+        public async Task<string> GetRecetasToIngredientsAsync(string usu)
+        {
+            string response;
+            try
+            {
+                // This switch must be set before creating the GrpcChannel/HttpClient.
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Recetas.RecetasClient(channel);
+                
+                var postRecipe = new Usuariolog
+                {
+                    Usu = usu
+                };
+                List<Receta> recetas = new();
+                using (var call = cliente.TraerRecetasPorIngredientes(postRecipe))
+                    while (await call.ResponseStream.MoveNext())
+                    {
+                        var currentRecipe = call.ResponseStream.Current;
+                        recetas.Add(currentRecipe);
+                    }
+                response = JsonConvert.SerializeObject(recetas);
+            }
+            catch (Exception e)
+            {
+                return e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
     }
 }
 
