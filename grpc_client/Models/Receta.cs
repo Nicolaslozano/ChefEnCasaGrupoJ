@@ -18,7 +18,7 @@ namespace grpc_client.Models
 
         public int usuario_idusuario { get; set; }
 
-        public int categoria_idcategoria { get; set; }
+        public string nombreCategoria1 { get; set; }
 
     }
 }

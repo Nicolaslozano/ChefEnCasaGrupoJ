@@ -63,9 +63,8 @@ class ServicioRecetas(RecetasServicer):
                                       host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
-        stmt = f"INSERT INTO receta (`titulo`, `descripcion`, `tiempoPreparacion`,  `ingredientes`, `pasos`, `usuario_idusuario`,`categoria_idcategoria`"
-        values =  f" VALUES ('{request.titulo}', '{request.descripcion}', '{request.tiempoPreparacion}', '{request.ingredientes}', '{request.pasos}', '{request.usuario_idusuario}','{request.categoria_idcategoria}'"
-          
+        stmt = f"INSERT INTO receta (`titulo`, `descripcion`, `tiempoPreparacion`,  `ingredientes`, `pasos`, `usuario_idusuario`,`nombreCategoria1`"
+        values =  f" VALUES ('{request.titulo}', '{request.descripcion}', '{request.tiempoPreparacion}', '{request.ingredientes}', '{request.pasos}', '{request.usuario_idusuario}','{request.nombreCategoria}'" 
         for idx,url_foto in enumerate(request.url_fotos,start=1):
             stmt += f", `url_foto{idx}`"
             values += f", '{url_foto}'"
@@ -92,7 +91,7 @@ class ServicioRecetas(RecetasServicer):
             return Response(message = "404 Not-Found. La receta con ese id no existe")
         else:
             query = (f"UPDATE receta SET `titulo` ='{request.titulo}', `descripcion` ='{request.descripcion}', `tiempoPreparacion`='{request.tiempoPreparacion}', "+
-            f"`ingredientes`='{request.ingredientes}', `pasos`= '{request.pasos}', `categoria_idcategoria`= '{request.categoria_idcategoria}'")
+            f"`ingredientes`='{request.ingredientes}', `pasos`= '{request.pasos}', `nombreCategoria1`= '{request.nombreCategoria}'")
             for idx, url_foto in enumerate(request.url_fotos, start=1):
                 query += (f", `url_foto{idx}` = '{url_foto}'")
             query += (f"where idreceta= '{request.idreceta}' ")
@@ -112,7 +111,7 @@ class ServicioRecetas(RecetasServicer):
         cursor = cnx.cursor(named_tuple=True)
         query = (f"SELECT * FROM receta "+
         "INNER JOIN usuario AS u INNER JOIN categoria AS c WHERE receta.usuario_idusuario = u.idusuario " +
-        " AND receta.categoria_idcategoria = c.idcategoria")
+        " AND receta.nombreCategoria1 = c.nombreCategoria")
         cursor.execute(query)
         records = cursor.fetchall()
         for row in records:
@@ -128,7 +127,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, categoria_idcategoria = row.categoria_idcategoria, usuario_idusuario = row.usuario_idusuario)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
 
   
 

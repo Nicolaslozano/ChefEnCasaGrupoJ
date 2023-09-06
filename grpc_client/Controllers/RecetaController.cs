@@ -29,7 +29,7 @@ namespace grpc_client.Controllers
                     Ingredientes = receta.ingredientes,
                     Pasos = receta.pasos,
                     UsuarioIdusuario = receta.usuario_idusuario,
-                    CategoriaIdcategoria = receta.categoria_idcategoria,
+                    NombreCategoria = receta.nombreCategoria1,
                     
 
             };
@@ -103,7 +103,7 @@ namespace grpc_client.Controllers
                     TiempoPreparacion = receta.tiempoPreparacion,
                     Ingredientes = receta.ingredientes,
                     Pasos = receta.pasos,
-                    CategoriaIdcategoria = receta.categoria_idcategoria,
+                    NombreCategoria = receta.nombreCategoria1,
                 };
                 foreach (var stringUrl in receta.url_fotos)
                 {

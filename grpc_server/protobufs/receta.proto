@@ -9,7 +9,7 @@ message Receta {
     string pasos = 6; 
     repeated string url_fotos = 7;
     int32 usuario_idusuario = 8;
-    int32 categoria_idcategoria = 9;
+    string nombreCategoria = 9;
     
 }
 
@@ -21,7 +21,7 @@ message RecetaEditar {
     string ingredientes = 5;
     string pasos = 6; 
     repeated string url_fotos = 7;
-    int32 categoria_idcategoria = 9;
+    string nombreCategoria = 9;
     
 }
 message NuloReceta {
