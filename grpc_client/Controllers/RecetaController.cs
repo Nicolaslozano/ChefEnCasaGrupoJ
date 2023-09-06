@@ -124,8 +124,11 @@ namespace grpc_client.Controllers
 
         [HttpPost]
         [Route("GetRecetasToUser")]
-        public async Task<string> GetRecetasToUserAsync(string usu){
-            AppContext.SetSwitch(
+        public async Task<string> GetRecetasToUserAsync(string usu) {
+            string response;
+            try
+            {
+                AppContext.SetSwitch(
                     "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
                 var cliente = new Recetas.RecetasClient(channel);
@@ -134,6 +137,7 @@ namespace grpc_client.Controllers
                 {
                     Usu = usu
                 };
+
                 List<Receta> recetas = new();
                 using (var call = cliente.TraerRecetasPorUsuario(postRecipe))
                     while (await call.ResponseStream.MoveNext())
@@ -145,11 +149,11 @@ namespace grpc_client.Controllers
             }
             catch (Exception e)
             {
-                return e.Message + e.StackTrace;
-            
+                response = e.Message + e.StackTrace;
             }
 
-            return response;
+            return response; 
+        }
     }
 }
 
