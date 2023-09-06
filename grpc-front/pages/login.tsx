@@ -2,6 +2,7 @@ import {useState } from "react";
 import {title,} from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
 import { Input, Button, Spacer } from "@nextui-org/react";
+import Cookies from "js-cookie";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -12,24 +13,25 @@ export default function Login() {
 
 
   const handleLogin = async () => {
-    
-    try{
-    const url = `https://localhost:44323/api/Usuarios?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
-    const response = await fetch(url);
-    const parsed = await response.json();
-
-        if(parsed.User === username && parsed.Password === password){
-            window.location.href="/user";
-        }
-        else{
-           alert("Las credenciales son incorrectas")
-        }
-
-    }
-    catch{
-        alert("No se pudo conectar con el servidor");
+    try {
+      const url = `https://localhost:44323/api/Usuarios?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
+      const response = await fetch(url);
+      const parsed = await response.json();
+  
+      if (parsed.User === username && parsed.Password === password) {
+        // Guarda la cookie con información de sesión
+        Cookies.set("usuario", username, { expires: 7 }); // "expires" establece la duración de la cookie en días
+  
+        // Redirige al usuario a la página de usuario
+        window.location.href = "/user";
+      } else {
+        alert("Las credenciales son incorrectas");
+      }
+    } catch {
+      alert("No se pudo conectar con el servidor");
     }
   };
+  
   
 
   const handleRegister = async () => {
