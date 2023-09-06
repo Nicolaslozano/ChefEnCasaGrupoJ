@@ -50,6 +50,8 @@ public static partial class Recetas
   static readonly grpc::Marshaller<global::Responsea> __Marshaller_Responsea = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Responsea.Parser));
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Marshaller<global::NuloReceta> __Marshaller_NuloReceta = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::NuloReceta.Parser));
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Marshaller<global::Usuariolog> __Marshaller_Usuariolog = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Usuariolog.Parser));
 
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Method<global::Receta, global::Responsea> __Method_AltaReceta = new grpc::Method<global::Receta, global::Responsea>(
@@ -65,6 +67,14 @@ public static partial class Recetas
       __ServiceName,
       "TraerRecetas",
       __Marshaller_NuloReceta,
+      __Marshaller_Receta);
+
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Method<global::Usuariolog, global::Receta> __Method_TraerRecetasPorUsuario = new grpc::Method<global::Usuariolog, global::Receta>(
+      grpc::MethodType.ServerStreaming,
+      __ServiceName,
+      "TraerRecetasPorUsuario",
+      __Marshaller_Usuariolog,
       __Marshaller_Receta);
 
   /// <summary>Service descriptor</summary>
@@ -85,6 +95,12 @@ public static partial class Recetas
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     public virtual global::System.Threading.Tasks.Task TraerRecetas(global::NuloReceta request, grpc::IServerStreamWriter<global::Receta> responseStream, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::System.Threading.Tasks.Task TraerRecetasPorUsuario(global::Usuariolog request, grpc::IServerStreamWriter<global::Receta> responseStream, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
@@ -148,6 +164,16 @@ public static partial class Recetas
     {
       return CallInvoker.AsyncServerStreamingCall(__Method_TraerRecetas, null, options, request);
     }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncServerStreamingCall<global::Receta> TraerRecetasPorUsuario(global::Usuariolog request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return TraerRecetasPorUsuario(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncServerStreamingCall<global::Receta> TraerRecetasPorUsuario(global::Usuariolog request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncServerStreamingCall(__Method_TraerRecetasPorUsuario, null, options, request);
+    }
     /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     protected override RecetasClient NewInstance(ClientBaseConfiguration configuration)
@@ -163,7 +189,8 @@ public static partial class Recetas
   {
     return grpc::ServerServiceDefinition.CreateBuilder()
         .AddMethod(__Method_AltaReceta, serviceImpl.AltaReceta)
-        .AddMethod(__Method_TraerRecetas, serviceImpl.TraerRecetas).Build();
+        .AddMethod(__Method_TraerRecetas, serviceImpl.TraerRecetas)
+        .AddMethod(__Method_TraerRecetasPorUsuario, serviceImpl.TraerRecetasPorUsuario).Build();
   }
 
   /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -175,6 +202,7 @@ public static partial class Recetas
   {
     serviceBinder.AddMethod(__Method_AltaReceta, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Receta, global::Responsea>(serviceImpl.AltaReceta));
     serviceBinder.AddMethod(__Method_TraerRecetas, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::NuloReceta, global::Receta>(serviceImpl.TraerRecetas));
+    serviceBinder.AddMethod(__Method_TraerRecetasPorUsuario, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Usuariolog, global::Receta>(serviceImpl.TraerRecetasPorUsuario));
   }
 
 }
