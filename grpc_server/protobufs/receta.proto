@@ -37,9 +37,14 @@ message Responsea {
 message RecetaList {
     repeated Receta recetas = 1;
 }
+
+message Usuariolog{
+    string usu = 1;
+}
+
 service Recetas {
     rpc AltaReceta(Receta) returns (Responsea);
     rpc EditarReceta(RecetaEditar) returns (Responsea);
     rpc TraerRecetas(NuloReceta) returns (stream Receta);
-
+    rpc TraerRecetasPorUsuario(Usuariolog) returns (stream Receta);
 }

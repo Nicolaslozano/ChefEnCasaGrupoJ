@@ -6,4 +6,5 @@ Ejecutar en el siguiente orden dentro de la carpeta grpc_server con consola cmd:
 5. python -m grpc_tools.protoc -I..\gRPC_server\protobufs --python_out=. --grpc_python_out=. ..\gRPC_server\protobufs\usuarios.proto -> Generar codigo para cada uno de los archivos protos
 6. python -m grpc_tools.protoc -I..\gRPC_server\protobufs --python_out=. --grpc_python_out=. ..\gRPC_server\protobufs\receta.proto
 7. python -m grpc_tools.protoc -I..\gRPC_server\protobufs --python_out=. --grpc_python_out=. ..\gRPC_server\protobufs\categoria.proto
-8. python .\server.py -> Compilar y ejecutar servidor
+8. python -m grpc_tools.protoc -I..\gRPC_server\protobufs --python_out=. --grpc_python_out=. ..\gRPC_server\protobufs\recetafavoritas.proto
+9. python .\server.py -> Compilar y ejecutar servidor
