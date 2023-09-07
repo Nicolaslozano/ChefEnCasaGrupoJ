@@ -45,7 +45,7 @@ const columns = [
   },
 
   {
-    key: "CategoriaIdcategoria",
+    key: "NombreCategoria",
     label: "Categoría",
   },
   {
