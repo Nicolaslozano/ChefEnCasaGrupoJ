@@ -262,11 +262,11 @@ export default function TablaUsuario() {
                 />
                 <Input
                   label="categoria"
-                  value={formData.categoria_idcategoria}
+                  value={formData.nombreCategoria1}
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      categoria_idcategoria: e.target.value,
+                      nombreCategoria1: e.target.value,
                     })
                   }
                 />
