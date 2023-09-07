@@ -29,6 +29,31 @@ class RecetasStub(object):
                 request_serializer=receta__pb2.NuloReceta.SerializeToString,
                 response_deserializer=receta__pb2.Receta.FromString,
                 )
+        self.TraerRecetasPorUsuario = channel.unary_stream(
+                '/Recetas/TraerRecetasPorUsuario',
+                request_serializer=receta__pb2.Usuariolog.SerializeToString,
+                response_deserializer=receta__pb2.Receta.FromString,
+                )
+        self.TraerRecetasPorCategoria = channel.unary_stream(
+                '/Recetas/TraerRecetasPorCategoria',
+                request_serializer=receta__pb2.Usuariolog.SerializeToString,
+                response_deserializer=receta__pb2.Receta.FromString,
+                )
+        self.TraerRecetasPorTitulo = channel.unary_stream(
+                '/Recetas/TraerRecetasPorTitulo',
+                request_serializer=receta__pb2.Usuariolog.SerializeToString,
+                response_deserializer=receta__pb2.Receta.FromString,
+                )
+        self.TraerRecetasPorTiempo = channel.unary_stream(
+                '/Recetas/TraerRecetasPorTiempo',
+                request_serializer=receta__pb2.tiempo.SerializeToString,
+                response_deserializer=receta__pb2.Receta.FromString,
+                )
+        self.TraerRecetasPorIngredientes = channel.unary_stream(
+                '/Recetas/TraerRecetasPorIngredientes',
+                request_serializer=receta__pb2.Usuariolog.SerializeToString,
+                response_deserializer=receta__pb2.Receta.FromString,
+                )
 
 
 class RecetasServicer(object):
@@ -52,6 +77,36 @@ class RecetasServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def TraerRecetasPorUsuario(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TraerRecetasPorCategoria(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TraerRecetasPorTitulo(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TraerRecetasPorTiempo(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TraerRecetasPorIngredientes(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_RecetasServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -68,6 +123,31 @@ def add_RecetasServicer_to_server(servicer, server):
             'TraerRecetas': grpc.unary_stream_rpc_method_handler(
                     servicer.TraerRecetas,
                     request_deserializer=receta__pb2.NuloReceta.FromString,
+                    response_serializer=receta__pb2.Receta.SerializeToString,
+            ),
+            'TraerRecetasPorUsuario': grpc.unary_stream_rpc_method_handler(
+                    servicer.TraerRecetasPorUsuario,
+                    request_deserializer=receta__pb2.Usuariolog.FromString,
+                    response_serializer=receta__pb2.Receta.SerializeToString,
+            ),
+            'TraerRecetasPorCategoria': grpc.unary_stream_rpc_method_handler(
+                    servicer.TraerRecetasPorCategoria,
+                    request_deserializer=receta__pb2.Usuariolog.FromString,
+                    response_serializer=receta__pb2.Receta.SerializeToString,
+            ),
+            'TraerRecetasPorTitulo': grpc.unary_stream_rpc_method_handler(
+                    servicer.TraerRecetasPorTitulo,
+                    request_deserializer=receta__pb2.Usuariolog.FromString,
+                    response_serializer=receta__pb2.Receta.SerializeToString,
+            ),
+            'TraerRecetasPorTiempo': grpc.unary_stream_rpc_method_handler(
+                    servicer.TraerRecetasPorTiempo,
+                    request_deserializer=receta__pb2.tiempo.FromString,
+                    response_serializer=receta__pb2.Receta.SerializeToString,
+            ),
+            'TraerRecetasPorIngredientes': grpc.unary_stream_rpc_method_handler(
+                    servicer.TraerRecetasPorIngredientes,
+                    request_deserializer=receta__pb2.Usuariolog.FromString,
                     response_serializer=receta__pb2.Receta.SerializeToString,
             ),
     }
@@ -127,6 +207,91 @@ class Recetas(object):
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/Recetas/TraerRecetas',
             receta__pb2.NuloReceta.SerializeToString,
+            receta__pb2.Receta.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TraerRecetasPorUsuario(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/Recetas/TraerRecetasPorUsuario',
+            receta__pb2.Usuariolog.SerializeToString,
+            receta__pb2.Receta.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TraerRecetasPorCategoria(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/Recetas/TraerRecetasPorCategoria',
+            receta__pb2.Usuariolog.SerializeToString,
+            receta__pb2.Receta.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TraerRecetasPorTitulo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/Recetas/TraerRecetasPorTitulo',
+            receta__pb2.Usuariolog.SerializeToString,
+            receta__pb2.Receta.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TraerRecetasPorTiempo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/Recetas/TraerRecetasPorTiempo',
+            receta__pb2.tiempo.SerializeToString,
+            receta__pb2.Receta.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TraerRecetasPorIngredientes(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/Recetas/TraerRecetasPorIngredientes',
+            receta__pb2.Usuariolog.SerializeToString,
             receta__pb2.Receta.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

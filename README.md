@@ -1,44 +1,33 @@
-# ChefEnCasaGrupoJ
+TRABAJO PRÁCTICO CHEFF RPC - GRUPO J Integrantes
 
-----Agustin
+34419772 Madrigale Julieta.<br>
+41354292 Matias Silvestri.<br>
+35632506 Fiordalisi Santiago Tomás.<br>
+39918849 Nicolas Lozano.<br>
 
-    def AgregarAFavoritos(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='root',
-                                      host='localhost', port='3306',
-                                      database='chefencasagrupoj')
-        cursor = cnx.cursor(dictionary=True)  
-        query = ( "INSERT INTO suscripcion (`idsuscripcion`, `usuario_idusuario`) VALUES "
-                f"('{request.idsuscripcion}', '{request.usuario_idusuario}'")
-        cursor.execute(query)
-        cnx.commit()
-        cursor.close()
-        agregado = Response(message="Usuario Agregado Exitosamente.")
-        cnx.close()
-        return agregado()
-        
-    def TraerListaFavoritos(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='root',
-                                      host='localhost', port='3306',
-                                      database='chefencasagrupoj')
-        cursor = cnx.cursor(dictionary=True) 
-        query = (f"SELECT su.idSeguidor, u.user, u.nombre, u.email FROM suscriptor_usuarios su INNER JOIN usuario uON su.idUsuarioSeguido = u.idusuario")
-        cursor.execute(query)
-        lista = cursor.fetchall()
-        cursor.close()
-        cnx.close()
-        return lista()
+Tecnologías
 
-    def EliminarDeFavoritos(self, request, context):
-        cnx = mysql.connector.connect(user='root', password='root',
-                                      host='localhost', port='3306',
-                                      database='chefencasagrupoj')
-        cursor = cnx.cursor(dictionary=True) 
-        query = (f"DELETE FROM suscripcion WHERE idsuscripcion = '{request.idsuscripcion}' AND usuario_idusuario = '{request.usuario_idusuario}'")
-        cursor.execute(query)
-        cnx.commit()
-        cursor.close()
-        cnx.close()
-        eliminado = Response(message="Usuario Eliminado Exitosamente.")
-        return eliminado()
+Servidor: Python.<br>
+Cliente: C#.<br>
+Frontend: CSS(Tailwind),HTML,NextUI(libreria).<br>
 
-        
+Tareas:
+
+Julieta
+
+Como usuario, quiero poder marcar o desmarcar recetas como favoritas.<br>
+Como usuario, quiero listar mis recetas y las que marqué como favoritas.
+
+Santiago
+
+Como usuario, quiero poder buscar recetas, pudiendo filtrar la búsqueda por criterios como categoría, título o parte del título, ingredientes, rango de tiempo de preparación.
+
+Matías
+
+ Como usuario, quiero poder publicar y editar mis recetas. Cada receta debe tener un título, una descripción, al menos una foto y máximo cinco fotos, una lista de ingredientes, una categoría, pasos a seguir y tiempo aproximado de preparación.
+
+Nicolás
+
+Como usuario, quiero poder seguir o dejar de seguir a otros usuarios, y tener la posibilidad de ver el listado de los usuarios que sigo.   .<br>
+Como usuario, quiero dar de alta una cuenta para poder operar en la plataforma. Se deben proporcionar datos personales como nombre, email, usuario y contraseña.
+

@@ -32,7 +32,7 @@ const columns = [
     label: "Autor",
   },
   {
-    key: "CategoriaIdcategoria",
+    key: "NombreCategoria",
     label: "Categoría",
   },
 ];
