@@ -52,6 +52,12 @@ public static partial class Usuarios
   static readonly grpc::Marshaller<global::Usuario> __Marshaller_Usuario = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Usuario.Parser));
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Marshaller<global::Response> __Marshaller_Response = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Response.Parser));
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Marshaller<global::Seguidores> __Marshaller_Seguidores = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Seguidores.Parser));
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Marshaller<global::seg> __Marshaller_seg = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::seg.Parser));
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Marshaller<global::Listseguidos> __Marshaller_Listseguidos = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Listseguidos.Parser));
 
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Method<global::Nulo, global::Nulo> __Method_Listo = new grpc::Method<global::Nulo, global::Nulo>(
@@ -77,6 +83,30 @@ public static partial class Usuarios
       __Marshaller_Usuario,
       __Marshaller_Response);
 
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Method<global::Seguidores, global::Nulo> __Method_SeguirUsuario = new grpc::Method<global::Seguidores, global::Nulo>(
+      grpc::MethodType.Unary,
+      __ServiceName,
+      "SeguirUsuario",
+      __Marshaller_Seguidores,
+      __Marshaller_Nulo);
+
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Method<global::Seguidores, global::Nulo> __Method_EliminarSeguidor = new grpc::Method<global::Seguidores, global::Nulo>(
+      grpc::MethodType.Unary,
+      __ServiceName,
+      "EliminarSeguidor",
+      __Marshaller_Seguidores,
+      __Marshaller_Nulo);
+
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Method<global::seg, global::Listseguidos> __Method_TraerSeguidores = new grpc::Method<global::seg, global::Listseguidos>(
+      grpc::MethodType.ServerStreaming,
+      __ServiceName,
+      "TraerSeguidores",
+      __Marshaller_seg,
+      __Marshaller_Listseguidos);
+
   /// <summary>Service descriptor</summary>
   public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
   {
@@ -101,6 +131,24 @@ public static partial class Usuarios
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     public virtual global::System.Threading.Tasks.Task<global::Response> AltaUsuario(global::Usuario request, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::System.Threading.Tasks.Task<global::Nulo> SeguirUsuario(global::Seguidores request, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::System.Threading.Tasks.Task<global::Nulo> EliminarSeguidor(global::Seguidores request, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::System.Threading.Tasks.Task TraerSeguidores(global::seg request, grpc::IServerStreamWriter<global::Listseguidos> responseStream, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
@@ -194,6 +242,56 @@ public static partial class Usuarios
     {
       return CallInvoker.AsyncUnaryCall(__Method_AltaUsuario, null, options, request);
     }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::Nulo SeguirUsuario(global::Seguidores request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return SeguirUsuario(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::Nulo SeguirUsuario(global::Seguidores request, grpc::CallOptions options)
+    {
+      return CallInvoker.BlockingUnaryCall(__Method_SeguirUsuario, null, options, request);
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncUnaryCall<global::Nulo> SeguirUsuarioAsync(global::Seguidores request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return SeguirUsuarioAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncUnaryCall<global::Nulo> SeguirUsuarioAsync(global::Seguidores request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncUnaryCall(__Method_SeguirUsuario, null, options, request);
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::Nulo EliminarSeguidor(global::Seguidores request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return EliminarSeguidor(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::Nulo EliminarSeguidor(global::Seguidores request, grpc::CallOptions options)
+    {
+      return CallInvoker.BlockingUnaryCall(__Method_EliminarSeguidor, null, options, request);
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncUnaryCall<global::Nulo> EliminarSeguidorAsync(global::Seguidores request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return EliminarSeguidorAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncUnaryCall<global::Nulo> EliminarSeguidorAsync(global::Seguidores request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncUnaryCall(__Method_EliminarSeguidor, null, options, request);
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncServerStreamingCall<global::Listseguidos> TraerSeguidores(global::seg request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return TraerSeguidores(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncServerStreamingCall<global::Listseguidos> TraerSeguidores(global::seg request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncServerStreamingCall(__Method_TraerSeguidores, null, options, request);
+    }
     /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     protected override UsuariosClient NewInstance(ClientBaseConfiguration configuration)
@@ -210,7 +308,10 @@ public static partial class Usuarios
     return grpc::ServerServiceDefinition.CreateBuilder()
         .AddMethod(__Method_Listo, serviceImpl.Listo)
         .AddMethod(__Method_TraerUsuario, serviceImpl.TraerUsuario)
-        .AddMethod(__Method_AltaUsuario, serviceImpl.AltaUsuario).Build();
+        .AddMethod(__Method_AltaUsuario, serviceImpl.AltaUsuario)
+        .AddMethod(__Method_SeguirUsuario, serviceImpl.SeguirUsuario)
+        .AddMethod(__Method_EliminarSeguidor, serviceImpl.EliminarSeguidor)
+        .AddMethod(__Method_TraerSeguidores, serviceImpl.TraerSeguidores).Build();
   }
 
   /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -223,6 +324,9 @@ public static partial class Usuarios
     serviceBinder.AddMethod(__Method_Listo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Nulo, global::Nulo>(serviceImpl.Listo));
     serviceBinder.AddMethod(__Method_TraerUsuario, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Username, global::Usuario>(serviceImpl.TraerUsuario));
     serviceBinder.AddMethod(__Method_AltaUsuario, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Usuario, global::Response>(serviceImpl.AltaUsuario));
+    serviceBinder.AddMethod(__Method_SeguirUsuario, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Seguidores, global::Nulo>(serviceImpl.SeguirUsuario));
+    serviceBinder.AddMethod(__Method_EliminarSeguidor, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Seguidores, global::Nulo>(serviceImpl.EliminarSeguidor));
+    serviceBinder.AddMethod(__Method_TraerSeguidores, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::seg, global::Listseguidos>(serviceImpl.TraerSeguidores));
   }
 
 }

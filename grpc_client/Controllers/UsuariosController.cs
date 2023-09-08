@@ -79,5 +79,99 @@ namespace grpc.Controllers
         }
 
 
+
+        [HttpPost]
+        [Route("PostSeguidor")]
+        public string PostSeguidor (string user, string segui)
+        {
+            string response;
+            try
+            {
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Usuarios.UsuariosClient(channel);
+
+                var postRecipeFav = new Seguidores
+                {
+                    User = user,
+                    Segui = segui,
+                };
+
+                var suscripcionResponse = cliente.SeguirUsuario(postRecipeFav);
+                response = JsonConvert.SerializeObject(suscripcionResponse);
+            }
+            catch (Exception e)
+            {
+                response = e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
+
+
+        [HttpPost]
+        [Route("DeleteSeguidor")]
+        public string DeleteSeguidor (string user, string segui)
+        {
+            string response;
+            try
+            {
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Usuarios.UsuariosClient(channel);
+
+                var postRecipeFav = new Seguidores
+                {
+                    User = user,
+                    Segui = segui,
+                };
+
+                var suscripcionResponse = cliente.EliminarSeguidor(postRecipeFav);
+                response = JsonConvert.SerializeObject(suscripcionResponse);
+            }
+            catch (Exception e)
+            {
+                response = e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
+
+        [HttpPost]
+        [Route("GetSeguidores")]
+        public async Task<string> GetSeguidores(string seg)
+        {
+            string response;
+            try
+            {
+                // This switch must be set before creating the GrpcChannel/HttpClient.
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Usuarios.UsuariosClient(channel);
+
+                var postRecipe = new seg
+                {
+                    S = seg
+                };
+                List<Listseguidos> ListaSeguidos = new();
+                using (var call = cliente.TraerSeguidores(postRecipe))
+                    while (await call.ResponseStream.MoveNext())
+                    {
+                        var currentRecipe = call.ResponseStream.Current;
+                        ListaSeguidos.Add(currentRecipe);
+                    }
+                response = JsonConvert.SerializeObject(ListaSeguidos);
+            }
+            catch (Exception e)
+            {
+                return e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
+
     }
 }

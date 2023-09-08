@@ -52,6 +52,50 @@ class ServicioUsuarios(UsuariosServicer):
         else:
             return Usuario()
 
+
+
+    def SeguirUsuario(self, request, context):
+        cnx = mysql.connector.connect(user='root', password='root',
+                                      host='localhost', port='3306',
+                                      database='chefencasagrupoj')
+        cursor = cnx.cursor()
+        query = (f"INSERT INTO suscripcion (`followed_user`, `my_user`) VALUES "
+                 f"('{request.segui}', '{request.user}')")
+        cursor.execute(query)
+        cnx.commit()
+        resp = Responsea(message="204")
+        cursor.close()
+        cnx.close()
+        return resp
+
+
+    def EliminarSeguidor(self, request, context):
+        cnx = mysql.connector.connect(user='root', password='root',
+                                      host='localhost', port='3306',
+                                      database='chefencasagrupoj')
+        cursor = cnx.cursor()
+        query = (f"DELETE FROM suscripcion WHERE followed_user = '{request.segui}' AND my_user = '{request.user}'") 
+        cursor.execute(query)
+        cnx.commit()
+        resp = Responsea(message="204")
+        cursor.close()
+        cnx.close()
+        return resp    
+
+    def TraerSeguidores(self, request, context):
+        print("usuario traido para ver seguidores:", request.s)
+        cnx = mysql.connector.connect(user='root', password='root', 
+                              host='localhost', port='3306',
+                              database='chefencasagrupoj')
+        cursor = cnx.cursor(named_tuple=True)
+        query = (f"SELECT followed_user FROM suscripcion AS s WHERE s.my_user = '{request.s}' ")
+        cursor.execute(query)
+        records = cursor.fetchall()
+        for row in records:
+            yield  row.followed_user
+    
+
+
 class ServicioRecetas(RecetasServicer):
 
     def Listo(self, request, context):

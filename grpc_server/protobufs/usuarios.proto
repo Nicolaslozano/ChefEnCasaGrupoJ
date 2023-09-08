@@ -22,8 +22,24 @@ message Response {
 message Nulo {
 }
 
+message Seguidores {
+    string user = 1;
+    string segui = 2;  
+}
+
+message seg {
+    string s = 1;
+}
+
+message Listseguidos {
+    string segui = 1;
+}
+
 service Usuarios {
     rpc Listo(Nulo) returns (Nulo);
     rpc TraerUsuario(Username) returns (Usuario);
     rpc AltaUsuario(Usuario) returns (Response);
+    rpc SeguirUsuario (Seguidores) returns (Nulo);
+    rpc EliminarSeguidor(Seguidores) returns (Nulo);
+    rpc TraerSeguidores(seg) returns (stream Listseguidos);
 }
