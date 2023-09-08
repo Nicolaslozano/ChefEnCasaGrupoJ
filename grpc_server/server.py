@@ -128,6 +128,28 @@ class ServicioRecetas(RecetasServicer):
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
             tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
 
+    def TraerRecetaPorId(self, request, context):
+        cnx = mysql.connector.connect(user='root', password='root', 
+                                      host='localhost', port='3306',
+                                      database='chefencasagrupoj')
+        cursor = cnx.cursor(named_tuple=True)
+        query = (f"SELECT * FROM receta where receta.idreceta = '{request.idreceta}' ")
+        cursor.execute(query)
+        records = cursor.fetchall()
+        for row in records:
+            fotos = []
+            if row.url_foto1 is not None:
+                fotos.append(row.url_foto1)
+            if row.url_foto2 is not None:
+                fotos.append(row.url_foto2)
+            if row.url_foto3 is not None:
+                fotos.append(row.url_foto3)
+            if row.url_foto4 is not None:
+                fotos.append(row.url_foto4)
+            if row.url_foto5 is not None:
+                fotos.append(row.url_foto5)
+        yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
+        tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
 
     def TraerRecetasPorUsuario(self, request, context):
         print("usuario recibido:", request.usu)
