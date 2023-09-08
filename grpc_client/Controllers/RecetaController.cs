@@ -82,7 +82,7 @@ namespace grpc_client.Controllers
        
 
         [HttpPut]
-        [Route("EditarReceta/")]
+        [Route("EditarReceta")]
         public string EditarRecetas(RecetaClass receta)
         {
             string response;
@@ -116,6 +116,34 @@ namespace grpc_client.Controllers
             catch (Exception e)
             {
                 response = e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
+
+        [HttpGet]
+        [Route("receta")]
+        public string GetRecetasById(int idreceta)
+        {
+            string response;
+            try
+            {
+                // This switch must be set before creating the GrpcChannel/HttpClient.
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Recetas.RecetasClient(channel);
+
+                var postIdReceta = new RecetaId
+                {
+                    Idreceta = idreceta
+                };
+                var recetaporid = cliente.TraerRecetaPorId(postIdReceta);
+                response = JsonConvert.SerializeObject(recetaporid);
+            }
+            catch (Exception e)
+            {
+                return e.Message + e.StackTrace;
             }
 
             return response;
