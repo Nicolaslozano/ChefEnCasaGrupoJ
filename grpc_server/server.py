@@ -10,6 +10,8 @@ from receta_pb2 import Receta, Responsea
 import mysql.connector
 from recetafavoritas_pb2_grpc import RecetaFavServicer, add_RecetaFavServicer_to_server
 from recetafavoritas_pb2 import RecetaFavoritas # aca va el nombre del messege proto
+from suscripcion_pb2_grpc import SuscripcionesServicer, add_SuscripcionesServicer_to_server
+from suscripcion_pb2 import Suscripcion
 
 class ServicioUsuarios(UsuariosServicer):
 
@@ -63,7 +65,10 @@ class ServicioUsuarios(UsuariosServicer):
                  f"('{request.segui}', '{request.user}')")
         cursor.execute(query)
         cnx.commit()
-        resp = Responsea(message="204")
+        if cursor.rowcount > 0:
+            resp = Responsea(message="Se pudo seguir el usuario")
+        else:
+            resp = Responsea(message="No se pudo seguir el usuario")
         cursor.close()
         cnx.close()
         return resp
@@ -77,23 +82,32 @@ class ServicioUsuarios(UsuariosServicer):
         query = (f"DELETE FROM suscripcion WHERE followed_user = '{request.segui}' AND my_user = '{request.user}'") 
         cursor.execute(query)
         cnx.commit()
-        resp = Responsea(message="204")
+        if cursor.rowcount > 0:
+            resp = Responsea(message="Se pudo eliminar el seguidor")
+        else:
+            resp = Responsea(message="No se encontró el seguidor a eliminar")
         cursor.close()
         cnx.close()
         return resp    
 
+
+
+class ServicioSuscripciones(SuscripcionesServicer):
+
     def TraerSeguidores(self, request, context):
-        print("usuario traido para ver seguidores:", request.s)
+        print("usuario recibido:", request.s)
         cnx = mysql.connector.connect(user='root', password='root', 
                               host='localhost', port='3306',
                               database='chefencasagrupoj')
         cursor = cnx.cursor(named_tuple=True)
-        query = (f"SELECT followed_user FROM suscripcion AS s WHERE s.my_user = '{request.s}' ")
+        query = (f"SELECT * FROM suscripcion AS s WHERE my_user = '{request.s}' ")
         cursor.execute(query)
         records = cursor.fetchall()
         for row in records:
-            yield  row.followed_user
-    
+            yield Suscripcion(idsuscripcion = row.idsuscripcion, followed_user = row.followed_user, my_user = row.my_user)
+
+
+
 
 
 class ServicioRecetas(RecetasServicer):
@@ -318,6 +332,7 @@ class ServicioRecetasFav(RecetaFavServicer):
 def start():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     add_UsuariosServicer_to_server(ServicioUsuarios(), server)
+    add_SuscripcionesServicer_to_server(ServicioSuscripciones(), server)
     add_RecetasServicer_to_server(ServicioRecetas(), server)
     add_RecetaFavServicer_to_server(ServicioRecetasFav(), server)
     server.add_insecure_port('[::]:50051')

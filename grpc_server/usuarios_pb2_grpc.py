@@ -39,11 +39,6 @@ class UsuariosStub(object):
                 request_serializer=usuarios__pb2.Seguidores.SerializeToString,
                 response_deserializer=usuarios__pb2.Nulo.FromString,
                 )
-        self.TraerSeguidores = channel.unary_stream(
-                '/Usuarios/TraerSeguidores',
-                request_serializer=usuarios__pb2.seg.SerializeToString,
-                response_deserializer=usuarios__pb2.Listseguidos.FromString,
-                )
 
 
 class UsuariosServicer(object):
@@ -79,12 +74,6 @@ class UsuariosServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def TraerSeguidores(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_UsuariosServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -112,11 +101,6 @@ def add_UsuariosServicer_to_server(servicer, server):
                     servicer.EliminarSeguidor,
                     request_deserializer=usuarios__pb2.Seguidores.FromString,
                     response_serializer=usuarios__pb2.Nulo.SerializeToString,
-            ),
-            'TraerSeguidores': grpc.unary_stream_rpc_method_handler(
-                    servicer.TraerSeguidores,
-                    request_deserializer=usuarios__pb2.seg.FromString,
-                    response_serializer=usuarios__pb2.Listseguidos.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -210,22 +194,5 @@ class Usuarios(object):
         return grpc.experimental.unary_unary(request, target, '/Usuarios/EliminarSeguidor',
             usuarios__pb2.Seguidores.SerializeToString,
             usuarios__pb2.Nulo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def TraerSeguidores(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/Usuarios/TraerSeguidores',
-            usuarios__pb2.seg.SerializeToString,
-            usuarios__pb2.Listseguidos.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

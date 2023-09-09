@@ -1,0 +1,2 @@
+obj\Debug\net6.0/Suscripcion.cs \
+obj\Debug\net6.0/SuscripcionGrpc.cs: ../gRPC_server/protobufs/suscripcion.proto

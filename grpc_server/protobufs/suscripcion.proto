@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+message Suscripcion {
+    int32 idsuscripcion = 1;
+    string followed_user = 2;
+    string my_user = 3;    
+}
+
+
+message Vacio {
+}
+
+message seg {
+    string s = 1;
+}
+
+
+service Suscripciones {
+    rpc TraerSeguidores(seg) returns (stream Suscripcion);
+}

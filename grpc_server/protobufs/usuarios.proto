@@ -27,12 +27,9 @@ message Seguidores {
     string segui = 2;  
 }
 
-message seg {
-    string s = 1;
-}
-
-message Listseguidos {
-    string segui = 1;
+message seguis {
+    int32 idSeguis = 1;
+    string seguir = 2;
 }
 
 service Usuarios {
@@ -41,5 +38,4 @@ service Usuarios {
     rpc AltaUsuario(Usuario) returns (Response);
     rpc SeguirUsuario (Seguidores) returns (Nulo);
     rpc EliminarSeguidor(Seguidores) returns (Nulo);
-    rpc TraerSeguidores(seg) returns (stream Listseguidos);
 }

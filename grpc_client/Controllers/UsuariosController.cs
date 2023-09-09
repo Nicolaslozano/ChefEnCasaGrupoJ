@@ -139,16 +139,15 @@ namespace grpc.Controllers
             return response;
         }
 
-        [HttpPost]
-        [Route("GetSeguidores")]
-        public async Task<string> GetSeguidores(string seg)
+        /*[HttpPost]
+        [Route("GetSeguidor")]
+        public async Task<string> GetSeguidorAsync(string seg)
         {
             string response;
             try
             {
                 // This switch must be set before creating the GrpcChannel/HttpClient.
-                AppContext.SetSwitch(
-                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
                 var cliente = new Usuarios.UsuariosClient(channel);
 
@@ -156,22 +155,34 @@ namespace grpc.Controllers
                 {
                     S = seg
                 };
-                List<Listseguidos> ListaSeguidos = new();
+                List<seguis> seguid = new();
                 using (var call = cliente.TraerSeguidores(postRecipe))
                     while (await call.ResponseStream.MoveNext())
                     {
                         var currentRecipe = call.ResponseStream.Current;
-                        ListaSeguidos.Add(currentRecipe);
+                        seguid.Add(currentRecipe);
                     }
-                response = JsonConvert.SerializeObject(ListaSeguidos);
+                response = JsonConvert.SerializeObject(seguid);
+            }
+            catch (RpcException rpcEx)
+            {
+                // Handle gRPC-specific exceptions
+                Console.WriteLine($"gRPC Exception: {rpcEx.Status}");
+                return rpcEx.Status.ToString();
             }
             catch (Exception e)
             {
+                // Handle general exceptions
+                Console.WriteLine($"Exception: {e.Message}");
                 return e.Message + e.StackTrace;
             }
 
             return response;
-        }
+        }*/
+
+
+
 
     }
+
 }
