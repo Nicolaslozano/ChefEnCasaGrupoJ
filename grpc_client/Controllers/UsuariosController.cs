@@ -78,6 +78,64 @@ namespace grpc.Controllers
             return response;
         }
 
+        [HttpPost]
+        [Route("PostSeguidor")]
+        public string PostSeguidor (string user, string segui)
+        {
+            string response;
+            try
+            {
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Usuarios.UsuariosClient(channel);
+
+                var postRecipeFav = new Seguidores
+                {
+                    User = user,
+                    Segui = segui,
+                };
+
+                var suscripcionResponse = cliente.SeguirUsuario(postRecipeFav);
+                response = JsonConvert.SerializeObject(suscripcionResponse);
+            }
+            catch (Exception e)
+            {
+                response = e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
+
+
+        [HttpPost]
+        [Route("DeleteSeguidor")]
+        public string DeleteSeguidor (string user, string segui)
+        {
+            string response;
+            try
+            {
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Usuarios.UsuariosClient(channel);
+
+                var postRecipeFav = new Seguidores
+                {
+                    User = user,
+                    Segui = segui,
+                };
+
+                var suscripcionResponse = cliente.EliminarSeguidor(postRecipeFav);
+                response = JsonConvert.SerializeObject(suscripcionResponse);
+            }
+            catch (Exception e)
+            {
+                response = e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
 
     }
 }

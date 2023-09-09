@@ -29,6 +29,16 @@ class UsuariosStub(object):
                 request_serializer=usuarios__pb2.Usuario.SerializeToString,
                 response_deserializer=usuarios__pb2.Response.FromString,
                 )
+        self.SeguirUsuario = channel.unary_unary(
+                '/Usuarios/SeguirUsuario',
+                request_serializer=usuarios__pb2.Seguidores.SerializeToString,
+                response_deserializer=usuarios__pb2.Nulo.FromString,
+                )
+        self.EliminarSeguidor = channel.unary_unary(
+                '/Usuarios/EliminarSeguidor',
+                request_serializer=usuarios__pb2.Seguidores.SerializeToString,
+                response_deserializer=usuarios__pb2.Nulo.FromString,
+                )
 
 
 class UsuariosServicer(object):
@@ -52,6 +62,18 @@ class UsuariosServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SeguirUsuario(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def EliminarSeguidor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_UsuariosServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -69,6 +91,16 @@ def add_UsuariosServicer_to_server(servicer, server):
                     servicer.AltaUsuario,
                     request_deserializer=usuarios__pb2.Usuario.FromString,
                     response_serializer=usuarios__pb2.Response.SerializeToString,
+            ),
+            'SeguirUsuario': grpc.unary_unary_rpc_method_handler(
+                    servicer.SeguirUsuario,
+                    request_deserializer=usuarios__pb2.Seguidores.FromString,
+                    response_serializer=usuarios__pb2.Nulo.SerializeToString,
+            ),
+            'EliminarSeguidor': grpc.unary_unary_rpc_method_handler(
+                    servicer.EliminarSeguidor,
+                    request_deserializer=usuarios__pb2.Seguidores.FromString,
+                    response_serializer=usuarios__pb2.Nulo.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -128,5 +160,39 @@ class Usuarios(object):
         return grpc.experimental.unary_unary(request, target, '/Usuarios/AltaUsuario',
             usuarios__pb2.Usuario.SerializeToString,
             usuarios__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SeguirUsuario(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Usuarios/SeguirUsuario',
+            usuarios__pb2.Seguidores.SerializeToString,
+            usuarios__pb2.Nulo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def EliminarSeguidor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Usuarios/EliminarSeguidor',
+            usuarios__pb2.Seguidores.SerializeToString,
+            usuarios__pb2.Nulo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

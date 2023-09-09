@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0eusuarios.proto\"[\n\x07Usuario\x12\x11\n\tidusuario\x18\x01 \x01(\x05\x12\x0e\n\x06nombre\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x0c\n\x04user\x18\x04 \x01(\t\x12\x10\n\x08password\x18\x05 \x01(\t\"*\n\x08Username\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\".\n\x08Response\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x11\n\tidusuario\x18\x02 \x01(\x05\"\x06\n\x04Nulo2j\n\x08Usuarios\x12\x15\n\x05Listo\x12\x05.Nulo\x1a\x05.Nulo\x12#\n\x0cTraerUsuario\x12\t.Username\x1a\x08.Usuario\x12\"\n\x0b\x41ltaUsuario\x12\x08.Usuario\x1a\t.Responseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0eusuarios.proto\"[\n\x07Usuario\x12\x11\n\tidusuario\x18\x01 \x01(\x05\x12\x0e\n\x06nombre\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x0c\n\x04user\x18\x04 \x01(\t\x12\x10\n\x08password\x18\x05 \x01(\t\"*\n\x08Username\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\".\n\x08Response\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x11\n\tidusuario\x18\x02 \x01(\x05\"\x06\n\x04Nulo\")\n\nSeguidores\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\r\n\x05segui\x18\x02 \x01(\t\"*\n\x06seguis\x12\x10\n\x08idSeguis\x18\x01 \x01(\x05\x12\x0e\n\x06seguir\x18\x02 \x01(\t2\xb7\x01\n\x08Usuarios\x12\x15\n\x05Listo\x12\x05.Nulo\x1a\x05.Nulo\x12#\n\x0cTraerUsuario\x12\t.Username\x1a\x08.Usuario\x12\"\n\x0b\x41ltaUsuario\x12\x08.Usuario\x1a\t.Response\x12#\n\rSeguirUsuario\x12\x0b.Seguidores\x1a\x05.Nulo\x12&\n\x10\x45liminarSeguidor\x12\x0b.Seguidores\x1a\x05.Nulob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -29,6 +29,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_RESPONSE']._serialized_end=201
   _globals['_NULO']._serialized_start=203
   _globals['_NULO']._serialized_end=209
-  _globals['_USUARIOS']._serialized_start=211
-  _globals['_USUARIOS']._serialized_end=317
+  _globals['_SEGUIDORES']._serialized_start=211
+  _globals['_SEGUIDORES']._serialized_end=252
+  _globals['_SEGUIS']._serialized_start=254
+  _globals['_SEGUIS']._serialized_end=296
+  _globals['_USUARIOS']._serialized_start=299
+  _globals['_USUARIOS']._serialized_end=482
 # @@protoc_insertion_point(module_scope)

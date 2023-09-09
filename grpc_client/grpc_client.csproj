@@ -21,9 +21,9 @@
   <ItemGroup>
     <Protobuf Include="../gRPC_server/protobufs/usuarios.proto" />
     <Protobuf Include="../gRPC_server/protobufs/receta.proto" />
-	<Protobuf Include="../gRPC_server/protobufs/categoria.proto" />
-  <Protobuf Include="../gRPC_server/protobufs/recetafavoritas.proto" />
-
+	  <Protobuf Include="../gRPC_server/protobufs/categoria.proto" />
+    <Protobuf Include="../gRPC_server/protobufs/recetafavoritas.proto" />
+    <Protobuf Include="../gRPC_server/protobufs/suscripcion.proto" />
   </ItemGroup>
 
 </Project>

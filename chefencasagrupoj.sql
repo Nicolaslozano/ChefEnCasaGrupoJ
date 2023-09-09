@@ -2,13 +2,15 @@ CREATE SCHEMA IF NOT EXISTS `chefencasagrupoj` DEFAULT CHARACTER SET utf8;
 USE `chefencasagrupoj`;
 
 
+
 CREATE TABLE IF NOT EXISTS usuario (
   idusuario INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(45) NOT NULL,
   email VARCHAR(45) NOT NULL,
   user VARCHAR(45) NOT NULL,
   password VARCHAR(45) NOT NULL,
-  PRIMARY KEY (idusuario)
+  PRIMARY KEY (idusuario),
+      INDEX `idx_user` (`user`)
 );
 
 CREATE TABLE IF NOT EXISTS `categoria` (
@@ -64,12 +66,13 @@ CREATE TABLE IF NOT EXISTS `recetaFavoritas` (
 
 
 CREATE TABLE IF NOT EXISTS `suscripcion` (
-  `idsuscripcion` INT NOT NULL,
-  `usuario_idusuario` INT NOT NULL,
-  PRIMARY KEY (`idsuscripcion`, `usuario_idusuario`),
-  INDEX `fk_suscripcion_usuario1_idx` (`usuario_idusuario` ASC) ,
-  CONSTRAINT `fk_suscripcion_usuario1`
-    FOREIGN KEY (`usuario_idusuario`)
-    REFERENCES `usuario` (`idusuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  `idsuscripcion` INT NOT NULL AUTO_INCREMENT,
+  `followed_user` VARCHAR(45) NOT NULL,
+  `my_user` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idsuscripcion`),
+  INDEX `fk_suscripcion_usuario1_idx` (`my_user` ASC),
+  CONSTRAINT `fk_suscripcion_user1`
+    FOREIGN KEY (`my_user`)
+    REFERENCES `usuario` (`user`)
+    ON UPDATE NO ACTION
+);
