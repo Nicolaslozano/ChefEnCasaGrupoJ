@@ -29,7 +29,7 @@ class RecetasStub(object):
                 request_serializer=receta__pb2.NuloReceta.SerializeToString,
                 response_deserializer=receta__pb2.Receta.FromString,
                 )
-        self.TraerRecetaPorId = channel.unary_stream(
+        self.TraerRecetaPorId = channel.unary_unary(
                 '/Recetas/TraerRecetaPorId',
                 request_serializer=receta__pb2.RecetaId.SerializeToString,
                 response_deserializer=receta__pb2.Receta.FromString,
@@ -136,7 +136,7 @@ def add_RecetasServicer_to_server(servicer, server):
                     request_deserializer=receta__pb2.NuloReceta.FromString,
                     response_serializer=receta__pb2.Receta.SerializeToString,
             ),
-            'TraerRecetaPorId': grpc.unary_stream_rpc_method_handler(
+            'TraerRecetaPorId': grpc.unary_unary_rpc_method_handler(
                     servicer.TraerRecetaPorId,
                     request_deserializer=receta__pb2.RecetaId.FromString,
                     response_serializer=receta__pb2.Receta.SerializeToString,
@@ -238,7 +238,7 @@ class Recetas(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/Recetas/TraerRecetaPorId',
+        return grpc.experimental.unary_unary(request, target, '/Recetas/TraerRecetaPorId',
             receta__pb2.RecetaId.SerializeToString,
             receta__pb2.Receta.FromString,
             options, channel_credentials,

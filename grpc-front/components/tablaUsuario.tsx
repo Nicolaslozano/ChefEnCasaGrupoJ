@@ -35,15 +35,7 @@ const columns = [
     key: "TiempoPreparacion",
     label: "Tiempo de Preparación",
   },
-  {
-    key: "Ingredientes",
-    label: "Ingredientes",
-  },
-  {
-    key: "Pasos",
-    label: "Pasos",
-  },
-
+  
   {
     key: "NombreCategoria",
     label: "Categoría",
@@ -70,13 +62,12 @@ const handleDelete = (item) => {
 };
 
 export default function TablaUsuario() {
-  const itemsPerPage = 2;
+  const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["Filtrar Por:"]));
   const [formData, setFormData] = useState({
     titulo: "",
     descripcion: "",
@@ -88,10 +79,7 @@ export default function TablaUsuario() {
     categoria_idcategoria: 0,
   });
 
-  const selectedValue = React.useMemo(
-    () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
-    [selectedKeys]
-  );
+ 
   
   useEffect(() => {
     // Realiza la solicitud GET a la API
@@ -173,31 +161,7 @@ export default function TablaUsuario() {
   return (
     <Auth>
     <div style={{ width: "100%" }}>
-      <Button onPress={onOpen}>Agregar Receta</Button>
-      <Dropdown>
-      <DropdownTrigger>
-        <Button  
-          variant="bordered" 
-          className="capitalize ml-4"
-        >
-          {selectedValue}
-        </Button>
-      </DropdownTrigger>
-      <DropdownMenu 
-        variant="flat"
-        closeOnSelect={false}
-        disallowEmptySelection
-        selectionMode="multiple"
-        selectedKeys={selectedKeys}
-        onSelectionChange={setSelectedKeys}
-      >
-        <DropdownItem key="Postres">Postres</DropdownItem>
-        <DropdownItem key="Veganas">Veganas</DropdownItem>
-        <DropdownItem key="Reposteria">Reposteria</DropdownItem>
-        <DropdownItem key="Bebidas">Bebidas</DropdownItem>
-        <DropdownItem key="Regionales">Regionales</DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
+      <Button onPress={onOpen}>Agregar Receta</Button>      
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

@@ -188,10 +188,10 @@ class ServicioRecetas(RecetasServicer):
                                       host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor(named_tuple=True)
-        query = (f"SELECT * FROM receta where receta.idreceta = '{request.idreceta}' ")
+        query = (f"SELECT * FROM receta INNER JOIN usuario AS u INNER JOIN categoria AS c WHERE receta.usuario_idusuario = u.idusuario AND receta.nombreCategoria1 = c.nombreCategoria AND receta.idreceta = '{request.idreceta}'")
         cursor.execute(query)
-        records = cursor.fetchall()
-        for row in records:
+        row = cursor.fetchone()
+        if row is not None:
             fotos = []
             if row.url_foto1 is not None:
                 fotos.append(row.url_foto1)
@@ -203,8 +203,9 @@ class ServicioRecetas(RecetasServicer):
                 fotos.append(row.url_foto4)
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
-        yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-        tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
+            result = Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
+        return result
 
     def TraerRecetasPorUsuario(self, request, context):
         print("usuario recibido:", request.usu)

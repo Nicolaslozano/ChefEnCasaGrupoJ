@@ -1,56 +1,75 @@
+import { useState } from "react";
 import {
-	Avatar,
-	Link,
-	Input,
-	Navbar as NextUINavbar,
-	NavbarContent,
-	NavbarMenu,
-	NavbarMenuToggle,
-	NavbarBrand,
-	NavbarItem,
-	NavbarMenuItem,
+  Avatar,
+  Link,
+  Input,
+  Navbar as NextUINavbar,
+  NavbarContent,
+  NavbarMenu,
+  NavbarMenuToggle,
+  NavbarBrand,
+  NavbarItem,
+  NavbarMenuItem,
 } from "@nextui-org/react";
-
-import { link as linkStyles } from "@nextui-org/theme";
-
-import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
-import clsx from "clsx";
 
 import { ThemeSwitch } from "@/components/theme-switch";
-import {
-	SearchIcon,
-	UserIcon,
-} from "@/components/icons";
-
+import { UserIcon } from "@/components/icons";
 import { Logo } from "@/components/icons";
 
 export const Navbar = () => {
-	return (
-		<NextUINavbar maxWidth="xl" position="sticky">
-			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-				<NavbarBrand className="gap-3 max-w-fit">
-					<NextLink className="flex justify-start items-center gap-1" href="/">
-						<Logo />
-						<p className="font-bold text-inherit">ChefEnCasa</p>
-					</NextLink>
-				</NavbarBrand>
-			</NavbarContent>
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-			<NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
-				<NavbarItem className="hidden sm:flex gap-3">
-					<Link href={"/login"}>
-						<UserIcon className="text-default-500" />
-					</Link>
-					<ThemeSwitch />
-				</NavbarItem>
-				<NavbarItem className="hidden md:flex">
-				</NavbarItem>
-			</NavbarContent>
-			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-				<ThemeSwitch />
-				<NavbarMenuToggle />
-			</NavbarContent>
-		</NextUINavbar>
-	);
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleContribucionesClick = () => {
+    window.location.href = "/user";
+  };
+
+  const handleCerrarSesionClick = () => {
+    // Clear cookies or perform logout action here
+    // You need to implement this logic based on your authentication system
+    // Example: document.cookie = "sessionToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  };
+
+  return (
+    <NextUINavbar maxWidth="xl" position="sticky">
+      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+        <NavbarBrand className="gap-3 max-w-fit">
+          <NextLink className="flex justify-start items-center gap-1" href="/">
+            <Logo />
+            <p className="font-bold text-inherit">ChefEnCasa</p>
+          </NextLink>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent
+        className="hidden sm:flex basis-1/5 sm:basis-full"
+        justify="end"
+      >
+        <NavbarItem className="hidden sm:flex gap-3">
+          <div className="relative">
+            <div onClick={handleDropdownToggle}>
+              <UserIcon className="text-default-500 cursor-pointer" />
+            </div>
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-auto	 w-40 bg-white shadow-md p-8">
+                <Link href="/user">Contribuciones</Link>
+                <div>
+                  <Link className= "mt-3"href="/login">Cerrar Sesion</Link>
+                </div>
+              </div>
+            )}
+          </div>
+          <ThemeSwitch />
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+        <ThemeSwitch />
+        <NavbarMenuToggle />
+      </NavbarContent>
+    </NextUINavbar>
+  );
 };

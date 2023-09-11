@@ -150,7 +150,7 @@ namespace grpc_client.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetRecetasToUser")]
         public async Task<string> GetRecetasToUserAsync(string usu) {
             string response;
@@ -185,7 +185,7 @@ namespace grpc_client.Controllers
        
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetRecetasToCategoria")]
         public async Task<string> GetRecetasToCategoriaAsync(string usu)
         {
@@ -220,7 +220,7 @@ namespace grpc_client.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetRecetasToTitle")]
         public async Task<string> GetRecetasToTitleAsync(string usu)
         {
@@ -255,7 +255,7 @@ namespace grpc_client.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetRecetasToTime")]
         public async Task<string> GetRecetasToTimeAsync(int desde , int hasta)
         {
@@ -290,7 +290,7 @@ namespace grpc_client.Controllers
             return response;
         }
         
-        [HttpPost]
+        [HttpGet]
         [Route("GetRecetasToIngredients")]
         public async Task<string> GetRecetasToIngredientsAsync(string usu)
         {
