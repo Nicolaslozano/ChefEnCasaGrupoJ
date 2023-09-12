@@ -117,13 +117,22 @@ class ServicioRecetas(RecetasServicer):
                                       host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
+            # Split the comma-separated string of URLs into a list
+        url_fotos_list = request.url_fotos[0].split(',')
+
+        # Initialize the SQL statement
         stmt = f"INSERT INTO receta (`titulo`, `descripcion`, `tiempoPreparacion`,  `ingredientes`, `pasos`, `usuario_user`,`nombreCategoria1`"
-        values =  f" VALUES ('{request.titulo}', '{request.descripcion}', '{request.tiempoPreparacion}', '{request.ingredientes}', '{request.pasos}', '{request.usuario_user}','{request.nombreCategoria}'" 
-        for idx,url_foto in enumerate(request.url_fotos,start=1):
+
+        # Initialize the VALUES part of the SQL statement
+        values = f" VALUES ('{request.titulo}', '{request.descripcion}', '{request.tiempoPreparacion}', '{request.ingredientes}', '{request.pasos}', '{request.usuario_user}','{request.nombreCategoria}'"
+
+        # Iterate through the split URLs and insert them into separate columns
+        for idx, url in enumerate(url_fotos_list, start=1):
             stmt += f", `url_foto{idx}`"
-            values += f", '{url_foto}'"
+            values += f", '{url.strip()}'"
+
         stmt += ")"
-        query = stmt+values+")"
+        query = stmt + values + ")"
 
         cursor.execute(query)
         cnx.commit()
