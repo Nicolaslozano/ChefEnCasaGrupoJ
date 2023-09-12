@@ -22,33 +22,33 @@ public static partial class RecetaReflection {
   static RecetaReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CgxyZWNldGEucHJvdG8ixgEKBlJlY2V0YRIQCghpZHJlY2V0YRgBIAEoBRIO",
+          "CgxyZWNldGEucHJvdG8iwQEKBlJlY2V0YRIQCghpZHJlY2V0YRgBIAEoBRIO",
           "CgZ0aXR1bG8YAiABKAkSEwoLZGVzY3JpcGNpb24YAyABKAkSGQoRdGllbXBv",
           "UHJlcGFyYWNpb24YBCABKAUSFAoMaW5ncmVkaWVudGVzGAUgASgJEg0KBXBh",
-          "c29zGAYgASgJEhEKCXVybF9mb3RvcxgHIAMoCRIZChF1c3VhcmlvX2lkdXN1",
-          "YXJpbxgIIAEoBRIXCg9ub21icmVDYXRlZ29yaWEYCSABKAkisQEKDFJlY2V0",
-          "YUVkaXRhchIQCghpZHJlY2V0YRgBIAEoBRIOCgZ0aXR1bG8YAiABKAkSEwoL",
-          "ZGVzY3JpcGNpb24YAyABKAkSGQoRdGllbXBvUHJlcGFyYWNpb24YBCABKAUS",
-          "FAoMaW5ncmVkaWVudGVzGAUgASgJEg0KBXBhc29zGAYgASgJEhEKCXVybF9m",
-          "b3RvcxgHIAMoCRIXCg9ub21icmVDYXRlZ29yaWEYCSABKAkiDAoKTnVsb1Jl",
-          "Y2V0YSIuCglSZXNwb25zZWESDwoHbWVzc2FnZRgBIAEoCRIQCghpZHJlY2V0",
-          "YRgCIAEoBSImCgpSZWNldGFMaXN0EhgKB3JlY2V0YXMYASADKAsyBy5SZWNl",
-          "dGEiGQoKVXN1YXJpb2xvZxILCgN1c3UYASABKAkiJgoGdGllbXBvEg0KBWRl",
-          "c2RlGAEgASgFEg0KBWhhc3RhGAIgASgFIhwKCFJlY2V0YUlkEhAKCGlkcmVj",
-          "ZXRhGAEgASgFMqQDCgdSZWNldGFzEiEKCkFsdGFSZWNldGESBy5SZWNldGEa",
-          "Ci5SZXNwb25zZWESKQoMRWRpdGFyUmVjZXRhEg0uUmVjZXRhRWRpdGFyGgou",
-          "UmVzcG9uc2VhEiYKDFRyYWVyUmVjZXRhcxILLk51bG9SZWNldGEaBy5SZWNl",
-          "dGEwARIoChBUcmFlclJlY2V0YVBvcklkEgkuUmVjZXRhSWQaBy5SZWNldGEw",
-          "ARIwChZUcmFlclJlY2V0YXNQb3JVc3VhcmlvEgsuVXN1YXJpb2xvZxoHLlJl",
-          "Y2V0YTABEjIKGFRyYWVyUmVjZXRhc1BvckNhdGVnb3JpYRILLlVzdWFyaW9s",
-          "b2caBy5SZWNldGEwARIvChVUcmFlclJlY2V0YXNQb3JUaXR1bG8SCy5Vc3Vh",
-          "cmlvbG9nGgcuUmVjZXRhMAESKwoVVHJhZXJSZWNldGFzUG9yVGllbXBvEgcu",
-          "dGllbXBvGgcuUmVjZXRhMAESNQobVHJhZXJSZWNldGFzUG9ySW5ncmVkaWVu",
-          "dGVzEgsuVXN1YXJpb2xvZxoHLlJlY2V0YTABYgZwcm90bzM="));
+          "c29zGAYgASgJEhEKCXVybF9mb3RvcxgHIAMoCRIUCgx1c3VhcmlvX3VzZXIY",
+          "CCABKAkSFwoPbm9tYnJlQ2F0ZWdvcmlhGAkgASgJIrEBCgxSZWNldGFFZGl0",
+          "YXISEAoIaWRyZWNldGEYASABKAUSDgoGdGl0dWxvGAIgASgJEhMKC2Rlc2Ny",
+          "aXBjaW9uGAMgASgJEhkKEXRpZW1wb1ByZXBhcmFjaW9uGAQgASgFEhQKDGlu",
+          "Z3JlZGllbnRlcxgFIAEoCRINCgVwYXNvcxgGIAEoCRIRCgl1cmxfZm90b3MY",
+          "ByADKAkSFwoPbm9tYnJlQ2F0ZWdvcmlhGAkgASgJIgwKCk51bG9SZWNldGEi",
+          "LgoJUmVzcG9uc2VhEg8KB21lc3NhZ2UYASABKAkSEAoIaWRyZWNldGEYAiAB",
+          "KAUiJgoKUmVjZXRhTGlzdBIYCgdyZWNldGFzGAEgAygLMgcuUmVjZXRhIhkK",
+          "ClVzdWFyaW9sb2cSCwoDdXN1GAEgASgJIiYKBnRpZW1wbxINCgVkZXNkZRgB",
+          "IAEoBRINCgVoYXN0YRgCIAEoBSIcCghSZWNldGFJZBIQCghpZHJlY2V0YRgB",
+          "IAEoBTKiAwoHUmVjZXRhcxIhCgpBbHRhUmVjZXRhEgcuUmVjZXRhGgouUmVz",
+          "cG9uc2VhEikKDEVkaXRhclJlY2V0YRINLlJlY2V0YUVkaXRhchoKLlJlc3Bv",
+          "bnNlYRImCgxUcmFlclJlY2V0YXMSCy5OdWxvUmVjZXRhGgcuUmVjZXRhMAES",
+          "JgoQVHJhZXJSZWNldGFQb3JJZBIJLlJlY2V0YUlkGgcuUmVjZXRhEjAKFlRy",
+          "YWVyUmVjZXRhc1BvclVzdWFyaW8SCy5Vc3VhcmlvbG9nGgcuUmVjZXRhMAES",
+          "MgoYVHJhZXJSZWNldGFzUG9yQ2F0ZWdvcmlhEgsuVXN1YXJpb2xvZxoHLlJl",
+          "Y2V0YTABEi8KFVRyYWVyUmVjZXRhc1BvclRpdHVsbxILLlVzdWFyaW9sb2ca",
+          "By5SZWNldGEwARIrChVUcmFlclJlY2V0YXNQb3JUaWVtcG8SBy50aWVtcG8a",
+          "By5SZWNldGEwARI1ChtUcmFlclJlY2V0YXNQb3JJbmdyZWRpZW50ZXMSCy5V",
+          "c3VhcmlvbG9nGgcuUmVjZXRhMAFiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::Receta), global::Receta.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos", "UrlFotos", "UsuarioIdusuario", "NombreCategoria" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Receta), global::Receta.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos", "UrlFotos", "UsuarioUser", "NombreCategoria" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RecetaEditar), global::RecetaEditar.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos", "UrlFotos", "NombreCategoria" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NuloReceta), global::NuloReceta.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Responsea), global::Responsea.Parser, new[]{ "Message", "Idreceta" }, null, null, null, null),
@@ -103,7 +103,7 @@ public sealed partial class Receta : pb::IMessage<Receta>
     ingredientes_ = other.ingredientes_;
     pasos_ = other.pasos_;
     urlFotos_ = other.urlFotos_.Clone();
-    usuarioIdusuario_ = other.usuarioIdusuario_;
+    usuarioUser_ = other.usuarioUser_;
     nombreCategoria_ = other.nombreCategoria_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -197,15 +197,15 @@ public sealed partial class Receta : pb::IMessage<Receta>
     get { return urlFotos_; }
   }
 
-  /// <summary>Field number for the "usuario_idusuario" field.</summary>
-  public const int UsuarioIdusuarioFieldNumber = 8;
-  private int usuarioIdusuario_;
+  /// <summary>Field number for the "usuario_user" field.</summary>
+  public const int UsuarioUserFieldNumber = 8;
+  private string usuarioUser_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int UsuarioIdusuario {
-    get { return usuarioIdusuario_; }
+  public string UsuarioUser {
+    get { return usuarioUser_; }
     set {
-      usuarioIdusuario_ = value;
+      usuarioUser_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
     }
   }
 
@@ -243,7 +243,7 @@ public sealed partial class Receta : pb::IMessage<Receta>
     if (Ingredientes != other.Ingredientes) return false;
     if (Pasos != other.Pasos) return false;
     if(!urlFotos_.Equals(other.urlFotos_)) return false;
-    if (UsuarioIdusuario != other.UsuarioIdusuario) return false;
+    if (UsuarioUser != other.UsuarioUser) return false;
     if (NombreCategoria != other.NombreCategoria) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -259,7 +259,7 @@ public sealed partial class Receta : pb::IMessage<Receta>
     if (Ingredientes.Length != 0) hash ^= Ingredientes.GetHashCode();
     if (Pasos.Length != 0) hash ^= Pasos.GetHashCode();
     hash ^= urlFotos_.GetHashCode();
-    if (UsuarioIdusuario != 0) hash ^= UsuarioIdusuario.GetHashCode();
+    if (UsuarioUser.Length != 0) hash ^= UsuarioUser.GetHashCode();
     if (NombreCategoria.Length != 0) hash ^= NombreCategoria.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -304,9 +304,9 @@ public sealed partial class Receta : pb::IMessage<Receta>
       output.WriteString(Pasos);
     }
     urlFotos_.WriteTo(output, _repeated_urlFotos_codec);
-    if (UsuarioIdusuario != 0) {
-      output.WriteRawTag(64);
-      output.WriteInt32(UsuarioIdusuario);
+    if (UsuarioUser.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(UsuarioUser);
     }
     if (NombreCategoria.Length != 0) {
       output.WriteRawTag(74);
@@ -347,9 +347,9 @@ public sealed partial class Receta : pb::IMessage<Receta>
       output.WriteString(Pasos);
     }
     urlFotos_.WriteTo(ref output, _repeated_urlFotos_codec);
-    if (UsuarioIdusuario != 0) {
-      output.WriteRawTag(64);
-      output.WriteInt32(UsuarioIdusuario);
+    if (UsuarioUser.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(UsuarioUser);
     }
     if (NombreCategoria.Length != 0) {
       output.WriteRawTag(74);
@@ -384,8 +384,8 @@ public sealed partial class Receta : pb::IMessage<Receta>
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Pasos);
     }
     size += urlFotos_.CalculateSize(_repeated_urlFotos_codec);
-    if (UsuarioIdusuario != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(UsuarioIdusuario);
+    if (UsuarioUser.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(UsuarioUser);
     }
     if (NombreCategoria.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(NombreCategoria);
@@ -421,8 +421,8 @@ public sealed partial class Receta : pb::IMessage<Receta>
       Pasos = other.Pasos;
     }
     urlFotos_.Add(other.urlFotos_);
-    if (other.UsuarioIdusuario != 0) {
-      UsuarioIdusuario = other.UsuarioIdusuario;
+    if (other.UsuarioUser.Length != 0) {
+      UsuarioUser = other.UsuarioUser;
     }
     if (other.NombreCategoria.Length != 0) {
       NombreCategoria = other.NombreCategoria;
@@ -470,8 +470,8 @@ public sealed partial class Receta : pb::IMessage<Receta>
           urlFotos_.AddEntriesFrom(input, _repeated_urlFotos_codec);
           break;
         }
-        case 64: {
-          UsuarioIdusuario = input.ReadInt32();
+        case 66: {
+          UsuarioUser = input.ReadString();
           break;
         }
         case 74: {
@@ -521,8 +521,8 @@ public sealed partial class Receta : pb::IMessage<Receta>
           urlFotos_.AddEntriesFrom(ref input, _repeated_urlFotos_codec);
           break;
         }
-        case 64: {
-          UsuarioIdusuario = input.ReadInt32();
+        case 66: {
+          UsuarioUser = input.ReadString();
           break;
         }
         case 74: {

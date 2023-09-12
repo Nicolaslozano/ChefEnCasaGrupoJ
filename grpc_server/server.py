@@ -117,8 +117,8 @@ class ServicioRecetas(RecetasServicer):
                                       host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
-        stmt = f"INSERT INTO receta (`titulo`, `descripcion`, `tiempoPreparacion`,  `ingredientes`, `pasos`, `usuario_idusuario`,`nombreCategoria1`"
-        values =  f" VALUES ('{request.titulo}', '{request.descripcion}', '{request.tiempoPreparacion}', '{request.ingredientes}', '{request.pasos}', '{request.usuario_idusuario}','{request.nombreCategoria}'" 
+        stmt = f"INSERT INTO receta (`titulo`, `descripcion`, `tiempoPreparacion`,  `ingredientes`, `pasos`, `usuario_user`,`nombreCategoria1`"
+        values =  f" VALUES ('{request.titulo}', '{request.descripcion}', '{request.tiempoPreparacion}', '{request.ingredientes}', '{request.pasos}', '{request.usuario_user}','{request.nombreCategoria}'" 
         for idx,url_foto in enumerate(request.url_fotos,start=1):
             stmt += f", `url_foto{idx}`"
             values += f", '{url_foto}'"
@@ -164,7 +164,7 @@ class ServicioRecetas(RecetasServicer):
                                       database='chefencasagrupoj')
         cursor = cnx.cursor(named_tuple=True)
         query = (f"SELECT * FROM receta "+
-        "INNER JOIN usuario AS u INNER JOIN categoria AS c WHERE receta.usuario_idusuario = u.idusuario " +
+        "INNER JOIN usuario AS u INNER JOIN categoria AS c WHERE receta.usuario_user = u.user " +
         " AND receta.nombreCategoria1 = c.nombreCategoria")
         cursor.execute(query)
         records = cursor.fetchall()
@@ -181,14 +181,14 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
 
     def TraerRecetaPorId(self, request, context):
         cnx = mysql.connector.connect(user='root', password='root', 
                                       host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor(named_tuple=True)
-        query = (f"SELECT * FROM receta INNER JOIN usuario AS u INNER JOIN categoria AS c WHERE receta.usuario_idusuario = u.idusuario AND receta.nombreCategoria1 = c.nombreCategoria AND receta.idreceta = '{request.idreceta}'")
+        query = (f"SELECT * FROM receta INNER JOIN usuario AS u INNER JOIN categoria AS c WHERE receta.usuario_user = u.user AND receta.nombreCategoria1 = c.nombreCategoria AND receta.idreceta = '{request.idreceta}'")
         cursor.execute(query)
         row = cursor.fetchone()
         if row is not None:
@@ -204,7 +204,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             result = Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
         return result
 
     def TraerRecetasPorUsuario(self, request, context):
@@ -213,7 +213,7 @@ class ServicioRecetas(RecetasServicer):
                               host='localhost', port='3306',
                               database='chefencasagrupoj')
         cursor = cnx.cursor(named_tuple=True)
-        query = (f"SELECT * FROM receta AS r WHERE r.usuario_idusuario = (SELECT idusuario FROM usuario AS u WHERE u.user = '{request.usu}' )")
+        query = (f"SELECT * FROM receta AS r WHERE r.usuario_user  = '{request.usu}' ")
         cursor.execute(query)
         records = cursor.fetchall()
         for row in records:
@@ -229,7 +229,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
 
     def TraerRecetasPorCategoria(self, request, context):
         print("Categoria recibida:", request.usu)
@@ -253,7 +253,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
 
 
     def TraerRecetasPorTitulo(self, request, context):
@@ -278,7 +278,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
 
     def TraerRecetasPorTiempo(self, request, context):
         print("tiempo desde recibido:", request.desde)
@@ -303,7 +303,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
 
     def TraerRecetasPorIngredientes(self, request, context):
         print("Ingrediente recibido:", request.usu)
@@ -327,7 +327,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
 
 
 
@@ -370,8 +370,7 @@ class ServicioRecetasFav(RecetaFavServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_idusuario = row.usuario_idusuario)
-
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
 
   
 

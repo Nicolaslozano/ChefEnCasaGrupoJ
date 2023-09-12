@@ -8,7 +8,7 @@ message Receta {
     string ingredientes = 5;
     string pasos = 6; 
     repeated string url_fotos = 7;
-    int32 usuario_idusuario = 8;
+    string usuario_user = 8;
     string nombreCategoria = 9;
     
 }

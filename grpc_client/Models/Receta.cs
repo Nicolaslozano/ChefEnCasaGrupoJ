@@ -16,7 +16,7 @@ namespace grpc_client.Models
         public string pasos { get; set; }
         public List<string> url_fotos { get; set; }
 
-        public int usuario_idusuario { get; set; }
+        public string usuario_user { get; set; }
 
         public string nombreCategoria1 { get; set; }
 

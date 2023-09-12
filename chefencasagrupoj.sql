@@ -25,7 +25,7 @@ INSERT INTO `categoria` VALUES (1,'Postres'),(2,'Veganas'),(3,'Resposteria'),(4,
 CREATE TABLE IF NOT EXISTS `receta` (
   `idreceta` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(100) NOT NULL,
+  `descripcion` VARCHAR(600) NOT NULL,
   `tiempoPreparacion` INT NOT NULL,
   `ingredientes` VARCHAR(200) NOT NULL,
   `pasos` VARCHAR(600) NOT NULL,
@@ -34,13 +34,13 @@ CREATE TABLE IF NOT EXISTS `receta` (
   `url_foto3` TEXT NULL DEFAULT NULL,
   `url_foto4` TEXT NULL DEFAULT NULL,
   `url_foto5` TEXT NULL DEFAULT NULL,
-  `usuario_idusuario` INT NOT NULL,
+  `usuario_user` VARCHAR(45) NOT NULL,
   `nombreCategoria1` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idreceta`),
-  INDEX `fk_receta_usuario1_idx` (`usuario_idusuario` ASC),
+  INDEX `fk_receta_usuario1_idx` (`usuario_user` ASC),
   CONSTRAINT `fk_receta_usuario1`
-    FOREIGN KEY (`usuario_idusuario`)
-    REFERENCES `usuario` (`idusuario`),
+    FOREIGN KEY (`usuario_user`)
+    REFERENCES `usuario` (`user`),
   INDEX `fk_receta_categoria_idx` (`nombreCategoria1` ASC),
   CONSTRAINT `fk_receta_categoria1`
     FOREIGN KEY (`nombreCategoria1`)
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `receta` (
 
 
 CREATE TABLE IF NOT EXISTS `recetaFavoritas` (
-  `idrecetaFavoritas` INT NOT NULL,
+  `idrecetaFavoritas` INT NOT NULL AUTO_INCREMENT,
   `recetasFavoritascol` INT NULL,
   `usuario_idusuario1` INT NOT NULL,
   PRIMARY KEY (`idrecetaFavoritas`, `usuario_idusuario1`),

@@ -14,8 +14,8 @@ message RecetaFavCompleta {
     string ingredientes = 5;
     string pasos = 6; 
     repeated string url_fotos = 7;
-    int32 usuario_idusuario = 8;
-    int32 categoria_idcategoria = 9;
+    string usuario_user = 8;
+    string nombreCategoria = 9;
     
 }
 

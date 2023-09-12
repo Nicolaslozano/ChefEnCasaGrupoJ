@@ -28,7 +28,7 @@ namespace grpc_client.Controllers
                     TiempoPreparacion = receta.tiempoPreparacion,
                     Ingredientes = receta.ingredientes,
                     Pasos = receta.pasos,
-                    UsuarioIdusuario = receta.usuario_idusuario,
+                    UsuarioUser = receta.usuario_user,
                     NombreCategoria = receta.nombreCategoria1,
                     
 

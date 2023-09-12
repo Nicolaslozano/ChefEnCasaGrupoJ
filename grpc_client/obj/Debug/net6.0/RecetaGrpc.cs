@@ -85,7 +85,7 @@ public static partial class Recetas
 
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Method<global::RecetaId, global::Receta> __Method_TraerRecetaPorId = new grpc::Method<global::RecetaId, global::Receta>(
-      grpc::MethodType.ServerStreaming,
+      grpc::MethodType.Unary,
       __ServiceName,
       "TraerRecetaPorId",
       __Marshaller_RecetaId,
@@ -160,7 +160,7 @@ public static partial class Recetas
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual global::System.Threading.Tasks.Task TraerRecetaPorId(global::RecetaId request, grpc::IServerStreamWriter<global::Receta> responseStream, grpc::ServerCallContext context)
+    public virtual global::System.Threading.Tasks.Task<global::Receta> TraerRecetaPorId(global::RecetaId request, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
@@ -275,14 +275,24 @@ public static partial class Recetas
       return CallInvoker.AsyncServerStreamingCall(__Method_TraerRecetas, null, options, request);
     }
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual grpc::AsyncServerStreamingCall<global::Receta> TraerRecetaPorId(global::RecetaId request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    public virtual global::Receta TraerRecetaPorId(global::RecetaId request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
     {
       return TraerRecetaPorId(request, new grpc::CallOptions(headers, deadline, cancellationToken));
     }
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual grpc::AsyncServerStreamingCall<global::Receta> TraerRecetaPorId(global::RecetaId request, grpc::CallOptions options)
+    public virtual global::Receta TraerRecetaPorId(global::RecetaId request, grpc::CallOptions options)
     {
-      return CallInvoker.AsyncServerStreamingCall(__Method_TraerRecetaPorId, null, options, request);
+      return CallInvoker.BlockingUnaryCall(__Method_TraerRecetaPorId, null, options, request);
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncUnaryCall<global::Receta> TraerRecetaPorIdAsync(global::RecetaId request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return TraerRecetaPorIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncUnaryCall<global::Receta> TraerRecetaPorIdAsync(global::RecetaId request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncUnaryCall(__Method_TraerRecetaPorId, null, options, request);
     }
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     public virtual grpc::AsyncServerStreamingCall<global::Receta> TraerRecetasPorUsuario(global::Usuariolog request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
@@ -369,7 +379,7 @@ public static partial class Recetas
     serviceBinder.AddMethod(__Method_AltaReceta, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Receta, global::Responsea>(serviceImpl.AltaReceta));
     serviceBinder.AddMethod(__Method_EditarReceta, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::RecetaEditar, global::Responsea>(serviceImpl.EditarReceta));
     serviceBinder.AddMethod(__Method_TraerRecetas, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::NuloReceta, global::Receta>(serviceImpl.TraerRecetas));
-    serviceBinder.AddMethod(__Method_TraerRecetaPorId, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::RecetaId, global::Receta>(serviceImpl.TraerRecetaPorId));
+    serviceBinder.AddMethod(__Method_TraerRecetaPorId, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::RecetaId, global::Receta>(serviceImpl.TraerRecetaPorId));
     serviceBinder.AddMethod(__Method_TraerRecetasPorUsuario, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Usuariolog, global::Receta>(serviceImpl.TraerRecetasPorUsuario));
     serviceBinder.AddMethod(__Method_TraerRecetasPorCategoria, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Usuariolog, global::Receta>(serviceImpl.TraerRecetasPorCategoria));
     serviceBinder.AddMethod(__Method_TraerRecetasPorTitulo, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Usuariolog, global::Receta>(serviceImpl.TraerRecetasPorTitulo));

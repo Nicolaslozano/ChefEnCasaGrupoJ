@@ -24,21 +24,21 @@ public static partial class RecetafavoritasReflection {
         string.Concat(
           "ChVyZWNldGFmYXZvcml0YXMucHJvdG8iZAoPUmVjZXRhRmF2b3JpdGFzEhkK",
           "EWlkcmVjZXRhRmF2b3JpdGFzGAEgASgFEhsKE3JlY2V0YXNGYXZvcml0YXNj",
-          "b2wYAiABKAUSGQoRdXN1YXJpb19pZHVzdWFyaW8YAyABKAUi1wEKEVJlY2V0",
+          "b2wYAiABKAUSGQoRdXN1YXJpb19pZHVzdWFyaW8YAyABKAUizAEKEVJlY2V0",
           "YUZhdkNvbXBsZXRhEhAKCGlkcmVjZXRhGAEgASgFEg4KBnRpdHVsbxgCIAEo",
           "CRITCgtkZXNjcmlwY2lvbhgDIAEoCRIZChF0aWVtcG9QcmVwYXJhY2lvbhgE",
           "IAEoBRIUCgxpbmdyZWRpZW50ZXMYBSABKAkSDQoFcGFzb3MYBiABKAkSEQoJ",
-          "dXJsX2ZvdG9zGAcgAygJEhkKEXVzdWFyaW9faWR1c3VhcmlvGAggASgFEh0K",
-          "FWNhdGVnb3JpYV9pZGNhdGVnb3JpYRgJIAEoBSIHCgVOdWxvcyIkCg9Vc3Vh",
-          "cmlvbG9ndWVhZG8SEQoJaWR1c3VhcmlvGAEgASgFMnQKCVJlY2V0YUZhdhIs",
-          "ChBBZ3JlZ2FyUmVjZXRhRmF2EhAuUmVjZXRhRmF2b3JpdGFzGgYuTnVsb3MS",
-          "OQoPVHJhZXJSZWNldGFzRmF2EhAuVXN1YXJpb2xvZ3VlYWRvGhIuUmVjZXRh",
-          "RmF2Q29tcGxldGEwAWIGcHJvdG8z"));
+          "dXJsX2ZvdG9zGAcgAygJEhQKDHVzdWFyaW9fdXNlchgIIAEoCRIXCg9ub21i",
+          "cmVDYXRlZ29yaWEYCSABKAkiBwoFTnVsb3MiJAoPVXN1YXJpb2xvZ3VlYWRv",
+          "EhEKCWlkdXN1YXJpbxgBIAEoBTJ0CglSZWNldGFGYXYSLAoQQWdyZWdhclJl",
+          "Y2V0YUZhdhIQLlJlY2V0YUZhdm9yaXRhcxoGLk51bG9zEjkKD1RyYWVyUmVj",
+          "ZXRhc0ZhdhIQLlVzdWFyaW9sb2d1ZWFkbxoSLlJlY2V0YUZhdkNvbXBsZXRh",
+          "MAFiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::RecetaFavoritas), global::RecetaFavoritas.Parser, new[]{ "IdrecetaFavoritas", "RecetasFavoritascol", "UsuarioIdusuario" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::RecetaFavCompleta), global::RecetaFavCompleta.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos", "UrlFotos", "UsuarioIdusuario", "CategoriaIdcategoria" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RecetaFavCompleta), global::RecetaFavCompleta.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos", "UrlFotos", "UsuarioUser", "NombreCategoria" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Nulos), global::Nulos.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Usuariologueado), global::Usuariologueado.Parser, new[]{ "Idusuario" }, null, null, null, null)
         }));
@@ -351,8 +351,8 @@ public sealed partial class RecetaFavCompleta : pb::IMessage<RecetaFavCompleta>
     ingredientes_ = other.ingredientes_;
     pasos_ = other.pasos_;
     urlFotos_ = other.urlFotos_.Clone();
-    usuarioIdusuario_ = other.usuarioIdusuario_;
-    categoriaIdcategoria_ = other.categoriaIdcategoria_;
+    usuarioUser_ = other.usuarioUser_;
+    nombreCategoria_ = other.nombreCategoria_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -445,27 +445,27 @@ public sealed partial class RecetaFavCompleta : pb::IMessage<RecetaFavCompleta>
     get { return urlFotos_; }
   }
 
-  /// <summary>Field number for the "usuario_idusuario" field.</summary>
-  public const int UsuarioIdusuarioFieldNumber = 8;
-  private int usuarioIdusuario_;
+  /// <summary>Field number for the "usuario_user" field.</summary>
+  public const int UsuarioUserFieldNumber = 8;
+  private string usuarioUser_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int UsuarioIdusuario {
-    get { return usuarioIdusuario_; }
+  public string UsuarioUser {
+    get { return usuarioUser_; }
     set {
-      usuarioIdusuario_ = value;
+      usuarioUser_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
     }
   }
 
-  /// <summary>Field number for the "categoria_idcategoria" field.</summary>
-  public const int CategoriaIdcategoriaFieldNumber = 9;
-  private int categoriaIdcategoria_;
+  /// <summary>Field number for the "nombreCategoria" field.</summary>
+  public const int NombreCategoriaFieldNumber = 9;
+  private string nombreCategoria_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int CategoriaIdcategoria {
-    get { return categoriaIdcategoria_; }
+  public string NombreCategoria {
+    get { return nombreCategoria_; }
     set {
-      categoriaIdcategoria_ = value;
+      nombreCategoria_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
     }
   }
 
@@ -491,8 +491,8 @@ public sealed partial class RecetaFavCompleta : pb::IMessage<RecetaFavCompleta>
     if (Ingredientes != other.Ingredientes) return false;
     if (Pasos != other.Pasos) return false;
     if(!urlFotos_.Equals(other.urlFotos_)) return false;
-    if (UsuarioIdusuario != other.UsuarioIdusuario) return false;
-    if (CategoriaIdcategoria != other.CategoriaIdcategoria) return false;
+    if (UsuarioUser != other.UsuarioUser) return false;
+    if (NombreCategoria != other.NombreCategoria) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -507,8 +507,8 @@ public sealed partial class RecetaFavCompleta : pb::IMessage<RecetaFavCompleta>
     if (Ingredientes.Length != 0) hash ^= Ingredientes.GetHashCode();
     if (Pasos.Length != 0) hash ^= Pasos.GetHashCode();
     hash ^= urlFotos_.GetHashCode();
-    if (UsuarioIdusuario != 0) hash ^= UsuarioIdusuario.GetHashCode();
-    if (CategoriaIdcategoria != 0) hash ^= CategoriaIdcategoria.GetHashCode();
+    if (UsuarioUser.Length != 0) hash ^= UsuarioUser.GetHashCode();
+    if (NombreCategoria.Length != 0) hash ^= NombreCategoria.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -552,13 +552,13 @@ public sealed partial class RecetaFavCompleta : pb::IMessage<RecetaFavCompleta>
       output.WriteString(Pasos);
     }
     urlFotos_.WriteTo(output, _repeated_urlFotos_codec);
-    if (UsuarioIdusuario != 0) {
-      output.WriteRawTag(64);
-      output.WriteInt32(UsuarioIdusuario);
+    if (UsuarioUser.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(UsuarioUser);
     }
-    if (CategoriaIdcategoria != 0) {
-      output.WriteRawTag(72);
-      output.WriteInt32(CategoriaIdcategoria);
+    if (NombreCategoria.Length != 0) {
+      output.WriteRawTag(74);
+      output.WriteString(NombreCategoria);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -595,13 +595,13 @@ public sealed partial class RecetaFavCompleta : pb::IMessage<RecetaFavCompleta>
       output.WriteString(Pasos);
     }
     urlFotos_.WriteTo(ref output, _repeated_urlFotos_codec);
-    if (UsuarioIdusuario != 0) {
-      output.WriteRawTag(64);
-      output.WriteInt32(UsuarioIdusuario);
+    if (UsuarioUser.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(UsuarioUser);
     }
-    if (CategoriaIdcategoria != 0) {
-      output.WriteRawTag(72);
-      output.WriteInt32(CategoriaIdcategoria);
+    if (NombreCategoria.Length != 0) {
+      output.WriteRawTag(74);
+      output.WriteString(NombreCategoria);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -632,11 +632,11 @@ public sealed partial class RecetaFavCompleta : pb::IMessage<RecetaFavCompleta>
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Pasos);
     }
     size += urlFotos_.CalculateSize(_repeated_urlFotos_codec);
-    if (UsuarioIdusuario != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(UsuarioIdusuario);
+    if (UsuarioUser.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(UsuarioUser);
     }
-    if (CategoriaIdcategoria != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(CategoriaIdcategoria);
+    if (NombreCategoria.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(NombreCategoria);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -669,11 +669,11 @@ public sealed partial class RecetaFavCompleta : pb::IMessage<RecetaFavCompleta>
       Pasos = other.Pasos;
     }
     urlFotos_.Add(other.urlFotos_);
-    if (other.UsuarioIdusuario != 0) {
-      UsuarioIdusuario = other.UsuarioIdusuario;
+    if (other.UsuarioUser.Length != 0) {
+      UsuarioUser = other.UsuarioUser;
     }
-    if (other.CategoriaIdcategoria != 0) {
-      CategoriaIdcategoria = other.CategoriaIdcategoria;
+    if (other.NombreCategoria.Length != 0) {
+      NombreCategoria = other.NombreCategoria;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -718,12 +718,12 @@ public sealed partial class RecetaFavCompleta : pb::IMessage<RecetaFavCompleta>
           urlFotos_.AddEntriesFrom(input, _repeated_urlFotos_codec);
           break;
         }
-        case 64: {
-          UsuarioIdusuario = input.ReadInt32();
+        case 66: {
+          UsuarioUser = input.ReadString();
           break;
         }
-        case 72: {
-          CategoriaIdcategoria = input.ReadInt32();
+        case 74: {
+          NombreCategoria = input.ReadString();
           break;
         }
       }
@@ -769,12 +769,12 @@ public sealed partial class RecetaFavCompleta : pb::IMessage<RecetaFavCompleta>
           urlFotos_.AddEntriesFrom(ref input, _repeated_urlFotos_codec);
           break;
         }
-        case 64: {
-          UsuarioIdusuario = input.ReadInt32();
+        case 66: {
+          UsuarioUser = input.ReadString();
           break;
         }
-        case 72: {
-          CategoriaIdcategoria = input.ReadInt32();
+        case 74: {
+          NombreCategoria = input.ReadString();
           break;
         }
       }
