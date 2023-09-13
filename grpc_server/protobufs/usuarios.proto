@@ -32,10 +32,14 @@ message seguis {
     string seguir = 2;
 }
 
+message Responseaa {
+    string message = 1;
+}
+
 service Usuarios {
     rpc Listo(Nulo) returns (Nulo);
     rpc TraerUsuario(Username) returns (Usuario);
     rpc AltaUsuario(Usuario) returns (Response);
-    rpc SeguirUsuario (Seguidores) returns (Nulo);
-    rpc EliminarSeguidor(Seguidores) returns (Nulo);
+    rpc SeguirUsuario (Seguidores) returns (Responseaa);
+    rpc EliminarSeguidor(Seguidores) returns (Responseaa);
 }

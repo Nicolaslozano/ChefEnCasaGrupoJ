@@ -25,7 +25,7 @@ namespace grpc_client.Controllers
                 {
                     IdrecetaFavoritas = recetaFav.idrecetaFavoritas,
                     RecetasFavoritascol = recetaFav.recetasFavoritascol,
-                    UsuarioIdusuario = recetaFav.usuario_idusuario,
+                    UsuarioUserfav = recetaFav.usuario_userfav,
 
                 };
 
@@ -46,7 +46,7 @@ namespace grpc_client.Controllers
 
         [HttpPost]
         [Route("GetRecetasFav")]
-        public async Task<string> GetRecetasFavAsync(int idusuario)
+        public async Task<string> GetRecetasFavAsync(string nombreUsuario)
         {
             string response;
             try
@@ -59,7 +59,7 @@ namespace grpc_client.Controllers
 
                 var postRecipe = new Usuariologueado
                 {
-                    Idusuario = idusuario
+                    NombreUsuario = nombreUsuario
                 };
                 List<RecetaFavCompleta> recetas = new();
                 using (var call = cliente.TraerRecetasFav(postRecipe))

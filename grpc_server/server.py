@@ -57,20 +57,30 @@ class ServicioUsuarios(UsuariosServicer):
 
 
     def SeguirUsuario(self, request, context):
+        
+        if request.segui == request.user:
+            return Response(message="No puedes seguirte a ti mismo")
+        
         cnx = mysql.connector.connect(user='root', password='root',
                                       host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
-        query = (f"INSERT INTO suscripcion (`followed_user`, `my_user`) VALUES "
-                 f"('{request.segui}', '{request.user}')")
-        cursor.execute(query)
-        cnx.commit()
-        if cursor.rowcount > 0:
-            resp = Responsea(message="Se pudo seguir el usuario")
-        else:
-            resp = Responsea(message="No se pudo seguir el usuario")
-        cursor.close()
-        cnx.close()
+
+        try:
+
+            query = (f"INSERT INTO suscripcion (`followed_user`, `my_user`) VALUES "
+                    f"('{request.segui}', '{request.user}')")
+            cursor.execute(query)
+            cnx.commit()
+            if cursor.rowcount > 0:
+                resp = Response(message="Se pudo seguir el usuario")
+            else:
+                resp = Response(message="No se pudo seguir el usuario")
+        except mysql.connector.Error as err:
+            resp = Response(message=f"Error en la base de datos: {err}")        
+        finally:        
+            cursor.close()
+            cnx.close()
         return resp
 
     def EliminarSeguidor(self, request, context):
@@ -78,15 +88,20 @@ class ServicioUsuarios(UsuariosServicer):
                                       host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
-        query = (f"DELETE FROM suscripcion WHERE followed_user = '{request.segui}' AND my_user = '{request.user}'") 
-        cursor.execute(query)
-        cnx.commit()
-        if cursor.rowcount > 0:
-            resp = Responsea(message="Se pudo eliminar el seguidor")
-        else:
-            resp = Responsea(message="No se encontró el seguidor a eliminar")
-        cursor.close()
-        cnx.close()
+
+        try:
+            query = (f"DELETE FROM suscripcion WHERE followed_user = '{request.segui}' AND my_user = '{request.user}'") 
+            cursor.execute(query)
+            cnx.commit()
+            if cursor.rowcount > 0:
+                resp = Response(message="Se pudo eliminar el seguidor")
+            else:
+                resp = Response(message="No se encontró el seguidor a eliminar")
+        except mysql.connector.Error as err:
+            resp = Response(message=f"Error en la base de datos: {err}")
+        finally:
+            cursor.close()
+            cnx.close()
         return resp   
 
 
@@ -348,8 +363,8 @@ class ServicioRecetasFav(RecetaFavServicer):
                                       host='localhost', port='3306',
                                       database='chefencasagrupoj')
         cursor = cnx.cursor()
-        query = (f"INSERT INTO recetaFavoritas (`idrecetaFavoritas`, `recetasFavoritascol`, `usuario_idusuario1`) VALUES "
-                 f"('{request.idrecetaFavoritas}', '{request.recetasFavoritascol}', '{request.usuario_idusuario}')")
+        query = (f"INSERT INTO recetaFavoritas (`idrecetaFavoritas`, `recetasFavoritascol`, `usuario_userfav`) VALUES "
+                 f"('{request.idrecetaFavoritas}', '{request.recetasFavoritascol}', '{request.usuario_userfav}')")
         cursor.execute(query)
         cnx.commit()
         resp = Responsea(message="204", idreceta=cursor.lastrowid)
@@ -358,12 +373,12 @@ class ServicioRecetasFav(RecetaFavServicer):
         return resp
     
     def TraerRecetasFav(self, request, context):
-        print("ID de usuario recibido:", request.idusuario)
+        print("ID de usuario recibido:", request.nombreUsuario)
         cnx = mysql.connector.connect(user='root', password='root', 
                               host='localhost', port='3306',
                               database='chefencasagrupoj')
         cursor = cnx.cursor(named_tuple=True)
-        query = (f"SELECT * FROM recetaFavoritas AS rf  INNER JOIN receta AS r WHERE rf.usuario_idusuario1 = {request.idusuario} AND r.idreceta = rf.recetasFavoritascol")
+        query = (f"SELECT * FROM recetaFavoritas AS rf  INNER JOIN receta AS r WHERE rf.usuario_userfav = '{request.nombreUsuario}' AND r.idreceta = rf.recetasFavoritascol")
         cursor.execute(query)
         records = cursor.fetchall()
         for row in records:

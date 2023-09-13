@@ -3,7 +3,7 @@ syntax = "proto3";
 message RecetaFavoritas {
     int32 idrecetaFavoritas = 1;
     int32 recetasFavoritascol = 2;
-    int32 usuario_idusuario = 3;
+    string usuario_userfav = 3;
 }
 
 message RecetaFavCompleta {
@@ -25,7 +25,7 @@ message Nulos {
 }
 
 message Usuariologueado{
-    int32 idusuario = 1;
+    string nombreUsuario = 1;
 }
 service RecetaFav {
     rpc AgregarRecetaFav(RecetaFavoritas) returns (Nulos);

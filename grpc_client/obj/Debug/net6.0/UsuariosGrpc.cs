@@ -54,6 +54,8 @@ public static partial class Usuarios
   static readonly grpc::Marshaller<global::Response> __Marshaller_Response = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Response.Parser));
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Marshaller<global::Seguidores> __Marshaller_Seguidores = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Seguidores.Parser));
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Marshaller<global::Responseaa> __Marshaller_Responseaa = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Responseaa.Parser));
 
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Method<global::Nulo, global::Nulo> __Method_Listo = new grpc::Method<global::Nulo, global::Nulo>(
@@ -80,20 +82,20 @@ public static partial class Usuarios
       __Marshaller_Response);
 
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-  static readonly grpc::Method<global::Seguidores, global::Nulo> __Method_SeguirUsuario = new grpc::Method<global::Seguidores, global::Nulo>(
+  static readonly grpc::Method<global::Seguidores, global::Responseaa> __Method_SeguirUsuario = new grpc::Method<global::Seguidores, global::Responseaa>(
       grpc::MethodType.Unary,
       __ServiceName,
       "SeguirUsuario",
       __Marshaller_Seguidores,
-      __Marshaller_Nulo);
+      __Marshaller_Responseaa);
 
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-  static readonly grpc::Method<global::Seguidores, global::Nulo> __Method_EliminarSeguidor = new grpc::Method<global::Seguidores, global::Nulo>(
+  static readonly grpc::Method<global::Seguidores, global::Responseaa> __Method_EliminarSeguidor = new grpc::Method<global::Seguidores, global::Responseaa>(
       grpc::MethodType.Unary,
       __ServiceName,
       "EliminarSeguidor",
       __Marshaller_Seguidores,
-      __Marshaller_Nulo);
+      __Marshaller_Responseaa);
 
   /// <summary>Service descriptor</summary>
   public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -124,13 +126,13 @@ public static partial class Usuarios
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual global::System.Threading.Tasks.Task<global::Nulo> SeguirUsuario(global::Seguidores request, grpc::ServerCallContext context)
+    public virtual global::System.Threading.Tasks.Task<global::Responseaa> SeguirUsuario(global::Seguidores request, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual global::System.Threading.Tasks.Task<global::Nulo> EliminarSeguidor(global::Seguidores request, grpc::ServerCallContext context)
+    public virtual global::System.Threading.Tasks.Task<global::Responseaa> EliminarSeguidor(global::Seguidores request, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
@@ -225,42 +227,42 @@ public static partial class Usuarios
       return CallInvoker.AsyncUnaryCall(__Method_AltaUsuario, null, options, request);
     }
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual global::Nulo SeguirUsuario(global::Seguidores request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    public virtual global::Responseaa SeguirUsuario(global::Seguidores request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
     {
       return SeguirUsuario(request, new grpc::CallOptions(headers, deadline, cancellationToken));
     }
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual global::Nulo SeguirUsuario(global::Seguidores request, grpc::CallOptions options)
+    public virtual global::Responseaa SeguirUsuario(global::Seguidores request, grpc::CallOptions options)
     {
       return CallInvoker.BlockingUnaryCall(__Method_SeguirUsuario, null, options, request);
     }
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual grpc::AsyncUnaryCall<global::Nulo> SeguirUsuarioAsync(global::Seguidores request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    public virtual grpc::AsyncUnaryCall<global::Responseaa> SeguirUsuarioAsync(global::Seguidores request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
     {
       return SeguirUsuarioAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
     }
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual grpc::AsyncUnaryCall<global::Nulo> SeguirUsuarioAsync(global::Seguidores request, grpc::CallOptions options)
+    public virtual grpc::AsyncUnaryCall<global::Responseaa> SeguirUsuarioAsync(global::Seguidores request, grpc::CallOptions options)
     {
       return CallInvoker.AsyncUnaryCall(__Method_SeguirUsuario, null, options, request);
     }
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual global::Nulo EliminarSeguidor(global::Seguidores request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    public virtual global::Responseaa EliminarSeguidor(global::Seguidores request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
     {
       return EliminarSeguidor(request, new grpc::CallOptions(headers, deadline, cancellationToken));
     }
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual global::Nulo EliminarSeguidor(global::Seguidores request, grpc::CallOptions options)
+    public virtual global::Responseaa EliminarSeguidor(global::Seguidores request, grpc::CallOptions options)
     {
       return CallInvoker.BlockingUnaryCall(__Method_EliminarSeguidor, null, options, request);
     }
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual grpc::AsyncUnaryCall<global::Nulo> EliminarSeguidorAsync(global::Seguidores request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    public virtual grpc::AsyncUnaryCall<global::Responseaa> EliminarSeguidorAsync(global::Seguidores request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
     {
       return EliminarSeguidorAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
     }
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public virtual grpc::AsyncUnaryCall<global::Nulo> EliminarSeguidorAsync(global::Seguidores request, grpc::CallOptions options)
+    public virtual grpc::AsyncUnaryCall<global::Responseaa> EliminarSeguidorAsync(global::Seguidores request, grpc::CallOptions options)
     {
       return CallInvoker.AsyncUnaryCall(__Method_EliminarSeguidor, null, options, request);
     }
@@ -295,8 +297,8 @@ public static partial class Usuarios
     serviceBinder.AddMethod(__Method_Listo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Nulo, global::Nulo>(serviceImpl.Listo));
     serviceBinder.AddMethod(__Method_TraerUsuario, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Username, global::Usuario>(serviceImpl.TraerUsuario));
     serviceBinder.AddMethod(__Method_AltaUsuario, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Usuario, global::Response>(serviceImpl.AltaUsuario));
-    serviceBinder.AddMethod(__Method_SeguirUsuario, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Seguidores, global::Nulo>(serviceImpl.SeguirUsuario));
-    serviceBinder.AddMethod(__Method_EliminarSeguidor, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Seguidores, global::Nulo>(serviceImpl.EliminarSeguidor));
+    serviceBinder.AddMethod(__Method_SeguirUsuario, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Seguidores, global::Responseaa>(serviceImpl.SeguirUsuario));
+    serviceBinder.AddMethod(__Method_EliminarSeguidor, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Seguidores, global::Responseaa>(serviceImpl.EliminarSeguidor));
   }
 
 }

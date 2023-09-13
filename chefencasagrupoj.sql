@@ -53,12 +53,12 @@ CREATE TABLE IF NOT EXISTS `receta` (
 CREATE TABLE IF NOT EXISTS `recetaFavoritas` (
   `idrecetaFavoritas` INT NOT NULL AUTO_INCREMENT,
   `recetasFavoritascol` INT NULL,
-  `usuario_idusuario1` INT NOT NULL,
-  PRIMARY KEY (`idrecetaFavoritas`, `usuario_idusuario1`),
-  INDEX `fk_recetaFavoritas_usuario1_idx` (`usuario_idusuario1` ASC),
+  `usuario_userfav` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idrecetaFavoritas`),
+  INDEX `fk_suscripcion_user_idx` (`usuario_userfav` ASC),
   CONSTRAINT `fk_recetaFavoritas_usuario1`
-    FOREIGN KEY (`usuario_idusuario1`)
-    REFERENCES `usuario` (`idusuario`)
+    FOREIGN KEY (`usuario_userfav`)
+    REFERENCES `usuario` (`user`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );

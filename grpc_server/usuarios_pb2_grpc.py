@@ -32,12 +32,12 @@ class UsuariosStub(object):
         self.SeguirUsuario = channel.unary_unary(
                 '/Usuarios/SeguirUsuario',
                 request_serializer=usuarios__pb2.Seguidores.SerializeToString,
-                response_deserializer=usuarios__pb2.Nulo.FromString,
+                response_deserializer=usuarios__pb2.Responseaa.FromString,
                 )
         self.EliminarSeguidor = channel.unary_unary(
                 '/Usuarios/EliminarSeguidor',
                 request_serializer=usuarios__pb2.Seguidores.SerializeToString,
-                response_deserializer=usuarios__pb2.Nulo.FromString,
+                response_deserializer=usuarios__pb2.Responseaa.FromString,
                 )
 
 
@@ -95,12 +95,12 @@ def add_UsuariosServicer_to_server(servicer, server):
             'SeguirUsuario': grpc.unary_unary_rpc_method_handler(
                     servicer.SeguirUsuario,
                     request_deserializer=usuarios__pb2.Seguidores.FromString,
-                    response_serializer=usuarios__pb2.Nulo.SerializeToString,
+                    response_serializer=usuarios__pb2.Responseaa.SerializeToString,
             ),
             'EliminarSeguidor': grpc.unary_unary_rpc_method_handler(
                     servicer.EliminarSeguidor,
                     request_deserializer=usuarios__pb2.Seguidores.FromString,
-                    response_serializer=usuarios__pb2.Nulo.SerializeToString,
+                    response_serializer=usuarios__pb2.Responseaa.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -176,7 +176,7 @@ class Usuarios(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Usuarios/SeguirUsuario',
             usuarios__pb2.Seguidores.SerializeToString,
-            usuarios__pb2.Nulo.FromString,
+            usuarios__pb2.Responseaa.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -193,6 +193,6 @@ class Usuarios(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Usuarios/EliminarSeguidor',
             usuarios__pb2.Seguidores.SerializeToString,
-            usuarios__pb2.Nulo.FromString,
+            usuarios__pb2.Responseaa.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

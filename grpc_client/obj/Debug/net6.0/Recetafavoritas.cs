@@ -22,25 +22,25 @@ public static partial class RecetafavoritasReflection {
   static RecetafavoritasReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "ChVyZWNldGFmYXZvcml0YXMucHJvdG8iZAoPUmVjZXRhRmF2b3JpdGFzEhkK",
+          "ChVyZWNldGFmYXZvcml0YXMucHJvdG8iYgoPUmVjZXRhRmF2b3JpdGFzEhkK",
           "EWlkcmVjZXRhRmF2b3JpdGFzGAEgASgFEhsKE3JlY2V0YXNGYXZvcml0YXNj",
-          "b2wYAiABKAUSGQoRdXN1YXJpb19pZHVzdWFyaW8YAyABKAUizAEKEVJlY2V0",
-          "YUZhdkNvbXBsZXRhEhAKCGlkcmVjZXRhGAEgASgFEg4KBnRpdHVsbxgCIAEo",
-          "CRITCgtkZXNjcmlwY2lvbhgDIAEoCRIZChF0aWVtcG9QcmVwYXJhY2lvbhgE",
-          "IAEoBRIUCgxpbmdyZWRpZW50ZXMYBSABKAkSDQoFcGFzb3MYBiABKAkSEQoJ",
-          "dXJsX2ZvdG9zGAcgAygJEhQKDHVzdWFyaW9fdXNlchgIIAEoCRIXCg9ub21i",
-          "cmVDYXRlZ29yaWEYCSABKAkiBwoFTnVsb3MiJAoPVXN1YXJpb2xvZ3VlYWRv",
-          "EhEKCWlkdXN1YXJpbxgBIAEoBTJ0CglSZWNldGFGYXYSLAoQQWdyZWdhclJl",
-          "Y2V0YUZhdhIQLlJlY2V0YUZhdm9yaXRhcxoGLk51bG9zEjkKD1RyYWVyUmVj",
-          "ZXRhc0ZhdhIQLlVzdWFyaW9sb2d1ZWFkbxoSLlJlY2V0YUZhdkNvbXBsZXRh",
-          "MAFiBnByb3RvMw=="));
+          "b2wYAiABKAUSFwoPdXN1YXJpb191c2VyZmF2GAMgASgJIswBChFSZWNldGFG",
+          "YXZDb21wbGV0YRIQCghpZHJlY2V0YRgBIAEoBRIOCgZ0aXR1bG8YAiABKAkS",
+          "EwoLZGVzY3JpcGNpb24YAyABKAkSGQoRdGllbXBvUHJlcGFyYWNpb24YBCAB",
+          "KAUSFAoMaW5ncmVkaWVudGVzGAUgASgJEg0KBXBhc29zGAYgASgJEhEKCXVy",
+          "bF9mb3RvcxgHIAMoCRIUCgx1c3VhcmlvX3VzZXIYCCABKAkSFwoPbm9tYnJl",
+          "Q2F0ZWdvcmlhGAkgASgJIgcKBU51bG9zIigKD1VzdWFyaW9sb2d1ZWFkbxIV",
+          "Cg1ub21icmVVc3VhcmlvGAEgASgJMnQKCVJlY2V0YUZhdhIsChBBZ3JlZ2Fy",
+          "UmVjZXRhRmF2EhAuUmVjZXRhRmF2b3JpdGFzGgYuTnVsb3MSOQoPVHJhZXJS",
+          "ZWNldGFzRmF2EhAuVXN1YXJpb2xvZ3VlYWRvGhIuUmVjZXRhRmF2Q29tcGxl",
+          "dGEwAWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::RecetaFavoritas), global::RecetaFavoritas.Parser, new[]{ "IdrecetaFavoritas", "RecetasFavoritascol", "UsuarioIdusuario" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RecetaFavoritas), global::RecetaFavoritas.Parser, new[]{ "IdrecetaFavoritas", "RecetasFavoritascol", "UsuarioUserfav" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RecetaFavCompleta), global::RecetaFavCompleta.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos", "UrlFotos", "UsuarioUser", "NombreCategoria" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Nulos), global::Nulos.Parser, null, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::Usuariologueado), global::Usuariologueado.Parser, new[]{ "Idusuario" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::Usuariologueado), global::Usuariologueado.Parser, new[]{ "NombreUsuario" }, null, null, null, null)
         }));
   }
   #endregion
@@ -83,7 +83,7 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
   public RecetaFavoritas(RecetaFavoritas other) : this() {
     idrecetaFavoritas_ = other.idrecetaFavoritas_;
     recetasFavoritascol_ = other.recetasFavoritascol_;
-    usuarioIdusuario_ = other.usuarioIdusuario_;
+    usuarioUserfav_ = other.usuarioUserfav_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -117,15 +117,15 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
     }
   }
 
-  /// <summary>Field number for the "usuario_idusuario" field.</summary>
-  public const int UsuarioIdusuarioFieldNumber = 3;
-  private int usuarioIdusuario_;
+  /// <summary>Field number for the "usuario_userfav" field.</summary>
+  public const int UsuarioUserfavFieldNumber = 3;
+  private string usuarioUserfav_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int UsuarioIdusuario {
-    get { return usuarioIdusuario_; }
+  public string UsuarioUserfav {
+    get { return usuarioUserfav_; }
     set {
-      usuarioIdusuario_ = value;
+      usuarioUserfav_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
     }
   }
 
@@ -146,7 +146,7 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
     }
     if (IdrecetaFavoritas != other.IdrecetaFavoritas) return false;
     if (RecetasFavoritascol != other.RecetasFavoritascol) return false;
-    if (UsuarioIdusuario != other.UsuarioIdusuario) return false;
+    if (UsuarioUserfav != other.UsuarioUserfav) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -156,7 +156,7 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
     int hash = 1;
     if (IdrecetaFavoritas != 0) hash ^= IdrecetaFavoritas.GetHashCode();
     if (RecetasFavoritascol != 0) hash ^= RecetasFavoritascol.GetHashCode();
-    if (UsuarioIdusuario != 0) hash ^= UsuarioIdusuario.GetHashCode();
+    if (UsuarioUserfav.Length != 0) hash ^= UsuarioUserfav.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -183,9 +183,9 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
       output.WriteRawTag(16);
       output.WriteInt32(RecetasFavoritascol);
     }
-    if (UsuarioIdusuario != 0) {
-      output.WriteRawTag(24);
-      output.WriteInt32(UsuarioIdusuario);
+    if (UsuarioUserfav.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(UsuarioUserfav);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -205,9 +205,9 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
       output.WriteRawTag(16);
       output.WriteInt32(RecetasFavoritascol);
     }
-    if (UsuarioIdusuario != 0) {
-      output.WriteRawTag(24);
-      output.WriteInt32(UsuarioIdusuario);
+    if (UsuarioUserfav.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(UsuarioUserfav);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -225,8 +225,8 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
     if (RecetasFavoritascol != 0) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(RecetasFavoritascol);
     }
-    if (UsuarioIdusuario != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(UsuarioIdusuario);
+    if (UsuarioUserfav.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(UsuarioUserfav);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -246,8 +246,8 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
     if (other.RecetasFavoritascol != 0) {
       RecetasFavoritascol = other.RecetasFavoritascol;
     }
-    if (other.UsuarioIdusuario != 0) {
-      UsuarioIdusuario = other.UsuarioIdusuario;
+    if (other.UsuarioUserfav.Length != 0) {
+      UsuarioUserfav = other.UsuarioUserfav;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -272,8 +272,8 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
           RecetasFavoritascol = input.ReadInt32();
           break;
         }
-        case 24: {
-          UsuarioIdusuario = input.ReadInt32();
+        case 26: {
+          UsuarioUserfav = input.ReadString();
           break;
         }
       }
@@ -299,8 +299,8 @@ public sealed partial class RecetaFavoritas : pb::IMessage<RecetaFavoritas>
           RecetasFavoritascol = input.ReadInt32();
           break;
         }
-        case 24: {
-          UsuarioIdusuario = input.ReadInt32();
+        case 26: {
+          UsuarioUserfav = input.ReadString();
           break;
         }
       }
@@ -970,7 +970,7 @@ public sealed partial class Usuariologueado : pb::IMessage<Usuariologueado>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public Usuariologueado(Usuariologueado other) : this() {
-    idusuario_ = other.idusuario_;
+    nombreUsuario_ = other.nombreUsuario_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -980,15 +980,15 @@ public sealed partial class Usuariologueado : pb::IMessage<Usuariologueado>
     return new Usuariologueado(this);
   }
 
-  /// <summary>Field number for the "idusuario" field.</summary>
-  public const int IdusuarioFieldNumber = 1;
-  private int idusuario_;
+  /// <summary>Field number for the "nombreUsuario" field.</summary>
+  public const int NombreUsuarioFieldNumber = 1;
+  private string nombreUsuario_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int Idusuario {
-    get { return idusuario_; }
+  public string NombreUsuario {
+    get { return nombreUsuario_; }
     set {
-      idusuario_ = value;
+      nombreUsuario_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
     }
   }
 
@@ -1007,7 +1007,7 @@ public sealed partial class Usuariologueado : pb::IMessage<Usuariologueado>
     if (ReferenceEquals(other, this)) {
       return true;
     }
-    if (Idusuario != other.Idusuario) return false;
+    if (NombreUsuario != other.NombreUsuario) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1015,7 +1015,7 @@ public sealed partial class Usuariologueado : pb::IMessage<Usuariologueado>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
-    if (Idusuario != 0) hash ^= Idusuario.GetHashCode();
+    if (NombreUsuario.Length != 0) hash ^= NombreUsuario.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1034,9 +1034,9 @@ public sealed partial class Usuariologueado : pb::IMessage<Usuariologueado>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
-    if (Idusuario != 0) {
-      output.WriteRawTag(8);
-      output.WriteInt32(Idusuario);
+    if (NombreUsuario.Length != 0) {
+      output.WriteRawTag(10);
+      output.WriteString(NombreUsuario);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -1048,9 +1048,9 @@ public sealed partial class Usuariologueado : pb::IMessage<Usuariologueado>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (Idusuario != 0) {
-      output.WriteRawTag(8);
-      output.WriteInt32(Idusuario);
+    if (NombreUsuario.Length != 0) {
+      output.WriteRawTag(10);
+      output.WriteString(NombreUsuario);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -1062,8 +1062,8 @@ public sealed partial class Usuariologueado : pb::IMessage<Usuariologueado>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
-    if (Idusuario != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Idusuario);
+    if (NombreUsuario.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(NombreUsuario);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1077,8 +1077,8 @@ public sealed partial class Usuariologueado : pb::IMessage<Usuariologueado>
     if (other == null) {
       return;
     }
-    if (other.Idusuario != 0) {
-      Idusuario = other.Idusuario;
+    if (other.NombreUsuario.Length != 0) {
+      NombreUsuario = other.NombreUsuario;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1095,8 +1095,8 @@ public sealed partial class Usuariologueado : pb::IMessage<Usuariologueado>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
-        case 8: {
-          Idusuario = input.ReadInt32();
+        case 10: {
+          NombreUsuario = input.ReadString();
           break;
         }
       }
@@ -1114,8 +1114,8 @@ public sealed partial class Usuariologueado : pb::IMessage<Usuariologueado>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
-        case 8: {
-          Idusuario = input.ReadInt32();
+        case 10: {
+          NombreUsuario = input.ReadString();
           break;
         }
       }
