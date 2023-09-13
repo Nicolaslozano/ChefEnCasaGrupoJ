@@ -17,7 +17,7 @@ namespace grpc.Controllers
     public class SuscripcionesController
     {
     
-        [HttpPost]
+        [HttpGet]
         [Route("GetSeg")]
         public async Task<string> GetSegAsync(string seg)
         {

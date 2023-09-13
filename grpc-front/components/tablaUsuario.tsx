@@ -36,6 +36,8 @@ const handleView = (item) => {
   window.location.href = `/receta/${item}`;
 };
 
+
+
 const handleDelete = (item) => {
   console.log("Deleting item:", item);
   alert(`Deleting: ${item.Titulo}`);
@@ -90,7 +92,6 @@ export default function TablaUsuario() {
   const paginatedRows = filteredData.slice(startIndex, endIndex);
 
   const handleSubmit = () => {
-    setSelectedCategory("Categoria");
 
     fetch("https://localhost:44323/api/Receta", {
       method: "POST",

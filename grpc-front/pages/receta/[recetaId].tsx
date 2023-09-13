@@ -14,6 +14,8 @@ import {
 } from "@nextui-org/react";
 import DefaultLayout from "@/layouts/default";
 import Auth from "@/components/Auth";
+import Cookies from "js-cookie";
+import { FavIcon, FavIconFilled, UserIcon } from "@/components/icons";
 
 interface Receta {
   Idreceta?: string;
@@ -34,6 +36,7 @@ export default function Page() {
   const [error, setError] = useState(false);
   const [receta, setReceta] = useState<Receta | null>();
   const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowed, setIsFollowed] = useState(false);
 
   useEffect(() => {
     if (!recetaId) return;
@@ -70,26 +73,66 @@ export default function Page() {
   if (error) return <p>ERROR AL CONSEGUIR RECETA!</p>;
 
   const handleFollowClick = () => {
-    <Auth>
-    setIsFollowing(true);
-    </Auth>
+    const checkFollowUrl = `https://localhost:44323/api/Suscripciones/GetSeg?seg=${Cookies.get(
+      "usuario"
+    )}`;
+    fetch(checkFollowUrl)
+      .then((response) => {
+        if (response.ok) {
+          const followUrl = `https://localhost:44323/api/Usuarios/PostSeguidor?user=${
+            receta.UsuarioUser
+          }&segui=${Cookies.get("usuario")}`;
+          fetch(followUrl, {
+            method: "POST",
+          })
+            .then((followResponse) => {
+              if (followResponse.ok) {
+                setIsFollowing(true);
+                console.log(`Successfully followed ${receta.UsuarioUser}`);
+              } else {
+                console.error(`Failed to follow ${receta.UsuarioUser}`);
+              }
+            })
+            .catch((followError) => {
+              console.error("Error following user:", followError);
+            });
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error checking if user is following:", error);
+      });
   };
 
-console.log(receta);
+  const handleFollowRecipe = () => {
+   
+    setIsFollowed(true);
+  };
+
   return (
     <DefaultLayout>
       <div className="flex flex-col items-end mt-8 ">
         <div className="flex items-center">
-          <Avatar />
-          <h1 className="ml-3">{receta?.UsuarioUser}</h1>
+          <UserIcon/>
+          <h1 className="">{receta?.UsuarioUser}</h1>
         </div>
-        
-        <Button className="ml-4" size="sm" onClick={handleFollowClick}>
-          {isFollowing ? "Following" : "Follow"} 
+        <Button className="flex ml-2" size="sm" onClick={handleFollowClick}>
+          {isFollowing ? "Following" : "Follow"}
         </Button>
-        </div>
-      <div className="inline-block  text-center w-full justify-center mt-10">
-        <h1 className={title({ color: "blue" })}>{receta?.Titulo}</h1>
+      </div>
+      <div className="inline-block  text-center w-full justify-center ">
+        <h1 className={title({ color: "blue" })}>
+          {receta?.Titulo}
+          <div className="flex justify-end items-end ">
+            <div className="flex justify-end items-end ">
+              {isFollowed ? (
+                <FavIconFilled />
+              ) : (
+                <FavIcon onClick={handleFollowRecipe} />
+              )}
+            </div>
+          </div>
+        </h1>
         <Divider className="mt-4" />
         <h2 className="text-base mt-4">{receta?.Descripcion}</h2>
         <div className="flex mt-4">
@@ -100,7 +143,7 @@ console.log(receta);
                 width={300}
                 alt={`RecetaImg-${index}`}
                 src={url}
-                style={{ maxHeight: "200px" }} // Establece la altura máxima aquí
+                style={{ maxHeight: "200px" }}
                 className={`${index > 0 ? "ml-2" : ""}`}
               />
             ))}
