@@ -12,6 +12,7 @@ import {
   NavbarMenuItem,
 } from "@nextui-org/react";
 import NextLink from "next/link";
+import Cookies from "js-cookie";
 
 import { ThemeSwitch } from "@/components/theme-switch";
 import { UserIcon } from "@/components/icons";
@@ -29,9 +30,11 @@ export const Navbar = () => {
   };
 
   const handleCerrarSesionClick = () => {
-    // Clear cookies or perform logout action here
-    // You need to implement this logic based on your authentication system
-    // Example: document.cookie = "sessionToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    // Eliminar la cookie de sesión
+    Cookies.remove("usuario");
+  
+    // Redirigir a la página de inicio de sesión u otra página deseada
+    window.location.href = "/login";
   };
 
   return (
@@ -58,7 +61,13 @@ export const Navbar = () => {
               <div className="absolute right-0 mt-auto	 w-40 bg-white shadow-md p-8">
                 <Link href="/user">Contribuciones</Link>
                 <div>
-                  <Link className= "mt-3"href="/login">Cerrar Sesion</Link>
+                  <Link
+                    className="mt-3"
+                    href="/login"
+                    onClick={handleCerrarSesionClick}
+                  >
+                    Cerrar Sesión
+                  </Link>
                 </div>
               </div>
             )}

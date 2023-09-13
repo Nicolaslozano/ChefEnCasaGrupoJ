@@ -13,8 +13,6 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-} from "@nextui-org/react";
-import {
   Table,
   TableHeader,
   TableColumn,
@@ -25,33 +23,18 @@ import {
 } from "@nextui-org/react";
 import Auth from "./Auth";
 import { ActionsIcon } from "./icons";
+import Cookies from "js-cookie";
 
 const columns = [
-  {
-    key: "Titulo",
-    label: "Receta",
-  },
-  {
-    key: "TiempoPreparacion",
-    label: "Tiempo de Preparación",
-  },
-
-  {
-    key: "NombreCategoria",
-    label: "Categoría",
-  },
-  {
-    key: "actions",
-    label: "Acciones",
-  },
+  { key: "Titulo", label: "Receta" },
+  { key: "TiempoPreparacion", label: "Tiempo de Preparación" },
+  { key: "NombreCategoria", label: "Categoría" },
+  { key: "actions", label: "Acciones" },
 ];
 
 const handleView = (item) => {
-  console.log("Viewing item:", item);
   window.location.href = `/receta/${item}`;
 };
-
-
 
 const handleDelete = (item) => {
   console.log("Deleting item:", item);
@@ -63,10 +46,11 @@ export default function TablaUsuario() {
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
+  const [searchTerm, setSearchTerm] = useState("");
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingRecipe, setEditingRecipe] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("Categoria");
   const [formData, setFormData] = useState({
     titulo: "",
     descripcion: "",
@@ -74,15 +58,12 @@ export default function TablaUsuario() {
     ingredientes: "",
     pasos: "",
     url_fotos: [],
-    usuario_idusuario: 1,
+    usuario_user: Cookies.get("usuario"),
     categoria_idcategoria: 0,
   });
 
-
-
   useEffect(() => {
-    // Realiza la solicitud GET a la API
-    fetch("https://localhost:44323/api/Receta/GetRecetas")
+    fetch(`https://localhost:44323/api/Receta/GetRecetasToUser?usu=${Cookies.get("usuario")}`)
       .then((response) => response.json())
       .then((responseData) => {
         setData(responseData);
@@ -93,9 +74,8 @@ export default function TablaUsuario() {
       });
   }, []);
 
-  // Función para filtrar los datos en función del término de búsqueda
-  const filterData = (data: any, searchTerm: any) => {
-    return data.filter((item: any) =>
+  const filterData = (data, searchTerm) => {
+    return data.filter((item) =>
       Object.keys(item)
         .filter((key) => key !== "UrlFotos")
         .some((key) =>
@@ -110,18 +90,17 @@ export default function TablaUsuario() {
   const paginatedRows = filteredData.slice(startIndex, endIndex);
 
   const handleSubmit = () => {
+    setSelectedCategory("Categoria");
+
     fetch("https://localhost:44323/api/Receta", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData), // Use formData as the entire "receta" object
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
     })
       .then((response) => response.json())
       .then((data) => {
-        // Handle the response from the API
         console.log("Response from the API:", data);
-        onClose(); // Close the modal
+        onClose();
       })
       .catch((error) => {
         console.error("Error sending the request:", error);
@@ -133,9 +112,7 @@ export default function TablaUsuario() {
 
     fetch(`https://localhost:44323/api/Receta/EditarReceta`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editedRecipe),
     })
       .then((response) => response.json())
@@ -148,17 +125,14 @@ export default function TablaUsuario() {
       });
   };
 
-
-
-  const RecetaColumn = ({ item }: any) => {
-    // Verifica si el array de fotos tiene al menos una foto
+  const RecetaColumn = ({ item }) => {
     if (Array.isArray(item.UrlFotos) && item.UrlFotos.length > 0) {
       return (
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
-            src={item.UrlFotos[0]} // La URL de la primera imagen en el array
-            alt={item.Titulo} // Un texto alternativo para la imagen
-            style={{ width: "50px", height: "50px", marginRight: "10px" }} // Estilo para el tamaño de la imagen
+            src={item.UrlFotos[0]}
+            alt={item.Titulo}
+            style={{ width: "50px", height: "50px", marginRight: "10px" }}
           />
           <div>
             <p>{item.Titulo}</p>
@@ -167,7 +141,6 @@ export default function TablaUsuario() {
         </div>
       );
     } else {
-      // Si no hay fotos, muestra solo el título y la descripción
       return (
         <div>
           <p>{item.Titulo}</p>
@@ -178,13 +151,23 @@ export default function TablaUsuario() {
   };
 
   const handleEdit = (idreceta) => {
-    console.log("Editing item with idreceta:", idreceta);
-    setIsEditModalOpen(true);
-    setEditingRecipe({
-      ...editingRecipe,
-      idreceta: idreceta, 
-      usuario_idusuario: 1,
-    });
+    const recipeToEdit = data.find((item) => item.Idreceta === idreceta);
+
+    if (recipeToEdit) {
+      setIsEditModalOpen(true);
+      setSelectedCategory(recipeToEdit.NombreCategoria)
+      setEditingRecipe({
+        idreceta: recipeToEdit.Idreceta,
+        titulo: recipeToEdit.Titulo,
+        descripcion: recipeToEdit.Descripcion,
+        tiempoPreparacion: recipeToEdit.TiempoPreparacion,
+        ingredientes: recipeToEdit.Ingredientes,
+        pasos: recipeToEdit.Pasos,
+        url_fotos: recipeToEdit.UrlFotos,
+        nombreCategoria1: recipeToEdit.NombreCategoria,
+        usuario_user: Cookies.get("usuario"),
+      });
+    }
   };
 
   return (
@@ -224,7 +207,7 @@ export default function TablaUsuario() {
                     }
                   />
                   <Input
-                    label="ingredientes"
+                    label="Ingredientes"
                     value={formData.ingredientes}
                     onChange={(e) =>
                       setFormData({
@@ -234,7 +217,7 @@ export default function TablaUsuario() {
                     }
                   />
                   <Input
-                    label="pasos"
+                    label="Pasos"
                     value={formData.pasos}
                     onChange={(e) =>
                       setFormData({
@@ -253,16 +236,33 @@ export default function TablaUsuario() {
                       })
                     }
                   />
-                  <Input
-                    label="categoria"
-                    value={formData.nombreCategoria1}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        nombreCategoria1: e.target.value,
-                      })
-                    }
-                  />
+                  <Dropdown>
+                    <DropdownTrigger>
+                      <Button variant="bordered" className="capitalize">
+                        {selectedCategory}
+                      </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu
+                      aria-label="Single selection example"
+                      variant="flat"
+                      disallowEmptySelection
+                      selectionMode="single"
+                      selectedKeys={selectedCategory}
+                      onSelectionChange={(category) => {
+                        setSelectedCategory(category.currentKey);
+                        setFormData({
+                          ...formData,
+                          nombreCategoria1: category.currentKey,
+                        });
+                      }}
+                    >
+                      <DropdownItem key="Postres">Postres</DropdownItem>
+                      <DropdownItem key="Bebidas">Bebidas</DropdownItem>
+                      <DropdownItem key="Regionales">Regionales</DropdownItem>
+                      <DropdownItem key="Reposteria">Reposteria</DropdownItem>
+                      <DropdownItem key="Veganas">Veganas</DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
                 </ModalBody>
                 <ModalFooter>
                   <Button color="danger" variant="light" onPress={onClose}>
@@ -318,7 +318,7 @@ export default function TablaUsuario() {
                     }
                   />
                   <Input
-                    label="ingredientes"
+                    label="Ingredientes"
                     value={editingRecipe?.ingredientes || ""}
                     onChange={(e) =>
                       setEditingRecipe({
@@ -328,7 +328,7 @@ export default function TablaUsuario() {
                     }
                   />
                   <Input
-                    label="pasos"
+                    label="Pasos"
                     value={editingRecipe?.pasos || ""}
                     onChange={(e) =>
                       setEditingRecipe({
@@ -347,16 +347,33 @@ export default function TablaUsuario() {
                       })
                     }
                   />
-                  <Input
-                    label="categoria"
-                    value={editingRecipe?.nombreCategoria1 || ""}
-                    onChange={(e) =>
-                      setEditingRecipe({
-                        ...editingRecipe,
-                        nombreCategoria1: e.target.value,
-                      })
-                    }
-                  />
+                  <Dropdown>
+                    <DropdownTrigger>
+                      <Button variant="bordered" className="capitalize">
+                        {selectedCategory}
+                      </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu
+                      aria-label="Single selection example"
+                      variant="flat"
+                      disallowEmptySelection
+                      selectionMode="single"
+                      selectedKeys={selectedCategory}
+                      onSelectionChange={(category) => {
+                        setSelectedCategory(category.currentKey);
+                        setEditingRecipe({
+                          ...editingRecipe,
+                          nombreCategoria1: category.currentKey,
+                        });
+                      }}
+                    >
+                      <DropdownItem key="Postres">Postres</DropdownItem>
+                      <DropdownItem key="Bebidas">Bebidas</DropdownItem>
+                      <DropdownItem key="Regionales">Regionales</DropdownItem>
+                      <DropdownItem key="Reposteria">Reposteria</DropdownItem>
+                      <DropdownItem key="Veganas">Veganas</DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
                 </ModalBody>
                 <ModalFooter>
                   <Button
@@ -395,8 +412,7 @@ export default function TablaUsuario() {
               )}
             </TableHeader>
             <TableBody items={paginatedRows}>
-              {(item: any) => {
-                console.log(item); // Add this line to inspect the structure of the item
+              {(item) => {
                 return (
                   <TableRow key={item.Idreceta}>
                     {(columnKey) => (
@@ -406,7 +422,12 @@ export default function TablaUsuario() {
                         ) : columnKey === "actions" ? (
                           <Dropdown>
                             <DropdownTrigger>
-                              <Button isIconOnly radius="full" size="sm" variant="light">
+                              <Button
+                                isIconOnly
+                                radius="full"
+                                size="sm"
+                                variant="light"
+                              >
                                 <ActionsIcon className="text-default-400" />
                               </Button>
                             </DropdownTrigger>
@@ -425,12 +446,8 @@ export default function TablaUsuario() {
                 );
               }}
             </TableBody>
-
-
-
           </Table>
         )}
-
         <Pagination
           className="my-2 flex justify-center"
           total={filteredData.length}
@@ -443,3 +460,4 @@ export default function TablaUsuario() {
     </Auth>
   );
 }
+  

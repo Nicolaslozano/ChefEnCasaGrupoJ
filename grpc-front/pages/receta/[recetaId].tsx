@@ -20,7 +20,7 @@ interface Receta {
   Titulo: string;
   TiempoPreparacion: string;
   UrlFotos: string[];
-  usuarioIdusuario: BigInteger;
+  UsuarioUser: string;
   Descripcion: string;
   NombreCategoria: string;
   Ingredientes: string;
@@ -75,17 +75,17 @@ export default function Page() {
     </Auth>
   };
 
-
+console.log(receta);
   return (
     <DefaultLayout>
       <div className="flex flex-col items-end mt-8 ">
         <div className="flex items-center">
           <Avatar />
-          <h1 className="ml-2">Username</h1>
+          <h1 className="ml-3">{receta?.UsuarioUser}</h1>
         </div>
         
         <Button className="ml-4" size="sm" onClick={handleFollowClick}>
-          {isFollowing ? "Following" : "Follow"} {/* Toggle the button text based on the state */}
+          {isFollowing ? "Following" : "Follow"} 
         </Button>
         </div>
       <div className="inline-block  text-center w-full justify-center mt-10">
