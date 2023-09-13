@@ -80,8 +80,8 @@ export default function Page() {
       .then((response) => {
         if (response.ok) {
           const followUrl = `https://localhost:44323/api/Usuarios/PostSeguidor?user=${
-            receta.UsuarioUser
-          }&segui=${Cookies.get("usuario")}`;
+            Cookies.get("usuario")
+          }&segui=${receta.UsuarioUser}`;
           fetch(followUrl, {
             method: "POST",
           })
