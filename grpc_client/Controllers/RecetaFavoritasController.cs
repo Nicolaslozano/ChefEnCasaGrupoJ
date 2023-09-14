@@ -44,7 +44,7 @@ namespace grpc_client.Controllers
 
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetRecetasFav")]
         public async Task<string> GetRecetasFavAsync(string nombreUsuario)
         {

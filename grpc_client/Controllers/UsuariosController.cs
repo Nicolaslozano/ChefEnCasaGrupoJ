@@ -108,7 +108,7 @@ namespace grpc.Controllers
         }
 
 
-        [HttpPost]
+        [HttpDelete]
         [Route("DeleteSeguidor")]
         public string DeleteSeguidor (string user, string segui)
         {

@@ -27,7 +27,7 @@ import Cookies from "js-cookie";
 
 const columns = [
   { key: "Titulo", label: "Receta" },
-  { key: "TiempoPreparacion", label: "Tiempo de Preparación" },
+  { key: "TiempoPreparacion", label: "Tiempo de Preparación(Minutos)" },
   { key: "NombreCategoria", label: "Categoría" },
   { key: "actions", label: "Acciones" },
 ];
@@ -100,11 +100,10 @@ export default function TablaUsuario() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Response from the API:", data);
         onClose();
       })
       .catch((error) => {
-        console.error("Error sending the request:", error);
+        console.error("Error :", error);
       });
   };
 

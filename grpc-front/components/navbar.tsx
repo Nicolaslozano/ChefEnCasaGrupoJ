@@ -1,15 +1,11 @@
 import { useState } from "react";
 import {
-  Avatar,
   Link,
-  Input,
   Navbar as NextUINavbar,
   NavbarContent,
-  NavbarMenu,
   NavbarMenuToggle,
   NavbarBrand,
   NavbarItem,
-  NavbarMenuItem,
 } from "@nextui-org/react";
 import NextLink from "next/link";
 import Cookies from "js-cookie";
@@ -30,10 +26,10 @@ export const Navbar = () => {
   };
 
   const handleCerrarSesionClick = () => {
-    // Eliminar la cookie de sesión
+    // Eliminar la cookie de usuario
     Cookies.remove("usuario");
   
-    // Redirigir a la página de inicio de sesión u otra página deseada
+    // Redirigir a la página de inicio de sesión
     window.location.href = "/login";
   };
 
@@ -59,7 +55,7 @@ export const Navbar = () => {
             </div>
             {isDropdownOpen && (
               <div className="absolute right-0 mt-auto	 w-40 bg-white shadow-md p-8">
-                <Link href="/user">Contribuciones</Link>
+                <Link href="/user">Panel de control</Link>
                 <div>
                   <Link
                     className="mt-3"

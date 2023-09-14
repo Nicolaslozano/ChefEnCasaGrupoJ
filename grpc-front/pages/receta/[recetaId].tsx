@@ -13,7 +13,6 @@ import {
   Button,
 } from "@nextui-org/react";
 import DefaultLayout from "@/layouts/default";
-import Auth from "@/components/Auth";
 import Cookies from "js-cookie";
 import { FavIcon, FavIconFilled, UserIcon } from "@/components/icons";
 
@@ -49,7 +48,7 @@ export default function Page() {
         .then((res) => res.json())
         .then((receta) => setReceta(receta))
         .catch((err) => {
-          console.error("Error fetching recipe", err);
+          console.error("Error", err);
           setError(true);
         })
         .finally(() => {
@@ -88,26 +87,53 @@ export default function Page() {
             .then((followResponse) => {
               if (followResponse.ok) {
                 setIsFollowing(true);
-                console.log(`Successfully followed ${receta.UsuarioUser}`);
+                console.log(`Siguiendo correctamente al usuario ${receta.UsuarioUser}`);
               } else {
-                console.error(`Failed to follow ${receta.UsuarioUser}`);
+                console.error(`error al seguir usuario ${receta.UsuarioUser}`);
               }
             })
             .catch((followError) => {
-              console.error("Error following user:", followError);
+              console.error("error al seguir usuario:", followError);
             });
         } else {
         }
       })
       .catch((error) => {
-        console.error("Error checking if user is following:", error);
+        console.error("Error al chequear si el usuario existe:", error);
       });
   };
 
-  const handleFollowRecipe = () => {
-   
-    setIsFollowed(true);
+  const handleFollowRecipe = async () => {
+    try {
+      const recetaId = receta?.Idreceta;
+  
+      const data = {
+        recetasFavoritascol: recetaId,
+        usuario_userfav: Cookies.get("usuario"),
+      };
+  
+      const followRecipeUrl = "https://localhost:44323/api/RecetaFavoritas";
+  
+      const response = await fetch(followRecipeUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data), 
+      });
+  
+      if (response.ok) {
+        setIsFollowed(true);
+        console.log(`Siguiendo Correctamente a la receta ${recetaId}`);
+      } else {
+        console.error(`Fallo al seguir receta ${recetaId}`);
+      }
+    } catch (error) {
+      console.error("Error al seguir receta:", error);
+    }
   };
+  
+  
 
   return (
     <DefaultLayout>

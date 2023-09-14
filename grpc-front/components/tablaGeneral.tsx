@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
-  import {
-    Modal,
-    ModalContent,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-    Button,
-    Input,
-    Spinner,
-    Dropdown,
-    DropdownTrigger,
-    DropdownMenu,
-    DropdownItem,
-    Table,
-    TableHeader,
-    TableColumn,
-    TableBody,
-    TableRow,
-    TableCell,
-    Pagination,
-    Link
+import {
+  Button,
+  Input,
+  Spinner,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  Pagination,
+  Link,
 } from "@nextui-org/react";
 
 const columns = [
@@ -31,7 +26,7 @@ const columns = [
   },
   {
     key: "TiempoPreparacion",
-    label: "Tiempo de Preparación",
+    label: "Tiempo de Preparación(Minutos)",
   },
 ];
 
@@ -40,60 +35,110 @@ export default function TablaGeneral() {
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
+  const [searchTerm, setSearchTerm] = useState(""); 
   const [selectedKeys, setSelectedKeys] = React.useState(
     new Set(["Filtrar Por:"])
   );
- 
-    useEffect(() => {
-      const fetchData = async () => {
-        setIsLoading(true);
-        try {
-          const selectedCategoriesArray = Array.from(selectedKeys);
-          const categoryPromises = selectedCategoriesArray.map((category) => {
-            switch (category) {
-              case "Postres":
-                return fetch("https://localhost:44323/api/Receta/GetRecetasToCategoria?usu=Postres");
-              case "Veganas":
-                return fetch("https://localhost:44323/api/Receta/GetRecetasToCategoria?usu=Veganas");
-              case "Reposteria":
-                return fetch("https://localhost:44323/api/Receta/GetRecetasToCategoria?usu=Reposteria");
-              case "Bebidas":
-                return fetch("https://localhost:44323/api/Receta/GetRecetasToCategoria?usu=Bebidas");
-              case "Regionales":
-                return fetch("https://localhost:44323/api/Receta/GetRecetasToCategoria?usu=Regionales");
-              default:
-                return null;
-            }
-          });
-    
-          const responses = await Promise.all(categoryPromises.filter(Boolean));
-          const responseData = await Promise.all(responses.map((response) => response.json()));
-          const combinedData = responseData.flat();
-    
-          
-          if (selectedCategoriesArray.length === 1) {
-            const response = await fetch("https://localhost:44323/api/Receta/GetRecetas");
-            const defaultData = await response.json();
-            setData(defaultData);
-          } else {
-            setData(combinedData);
+  const [showFavorites, setShowFavorites] = useState(false); 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const selectedCategoriesArray = Array.from(selectedKeys);
+        const categoryPromises = selectedCategoriesArray.map((category) => {
+          switch (category) {
+            case "Postres":
+              return fetch(
+                `https://localhost:44323/api/Receta/GetRecetasToCategoria?usu=Postres&nombreUsuario=${Cookies.get(
+                  "usuario"
+                )}`
+              );
+            case "Veganas":
+              return fetch(
+                `https://localhost:44323/api/Receta/GetRecetasToCategoria?usu=Veganas&nombreUsuario=${Cookies.get(
+                  "usuario"
+                )}`
+              );
+            case "Reposteria":
+              return fetch(
+                `https://localhost:44323/api/Receta/GetRecetasToCategoria?usu=Reposteria&nombreUsuario=${Cookies.get(
+                  "usuario"
+                )}`
+              );
+            case "Bebidas":
+              return fetch(
+                `https://localhost:44323/api/Receta/GetRecetasToCategoria?usu=Bebidas&nombreUsuario=${Cookies.get(
+                  "usuario"
+                )}`
+              );
+            case "Regionales":
+              return fetch(
+                `https://localhost:44323/api/Receta/GetRecetasToCategoria?usu=Regionales&nombreUsuario=${Cookies.get(
+                  "usuario"
+                )}`
+              );
+            default:
+              return null;
           }
-    
-          setIsLoading(false);
-        } catch (error) {
-          console.error("Error al cargar los datos:", error);
-          setIsLoading(false);
+        });
+
+        let recetasFavoritasPromise = null;
+
+        if (showFavorites) {
+          // Consulta para recetas favoritas
+          recetasFavoritasPromise = fetch(
+            `https://localhost:44323/api/RecetaFavoritas/GetRecetasFav?nombreUsuario=${Cookies.get(
+              "usuario"
+            )}`
+          );
         }
-      };
-    
-      fetchData();
-    }, [selectedKeys]);
-  
+
+        const responses = await Promise.all(
+          [...categoryPromises.filter(Boolean), recetasFavoritasPromise].filter(
+            Boolean
+          )
+        );
+        const responseData = await Promise.all(
+          responses.map((response) => response.json())
+        );
+        const combinedData = responseData.flat();
+
+        // Filtra las recetas duplicadas por Idreceta
+        const uniqueRecipeIds = new Set();
+        const filteredData = combinedData.filter((newRecipe) => {
+          if (!uniqueRecipeIds.has(newRecipe.Idreceta)) {
+            uniqueRecipeIds.add(newRecipe.Idreceta);
+            return true;
+          }
+          return false;
+        });
+
+        if (selectedCategoriesArray.length === 1 && !showFavorites) {
+          const response = await fetch(
+            `https://localhost:44323/api/Receta/GetRecetas?nombreUsuario=${Cookies.get(
+              "usuario"
+            )}`
+          );
+          const defaultData = await response.json();
+          setData(defaultData);
+        } else {
+          setData(filteredData);
+        }
+
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error al cargar los datos:", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [selectedKeys, showFavorites]);
 
   // Función para filtrar los datos en función del término de búsqueda
-  const filterData = (data: any, searchTerm: any) => {
-    return data.filter((item: any) =>
+  const filterData = (data, searchTerm) => {
+    return data.filter((item) =>
       Object.keys(item)
         .filter((key) => key !== "UrlFotos") // Excluye el campo "UrlFotos"
         .some((key) =>
@@ -111,15 +156,15 @@ export default function TablaGeneral() {
     [selectedKeys]
   );
 
-  const RecetaColumn = ({ item }: any) => {
+  const RecetaColumn = ({ item }) => {
     // Verifica si el array de fotos tiene al menos una foto
     if (Array.isArray(item.UrlFotos) && item.UrlFotos.length > 0) {
       return (
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
-            src={item.UrlFotos[0]} // La URL de la primera imagen en el array
-            alt={item.Titulo} // Un texto alternativo para la imagen
-            style={{ width: "100px", height: "100px", marginRight: "10px" }} // Estilo para el tamaño de la imagen
+            src={item.UrlFotos[0]} 
+            alt={item.Titulo} 
+            style={{ width: "100px", height: "100px", marginRight: "10px" }} 
           />
           <div>
             <p>{item.Titulo}</p>
@@ -127,7 +172,7 @@ export default function TablaGeneral() {
         </div>
       );
     } else {
-      // Si no hay fotos, muestra solo el título y la descripción
+      // Si no hay fotos, muestra solo el título
       return (
         <div>
           <p>{item.Titulo}</p>
@@ -138,52 +183,59 @@ export default function TablaGeneral() {
 
   return (
     <div style={{ width: "100%" }}>
-        <Dropdown>
-          <DropdownTrigger>
-            <Button variant="bordered" className="capitalize ml-4">
-              {selectedValue}
-            </Button>
-          </DropdownTrigger>
-          <DropdownMenu
-            variant="flat"
-            closeOnSelect={false}
-            disallowEmptySelection
-            selectionMode="multiple"
-            selectedKeys={selectedKeys}
-            onSelectionChange={setSelectedKeys}
+      <Dropdown>
+        <DropdownTrigger>
+          <Button variant="bordered" className="capitalize ml-4">
+            {selectedValue}
+          </Button>
+        </DropdownTrigger>
+        <DropdownMenu
+          variant="flat"
+          closeOnSelect={false}
+          disallowEmptySelection
+          selectionMode="multiple"
+          selectedKeys={selectedKeys}
+          onSelectionChange={setSelectedKeys}
+        >
+          <DropdownItem key="Postres">Postres</DropdownItem>
+          <DropdownItem key="Veganas">Veganas</DropdownItem>
+          <DropdownItem key="Reposteria">Reposteria</DropdownItem>
+          <DropdownItem key="Bebidas">Bebidas</DropdownItem>
+          <DropdownItem key="Regionales">Regionales</DropdownItem>
+          <DropdownItem
+            key="RecetasFavoritas"
+            onClick={() => {
+              // Toggle the "Recetas Favoritas" filter
+              setShowFavorites(!showFavorites);
+            }}
           >
-             
-            <DropdownItem key="Postres">Postres</DropdownItem>
-            <DropdownItem key="Veganas">Veganas</DropdownItem>
-            <DropdownItem key="Reposteria">Reposteria</DropdownItem>
-            <DropdownItem key="Bebidas">Bebidas</DropdownItem>
-            <DropdownItem key="Regionales">Regionales</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-        
-        
-        <Input
-          className="my-2"
-          placeholder="Buscar receta"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+            Recetas Favoritas
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+
+      <Input
+        className="my-2"
+        placeholder="Buscar receta"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      {isLoading ? (
+        <Spinner
+          className="flex justify-center "
+          label="Cargando Datos..."
+          color="primary"
+          size="lg"
         />
-        {isLoading ? (
-          <Spinner
-            className="flex justify-center "
-            label="Cargando Datos..."
-            color="primary"
-            size="lg"
-          />
-        ) : (
-          <Table aria-label="Tabla de recetas">
+      ) : (
+        <Table aria-label="Tabla de recetas">
           <TableHeader columns={columns}>
             {(column) => (
               <TableColumn key={column.key}>{column.label}</TableColumn>
             )}
           </TableHeader>
           <TableBody items={paginatedRows}>
-            {(item: any) => (
+            {(item) => (
               <TableRow key={item.Idreceta}>
                 {(columnKey) => (
                   <TableCell key={columnKey}>
@@ -200,16 +252,16 @@ export default function TablaGeneral() {
             )}
           </TableBody>
         </Table>
-        )}
+      )}
 
-        <Pagination
-          className="my-2 flex justify-center"
-          total={filteredData.length}
-          showControls
-          showShadow
-          page={currentPage}
-          onChange={(newPage) => setCurrentPage(newPage)}
-        />
-      </div>
+      <Pagination
+        className="my-2 flex justify-center"
+        total={filteredData.length}
+        showControls
+        showShadow
+        page={currentPage}
+        onChange={(newPage) => setCurrentPage(newPage)}
+      />
+    </div>
   );
 }
