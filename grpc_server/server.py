@@ -29,8 +29,8 @@ class ServicioUsuarios(UsuariosServicer):
         row = cursor.fetchone()
         if row is not None:
             return Response(message="400 - Ya existe usuario")
-        query = (f"INSERT INTO usuario (`nombre`, `email`, `user`, `password`) VALUES "
-                 f"('{request.nombre}', '{request.email}', '{request.user}', '{request.password}')")
+        query = (f"INSERT INTO usuario (`nombre`, `email`, `user`, `password`,`popular`) VALUES "
+                 f"('{request.nombre}', '{request.email}', '{request.user}', '{request.password}', 0)")
         cursor.execute(query)
         cnx.commit()
         resp = Response(message="204", idusuario=cursor.lastrowid)
@@ -51,7 +51,7 @@ class ServicioUsuarios(UsuariosServicer):
 
         if row is not None:
             return Usuario(idusuario=row['idusuario'], nombre=row['nombre'],
-                           email=row['email'], user=row['user'], password=row['password'])
+                           email=row['email'], user=row['user'], password=row['password'], popular=row['popular'])
         else:
             return Usuario()
 

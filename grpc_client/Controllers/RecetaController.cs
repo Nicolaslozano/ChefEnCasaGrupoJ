@@ -1,8 +1,12 @@
-﻿using Grpc.Net.Client;
+﻿using Confluent.Kafka;
 using grpc_client.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Grpc.Core;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Grpc.Net.Client;
 
 namespace grpc_client.Controllers
 {
@@ -10,6 +14,22 @@ namespace grpc_client.Controllers
     [ApiController]
     public class RecetaController
     {
+
+        private readonly IProducer<string, string> kafkaProducer;
+
+
+        public RecetaController()
+        {
+            // Configura el productor de Kafka
+            var config = new ProducerConfig
+            {
+                BootstrapServers = "localhost:9092" // Reemplaza con la dirección de tu servidor Kafka
+            };
+
+            kafkaProducer = new ProducerBuilder<string, string>(config).Build();
+        }
+
+
         [HttpPost]
         public string PostReceta(RecetaClass receta)
         {
@@ -32,12 +52,32 @@ namespace grpc_client.Controllers
                     NombreCategoria = receta.nombreCategoria1,
                     
 
-            };
+                };
                 foreach (var stringUrl in receta.url_fotos)
                 {
                     postRecipe.UrlFotos.Add(stringUrl);
                 }
 
+
+                // Serializar la información para enviar a Kafka
+                var kafkaData = new
+                {
+                    NombreUsuario = receta.usuario_user,
+                    TituloReceta = receta.titulo,
+                    UrlPrimeraFoto = receta.url_fotos.FirstOrDefault()
+                };
+
+                // Serializar la información para enviar a Kafka como mensaje JSON
+                string kafkaJson = JsonConvert.SerializeObject(kafkaData);
+
+                // se envia la información a Kafka en el topic "Novedades"
+                kafkaProducer.ProduceAsync("Novedades", new Message<string, string>
+                {
+                    Key = null, // Puedes proporcionar una clave si es relevante
+                    Value = kafkaJson
+                });
+
+                //guardar la receta en la base de datos
                 var recetaResponse = cliente.AltaReceta(postRecipe);
                 response = JsonConvert.SerializeObject(recetaResponse);
             }

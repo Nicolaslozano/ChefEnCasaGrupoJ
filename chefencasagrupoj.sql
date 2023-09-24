@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS usuario (
   email VARCHAR(45) NOT NULL,
   user VARCHAR(45) NOT NULL,
   password VARCHAR(45) NOT NULL,
+  popular INT NOT NULL,
   PRIMARY KEY (idusuario),
       INDEX `idx_user` (`user`)
 );

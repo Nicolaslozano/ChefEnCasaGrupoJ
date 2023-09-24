@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Confluent.Kafka;
 
 namespace grpc.Controllers
 {
@@ -16,6 +17,22 @@ namespace grpc.Controllers
     [ApiController]
     public class UsuariosController : ControllerBase
     {
+
+        private readonly IProducer<string, string> kafkaProducer;
+
+
+        public UsuariosController()
+        {
+            // Configura el productor de Kafka
+            var config = new ProducerConfig
+            {
+                BootstrapServers = "localhost:9092" // Reemplaza con la dirección de tu servidor Kafka
+            };
+
+            kafkaProducer = new ProducerBuilder<string, string>(config).Build();
+        }
+
+
         [HttpGet]
         public string GetIniciarSesion(string username, string password)
         {
@@ -65,6 +82,7 @@ namespace grpc.Controllers
                     Email = user.Email,
                     User = user.User,
                     Password = user.Password,
+                    Popular = user.Popular,
                 };
 
                 var usuarioResponse = cliente.AltaUsuario(postUser);
@@ -96,6 +114,13 @@ namespace grpc.Controllers
                     Segui = segui,
                 };
 
+                kafkaProducer.Produce("PopularidadUsuario", new Message<string, string>
+                {
+                    Key = segui, // Utiliza el nombre de usuario como clave
+                    Value = "1" // El valor es +1
+                });
+
+
                 var suscripcionResponse = cliente.SeguirUsuario(postRecipeFav);
                 response = JsonConvert.SerializeObject(suscripcionResponse);
             }
@@ -126,6 +151,15 @@ namespace grpc.Controllers
                     Segui = segui,
                 };
 
+
+                
+                kafkaProducer.Produce("PopularidadUsuario", new Message<string, string>
+                {
+                    Key = segui, 
+                    Value = "-1" 
+                });
+
+
                 var suscripcionResponse = cliente.EliminarSeguidor(postRecipeFav);
                 response = JsonConvert.SerializeObject(suscripcionResponse);
             }
@@ -137,5 +171,6 @@ namespace grpc.Controllers
             return response;
         }
 
+        
     }
 }

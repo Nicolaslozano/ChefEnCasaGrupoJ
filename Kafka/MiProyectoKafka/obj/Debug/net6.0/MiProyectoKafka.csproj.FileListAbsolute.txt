@@ -1,0 +1,5 @@
+C:\Distribuidos2023\ChefEnCasaGrupoJ\kafka\MiProyectoKafka\obj\Debug\net6.0\MiProyectoKafka.csproj.AssemblyReference.cache
+C:\Distribuidos2023\ChefEnCasaGrupoJ\kafka\MiProyectoKafka\obj\Debug\net6.0\MiProyectoKafka.GeneratedMSBuildEditorConfig.editorconfig
+C:\Distribuidos2023\ChefEnCasaGrupoJ\kafka\MiProyectoKafka\obj\Debug\net6.0\MiProyectoKafka.AssemblyInfoInputs.cache
+C:\Distribuidos2023\ChefEnCasaGrupoJ\kafka\MiProyectoKafka\obj\Debug\net6.0\MiProyectoKafka.AssemblyInfo.cs
+C:\Distribuidos2023\ChefEnCasaGrupoJ\kafka\MiProyectoKafka\obj\Debug\net6.0\MiProyectoKafka.csproj.CoreCompileInputs.cache

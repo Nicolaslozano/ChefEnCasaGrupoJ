@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "UG2iXwH7a8KrWqEK7m2+rSRe4ePSEadsJUBNSJrasOhA/08puo90/mKlPtMo2bLCUe/L2RZrE9Jky1iunPgCQQ==",
+  "dgSpecHash": "tS9UO41qEG/3yswpRvXQzJcUNbM7K+a3GNEWSFOVGLJ2m3TzbNyle4RGvBb/cd8OwVD1DzJlyGXU+J83hDlUBg==",
   "success": true,
   "projectFilePath": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\grpc_client\\grpc_client.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Fiorda\\.nuget\\packages\\confluent.kafka\\2.2.0\\confluent.kafka.2.2.0.nupkg.sha512",
     "C:\\Users\\Fiorda\\.nuget\\packages\\google.api.commonprotos\\2.10.0\\google.api.commonprotos.2.10.0.nupkg.sha512",
     "C:\\Users\\Fiorda\\.nuget\\packages\\google.protobuf\\3.23.0\\google.protobuf.3.23.0.nupkg.sha512",
     "C:\\Users\\Fiorda\\.nuget\\packages\\grpc.core\\2.46.6\\grpc.core.2.46.6.nupkg.sha512",
@@ -11,6 +12,7 @@
     "C:\\Users\\Fiorda\\.nuget\\packages\\grpc.net.client\\2.56.0\\grpc.net.client.2.56.0.nupkg.sha512",
     "C:\\Users\\Fiorda\\.nuget\\packages\\grpc.net.common\\2.56.0\\grpc.net.common.2.56.0.nupkg.sha512",
     "C:\\Users\\Fiorda\\.nuget\\packages\\grpc.tools\\2.57.0\\grpc.tools.2.57.0.nupkg.sha512",
+    "C:\\Users\\Fiorda\\.nuget\\packages\\librdkafka.redist\\2.2.0\\librdkafka.redist.2.2.0.nupkg.sha512",
     "C:\\Users\\Fiorda\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Fiorda\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.0.3\\microsoft.extensions.logging.abstractions.3.0.3.nupkg.sha512",
     "C:\\Users\\Fiorda\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

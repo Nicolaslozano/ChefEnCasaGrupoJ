@@ -6,6 +6,7 @@ message Usuario {
     string email = 3;
     string user = 4;
     string password = 5; 
+    int32 popular = 6;
     
 }
 

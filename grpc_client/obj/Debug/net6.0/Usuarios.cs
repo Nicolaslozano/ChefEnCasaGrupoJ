@@ -22,22 +22,23 @@ public static partial class UsuariosReflection {
   static UsuariosReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg51c3Vhcmlvcy5wcm90byJbCgdVc3VhcmlvEhEKCWlkdXN1YXJpbxgBIAEo",
+          "Cg51c3Vhcmlvcy5wcm90byJsCgdVc3VhcmlvEhEKCWlkdXN1YXJpbxgBIAEo",
           "BRIOCgZub21icmUYAiABKAkSDQoFZW1haWwYAyABKAkSDAoEdXNlchgEIAEo",
-          "CRIQCghwYXNzd29yZBgFIAEoCSIqCghVc2VybmFtZRIMCgR1c2VyGAEgASgJ",
-          "EhAKCHBhc3N3b3JkGAIgASgJIi4KCFJlc3BvbnNlEg8KB21lc3NhZ2UYASAB",
-          "KAkSEQoJaWR1c3VhcmlvGAIgASgFIgYKBE51bG8iKQoKU2VndWlkb3JlcxIM",
-          "CgR1c2VyGAEgASgJEg0KBXNlZ3VpGAIgASgJIioKBnNlZ3VpcxIQCghpZFNl",
-          "Z3VpcxgBIAEoBRIOCgZzZWd1aXIYAiABKAkiHQoKUmVzcG9uc2VhYRIPCgdt",
-          "ZXNzYWdlGAEgASgJMsMBCghVc3VhcmlvcxIVCgVMaXN0bxIFLk51bG8aBS5O",
-          "dWxvEiMKDFRyYWVyVXN1YXJpbxIJLlVzZXJuYW1lGgguVXN1YXJpbxIiCgtB",
-          "bHRhVXN1YXJpbxIILlVzdWFyaW8aCS5SZXNwb25zZRIpCg1TZWd1aXJVc3Vh",
-          "cmlvEgsuU2VndWlkb3JlcxoLLlJlc3BvbnNlYWESLAoQRWxpbWluYXJTZWd1",
-          "aWRvchILLlNlZ3VpZG9yZXMaCy5SZXNwb25zZWFhYgZwcm90bzM="));
+          "CRIQCghwYXNzd29yZBgFIAEoCRIPCgdwb3B1bGFyGAYgASgFIioKCFVzZXJu",
+          "YW1lEgwKBHVzZXIYASABKAkSEAoIcGFzc3dvcmQYAiABKAkiLgoIUmVzcG9u",
+          "c2USDwoHbWVzc2FnZRgBIAEoCRIRCglpZHVzdWFyaW8YAiABKAUiBgoETnVs",
+          "byIpCgpTZWd1aWRvcmVzEgwKBHVzZXIYASABKAkSDQoFc2VndWkYAiABKAki",
+          "KgoGc2VndWlzEhAKCGlkU2VndWlzGAEgASgFEg4KBnNlZ3VpchgCIAEoCSId",
+          "CgpSZXNwb25zZWFhEg8KB21lc3NhZ2UYASABKAkywwEKCFVzdWFyaW9zEhUK",
+          "BUxpc3RvEgUuTnVsbxoFLk51bG8SIwoMVHJhZXJVc3VhcmlvEgkuVXNlcm5h",
+          "bWUaCC5Vc3VhcmlvEiIKC0FsdGFVc3VhcmlvEgguVXN1YXJpbxoJLlJlc3Bv",
+          "bnNlEikKDVNlZ3VpclVzdWFyaW8SCy5TZWd1aWRvcmVzGgsuUmVzcG9uc2Vh",
+          "YRIsChBFbGltaW5hclNlZ3VpZG9yEgsuU2VndWlkb3JlcxoLLlJlc3BvbnNl",
+          "YWFiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::Usuario), global::Usuario.Parser, new[]{ "Idusuario", "Nombre", "Email", "User", "Password" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Usuario), global::Usuario.Parser, new[]{ "Idusuario", "Nombre", "Email", "User", "Password", "Popular" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Username), global::Username.Parser, new[]{ "User", "Password" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Response), global::Response.Parser, new[]{ "Message", "Idusuario" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Nulo), global::Nulo.Parser, null, null, null, null, null),
@@ -89,6 +90,7 @@ public sealed partial class Usuario : pb::IMessage<Usuario>
     email_ = other.email_;
     user_ = other.user_;
     password_ = other.password_;
+    popular_ = other.popular_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -158,6 +160,18 @@ public sealed partial class Usuario : pb::IMessage<Usuario>
     }
   }
 
+  /// <summary>Field number for the "popular" field.</summary>
+  public const int PopularFieldNumber = 6;
+  private int popular_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int Popular {
+    get { return popular_; }
+    set {
+      popular_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -178,6 +192,7 @@ public sealed partial class Usuario : pb::IMessage<Usuario>
     if (Email != other.Email) return false;
     if (User != other.User) return false;
     if (Password != other.Password) return false;
+    if (Popular != other.Popular) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -190,6 +205,7 @@ public sealed partial class Usuario : pb::IMessage<Usuario>
     if (Email.Length != 0) hash ^= Email.GetHashCode();
     if (User.Length != 0) hash ^= User.GetHashCode();
     if (Password.Length != 0) hash ^= Password.GetHashCode();
+    if (Popular != 0) hash ^= Popular.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -228,6 +244,10 @@ public sealed partial class Usuario : pb::IMessage<Usuario>
       output.WriteRawTag(42);
       output.WriteString(Password);
     }
+    if (Popular != 0) {
+      output.WriteRawTag(48);
+      output.WriteInt32(Popular);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -258,6 +278,10 @@ public sealed partial class Usuario : pb::IMessage<Usuario>
       output.WriteRawTag(42);
       output.WriteString(Password);
     }
+    if (Popular != 0) {
+      output.WriteRawTag(48);
+      output.WriteInt32(Popular);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -282,6 +306,9 @@ public sealed partial class Usuario : pb::IMessage<Usuario>
     }
     if (Password.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Password);
+    }
+    if (Popular != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Popular);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -309,6 +336,9 @@ public sealed partial class Usuario : pb::IMessage<Usuario>
     }
     if (other.Password.Length != 0) {
       Password = other.Password;
+    }
+    if (other.Popular != 0) {
+      Popular = other.Popular;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -345,6 +375,10 @@ public sealed partial class Usuario : pb::IMessage<Usuario>
           Password = input.ReadString();
           break;
         }
+        case 48: {
+          Popular = input.ReadInt32();
+          break;
+        }
       }
     }
   #endif
@@ -378,6 +412,10 @@ public sealed partial class Usuario : pb::IMessage<Usuario>
         }
         case 42: {
           Password = input.ReadString();
+          break;
+        }
+        case 48: {
+          Popular = input.ReadInt32();
           break;
         }
       }
