@@ -1,0 +1,77 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\kafkaConsumerApp\\KafkaConsumerApp.csproj": {}
+  },
+  "projects": {
+    "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\kafkaConsumerApp\\KafkaConsumerApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\kafkaConsumerApp\\KafkaConsumerApp.csproj",
+        "projectName": "KafkaConsumerApp",
+        "projectPath": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\kafkaConsumerApp\\KafkaConsumerApp.csproj",
+        "packagesPath": "C:\\Users\\Fiorda\\.nuget\\packages\\",
+        "outputPath": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\kafkaConsumerApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Fiorda\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Confluent.Kafka": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
