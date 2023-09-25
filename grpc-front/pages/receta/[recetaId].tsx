@@ -9,8 +9,11 @@ import {
   Image,
   Divider,
   Spinner,
-  Avatar,
   Button,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
 } from "@nextui-org/react";
 import DefaultLayout from "@/layouts/default";
 import Cookies from "js-cookie";
@@ -36,6 +39,8 @@ export default function Page() {
   const [receta, setReceta] = useState<Receta | null>();
   const [isFollowing, setIsFollowing] = useState(false);
   const [isFollowed, setIsFollowed] = useState(false);
+  const [rating, setRating] = useState([false, false, false, false, false]);
+  const [selectedRating, setSelectedRating] = useState(0);
 
   useEffect(() => {
     if (!recetaId) return;
@@ -78,16 +83,18 @@ export default function Page() {
     fetch(checkFollowUrl)
       .then((response) => {
         if (response.ok) {
-          const followUrl = `https://localhost:44323/api/Usuarios/PostSeguidor?user=${
-            Cookies.get("usuario")
-          }&segui=${receta.UsuarioUser}`;
+          const followUrl = `https://localhost:44323/api/Usuarios/PostSeguidor?user=${Cookies.get(
+            "usuario"
+          )}&segui=${receta.UsuarioUser}`;
           fetch(followUrl, {
             method: "POST",
           })
             .then((followResponse) => {
               if (followResponse.ok) {
                 setIsFollowing(true);
-                console.log(`Siguiendo correctamente al usuario ${receta.UsuarioUser}`);
+                console.log(
+                  `Siguiendo correctamente al usuario ${receta.UsuarioUser}`
+                );
               } else {
                 console.error(`error al seguir usuario ${receta.UsuarioUser}`);
               }
@@ -106,22 +113,22 @@ export default function Page() {
   const handleFollowRecipe = async () => {
     try {
       const recetaId = receta?.Idreceta;
-  
+
       const data = {
         recetasFavoritascol: recetaId,
         usuario_userfav: Cookies.get("usuario"),
       };
-  
+
       const followRecipeUrl = "https://localhost:44323/api/RecetaFavoritas";
-  
+
       const response = await fetch(followRecipeUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data), 
+        body: JSON.stringify(data),
       });
-  
+
       if (response.ok) {
         setIsFollowed(true);
         console.log(`Siguiendo Correctamente a la receta ${recetaId}`);
@@ -132,14 +139,22 @@ export default function Page() {
       console.error("Error al seguir receta:", error);
     }
   };
-  
-  
+
+  const handleRating = (value) => {
+    const newRating = new Array(5).fill(false);
+    for (let i = 0; i < value; i++) {
+      newRating[i] = true;
+    }
+    setRating(newRating);
+    setSelectedRating(value);
+    console.log(`Calificación: ${value}`);
+  };
 
   return (
     <DefaultLayout>
       <div className="flex flex-col items-end mt-8 ">
         <div className="flex items-center">
-          <UserIcon/>
+          <UserIcon />
           <h1 className="">{receta?.UsuarioUser}</h1>
         </div>
         <Button className="flex ml-2" size="sm" onClick={handleFollowClick}>
@@ -195,6 +210,49 @@ export default function Page() {
             </Tabs>
           </AccordionItem>
         </Accordion>
+        <h1 className={title({ color: "pink", size:"sm"})}>¿Que opinas de la receta?</h1>
+        <Card className="mt-4">
+          <CardBody>
+            {receta?.comentarios &&
+              receta.comentarios.map((comentario, index) => (
+                <div key={index} className="mb-4">
+                  <strong>{comentario.usuario}</strong>: {comentario.texto}
+                </div>
+              ))}
+          </CardBody>
+          <CardFooter className="flex justify-center">
+            <form className="w-full">
+              <textarea
+                rows="4"
+                placeholder="Escribe tu comentario aquí"
+                className="w-full border rounded p-2 mb-2"
+              />
+              <Button type="submit" color="primary">
+                Enviar Comentario
+              </Button>
+            </form>
+          </CardFooter>
+        </Card>
+        <h1 className="mt-4">
+          Comentanos que te parecio la receta calificandola
+        </h1>
+        <div className="mt-4">
+          <div className="flex items-center justify-center">
+            {rating.map((isFilled, index) => (
+              <div
+                key={index}
+                onClick={() => handleRating(index + 1)}
+                className={`cursor-pointer ${
+                  isFilled ? "text-yellow-400 fill-current" : "text-gray-300"
+                }`}
+                style={{ width: "40px", height: "40px" }}
+              >
+                <FavIconFilled className={isFilled ? "" : "hidden"} />
+                <FavIcon className={isFilled ? "hidden" : ""} />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </DefaultLayout>
   );
