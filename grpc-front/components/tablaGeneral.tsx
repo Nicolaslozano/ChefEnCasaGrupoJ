@@ -17,6 +17,7 @@ import {
   TableCell,
   Pagination,
   Link,
+  Card
 } from "@nextui-org/react";
 
 const columns = [
@@ -31,7 +32,7 @@ const columns = [
 ];
 
 export default function TablaGeneral() {
-  const itemsPerPage = 10;
+  const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -136,7 +137,7 @@ export default function TablaGeneral() {
     fetchData();
   }, [selectedKeys, showFavorites]);
 
-  // Función para filtrar los datos en función del término de búsqueda
+  // Función para filtrar los datos en función del termino de busqueda
   const filterData = (data, searchTerm) => {
     return data.filter((item) =>
       Object.keys(item)
@@ -182,6 +183,7 @@ export default function TablaGeneral() {
   };
 
   return (
+    <Card className="p-4">
     <div style={{ width: "100%" }}>
       <Dropdown>
         <DropdownTrigger>
@@ -257,11 +259,11 @@ export default function TablaGeneral() {
       <Pagination
         className="my-2 flex justify-center"
         total={filteredData.length}
-        showControls
         showShadow
         page={currentPage}
         onChange={(newPage) => setCurrentPage(newPage)}
       />
     </div>
+    </Card>
   );
 }

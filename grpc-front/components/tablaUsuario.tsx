@@ -99,7 +99,7 @@ export default function TablaUsuario() {
       body: JSON.stringify(formData),
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then(() => {
         onClose();
       })
       .catch((error) => {
@@ -228,11 +228,11 @@ export default function TablaUsuario() {
                   />
                   <Input
                     label="URL Fotos (Separadas por comas)"
-                    value={formData.url_fotos.join(", ")}
+                    value={formData.url_fotos.join("|")}
                     onChange={(e) =>
                       setFormData({
                         ...formData,
-                        url_fotos: e.target.value.split(", "),
+                        url_fotos: e.target.value.split("| "),
                       })
                     }
                   />
@@ -451,7 +451,6 @@ export default function TablaUsuario() {
         <Pagination
           className="my-2 flex justify-center"
           total={filteredData.length}
-          showControls
           showShadow
           page={currentPage}
           onChange={(newPage) => setCurrentPage(newPage)}
