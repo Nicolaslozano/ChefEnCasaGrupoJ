@@ -97,6 +97,14 @@ public static partial class Usuarios
       __Marshaller_Seguidores,
       __Marshaller_Responseaa);
 
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Method<global::Nulo, global::Usuario> __Method_TraerUsuarioPopular = new grpc::Method<global::Nulo, global::Usuario>(
+      grpc::MethodType.ServerStreaming,
+      __ServiceName,
+      "TraerUsuarioPopular",
+      __Marshaller_Nulo,
+      __Marshaller_Usuario);
+
   /// <summary>Service descriptor</summary>
   public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
   {
@@ -133,6 +141,12 @@ public static partial class Usuarios
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     public virtual global::System.Threading.Tasks.Task<global::Responseaa> EliminarSeguidor(global::Seguidores request, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::System.Threading.Tasks.Task TraerUsuarioPopular(global::Nulo request, grpc::IServerStreamWriter<global::Usuario> responseStream, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
@@ -266,6 +280,16 @@ public static partial class Usuarios
     {
       return CallInvoker.AsyncUnaryCall(__Method_EliminarSeguidor, null, options, request);
     }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncServerStreamingCall<global::Usuario> TraerUsuarioPopular(global::Nulo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return TraerUsuarioPopular(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncServerStreamingCall<global::Usuario> TraerUsuarioPopular(global::Nulo request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncServerStreamingCall(__Method_TraerUsuarioPopular, null, options, request);
+    }
     /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     protected override UsuariosClient NewInstance(ClientBaseConfiguration configuration)
@@ -284,7 +308,8 @@ public static partial class Usuarios
         .AddMethod(__Method_TraerUsuario, serviceImpl.TraerUsuario)
         .AddMethod(__Method_AltaUsuario, serviceImpl.AltaUsuario)
         .AddMethod(__Method_SeguirUsuario, serviceImpl.SeguirUsuario)
-        .AddMethod(__Method_EliminarSeguidor, serviceImpl.EliminarSeguidor).Build();
+        .AddMethod(__Method_EliminarSeguidor, serviceImpl.EliminarSeguidor)
+        .AddMethod(__Method_TraerUsuarioPopular, serviceImpl.TraerUsuarioPopular).Build();
   }
 
   /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -299,6 +324,7 @@ public static partial class Usuarios
     serviceBinder.AddMethod(__Method_AltaUsuario, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Usuario, global::Response>(serviceImpl.AltaUsuario));
     serviceBinder.AddMethod(__Method_SeguirUsuario, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Seguidores, global::Responseaa>(serviceImpl.SeguirUsuario));
     serviceBinder.AddMethod(__Method_EliminarSeguidor, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Seguidores, global::Responseaa>(serviceImpl.EliminarSeguidor));
+    serviceBinder.AddMethod(__Method_TraerUsuarioPopular, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Nulo, global::Usuario>(serviceImpl.TraerUsuarioPopular));
   }
 
 }

@@ -12,6 +12,8 @@ from recetafavoritas_pb2_grpc import RecetaFavServicer, add_RecetaFavServicer_to
 from recetafavoritas_pb2 import RecetaFavoritas # aca va el nombre del messege proto
 from suscripcion_pb2_grpc import SuscripcionesServicer, add_SuscripcionesServicer_to_server
 from suscripcion_pb2 import Suscripcion
+from comentarios_pb2_grpc import Comentarios1Servicer, add_Comentarios1Servicer_to_server
+from comentarios_pb2 import Comentarios
 
 
 class ServicioUsuarios(UsuariosServicer):
@@ -104,6 +106,19 @@ class ServicioUsuarios(UsuariosServicer):
             cnx.close()
         return resp   
 
+    def TraerUsuarioPopular(self, request, context):
+        cnx = mysql.connector.connect(user='root', password='root', 
+                                      host='localhost', port='3306',
+                                      database='chefencasagrupoj')
+        cursor = cnx.cursor(named_tuple=True)
+        query = (f"SELECT * FROM usuario ORDER BY popular DESC LIMIT 5")
+        cursor.execute(query)
+        records = cursor.fetchall()
+        for row in records:
+            yield Usuario(idusuario = row.idusuario, nombre = row.nombre, email = row.email,
+            user = row.user, password = row.password,  popular = row.popular)
+
+            
 
 class ServicioSuscripciones(SuscripcionesServicer):
 
@@ -136,10 +151,10 @@ class ServicioRecetas(RecetasServicer):
         url_fotos_list = request.url_fotos[0].split(',')
 
         # Initialize the SQL statement
-        stmt = f"INSERT INTO receta (`titulo`, `descripcion`, `tiempoPreparacion`,  `ingredientes`, `pasos`, `usuario_user`,`nombreCategoria1`"
+        stmt = f"INSERT INTO receta (`titulo`, `descripcion`, `tiempoPreparacion`,  `ingredientes`, `pasos`, `usuario_user`,`nombreCategoria1`,`recetaPopular`"
 
         # Initialize the VALUES part of the SQL statement
-        values = f" VALUES ('{request.titulo}', '{request.descripcion}', '{request.tiempoPreparacion}', '{request.ingredientes}', '{request.pasos}', '{request.usuario_user}','{request.nombreCategoria}'"
+        values = f" VALUES ('{request.titulo}', '{request.descripcion}', '{request.tiempoPreparacion}', '{request.ingredientes}', '{request.pasos}', '{request.usuario_user}','{request.nombreCategoria}', '{0}'"
 
         # Iterate through the split URLs and insert them into separate columns
         for idx, url in enumerate(url_fotos_list, start=1):
@@ -205,7 +220,32 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user, recetaPopular = row.recetaPopular)
+
+
+    def TraerRecetasPopulares(self, request, context):
+        cnx = mysql.connector.connect(user='root', password='root', 
+                                      host='localhost', port='3306',
+                                      database='chefencasagrupoj')
+        cursor = cnx.cursor(named_tuple=True)
+        query = (f"SELECT * FROM receta ORDER BY recetaPopular DESC LIMIT 5")
+        cursor.execute(query)
+        records = cursor.fetchall()
+        for row in records:
+            fotos = []
+            if row.url_foto1 is not None:
+                fotos.append(row.url_foto1)
+            if row.url_foto2 is not None:
+                fotos.append(row.url_foto2)
+            if row.url_foto3 is not None:
+                fotos.append(row.url_foto3)
+            if row.url_foto4 is not None:
+                fotos.append(row.url_foto4)
+            if row.url_foto5 is not None:
+                fotos.append(row.url_foto5)
+            yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user, recetaPopular = row.recetaPopular)
+
 
     def TraerRecetaPorId(self, request, context):
         cnx = mysql.connector.connect(user='root', password='root', 
@@ -228,7 +268,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             result = Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user, recetaPopular = row.recetaPopular)
         return result
 
     def TraerRecetasPorUsuario(self, request, context):
@@ -253,7 +293,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user, recetaPopular = row.recetaPopular)
 
     def TraerRecetasPorCategoria(self, request, context):
         print("Categoria recibida:", request.usu)
@@ -277,7 +317,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user, recetaPopular = row.recetaPopular)
 
 
     def TraerRecetasPorTitulo(self, request, context):
@@ -302,7 +342,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user, recetaPopular = row.recetaPopular)
 
     def TraerRecetasPorTiempo(self, request, context):
         print("tiempo desde recibido:", request.desde)
@@ -327,7 +367,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user, recetaPopular = row.recetaPopular)
 
     def TraerRecetasPorIngredientes(self, request, context):
         print("Ingrediente recibido:", request.usu)
@@ -351,7 +391,7 @@ class ServicioRecetas(RecetasServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user, recetaPopular = row.recetaPopular)
 
 
 
@@ -394,9 +434,28 @@ class ServicioRecetasFav(RecetaFavServicer):
             if row.url_foto5 is not None:
                 fotos.append(row.url_foto5)
             yield Receta(idreceta = row.idreceta, titulo = row.titulo, descripcion = row.descripcion,
-            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user)
+            tiempoPreparacion = row.tiempoPreparacion, ingredientes = row.ingredientes,  pasos = row.pasos, url_fotos = fotos, nombreCategoria = row.nombreCategoria1, usuario_user = row.usuario_user, recetaPopular = row.recetaPopular)
 
-  
+class ServicioComentarios(Comentarios1Servicer):
+
+    def AgregarComentario(self, request, context):
+        cnx = mysql.connector.connect(user='root', password='root',
+                                      host='localhost', port='3306',
+                                      database='chefencasagrupoj')
+        cursor = cnx.cursor()
+        query = (f"INSERT INTO comentarios (`idcomentarios`, `recet`, `usuario_comen`, `comentario`) VALUES "
+                 f"('{request.idcomentarios}', '{request.recet}', '{request.usuario_comen}', '{request.comentario}')")
+        cursor.execute(query)
+        cnx.commit()
+        resp = Responsea(message="204", idreceta=cursor.lastrowid)
+        cursor.close()
+        cnx.close()
+        return resp
+
+
+
+
+
 
 def start():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
@@ -404,6 +463,7 @@ def start():
     add_RecetasServicer_to_server(ServicioRecetas(), server)
     add_RecetaFavServicer_to_server(ServicioRecetasFav(), server)
     add_SuscripcionesServicer_to_server(ServicioSuscripciones(), server)
+    add_Comentarios1Servicer_to_server(ServicioComentarios(), server)
     server.add_insecure_port('[::]:50051')
     print("The server is running!")
     server.start()

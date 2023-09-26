@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0creceta.proto\"\xc1\x01\n\x06Receta\x12\x10\n\x08idreceta\x18\x01 \x01(\x05\x12\x0e\n\x06titulo\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scripcion\x18\x03 \x01(\t\x12\x19\n\x11tiempoPreparacion\x18\x04 \x01(\x05\x12\x14\n\x0cingredientes\x18\x05 \x01(\t\x12\r\n\x05pasos\x18\x06 \x01(\t\x12\x11\n\turl_fotos\x18\x07 \x03(\t\x12\x14\n\x0cusuario_user\x18\x08 \x01(\t\x12\x17\n\x0fnombreCategoria\x18\t \x01(\t\"\xb1\x01\n\x0cRecetaEditar\x12\x10\n\x08idreceta\x18\x01 \x01(\x05\x12\x0e\n\x06titulo\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scripcion\x18\x03 \x01(\t\x12\x19\n\x11tiempoPreparacion\x18\x04 \x01(\x05\x12\x14\n\x0cingredientes\x18\x05 \x01(\t\x12\r\n\x05pasos\x18\x06 \x01(\t\x12\x11\n\turl_fotos\x18\x07 \x03(\t\x12\x17\n\x0fnombreCategoria\x18\t \x01(\t\"\x0c\n\nNuloReceta\".\n\tResponsea\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x10\n\x08idreceta\x18\x02 \x01(\x05\"&\n\nRecetaList\x12\x18\n\x07recetas\x18\x01 \x03(\x0b\x32\x07.Receta\"\x19\n\nUsuariolog\x12\x0b\n\x03usu\x18\x01 \x01(\t\"&\n\x06tiempo\x12\r\n\x05\x64\x65sde\x18\x01 \x01(\x05\x12\r\n\x05hasta\x18\x02 \x01(\x05\"\x1c\n\x08RecetaId\x12\x10\n\x08idreceta\x18\x01 \x01(\x05\x32\xa2\x03\n\x07Recetas\x12!\n\nAltaReceta\x12\x07.Receta\x1a\n.Responsea\x12)\n\x0c\x45\x64itarReceta\x12\r.RecetaEditar\x1a\n.Responsea\x12&\n\x0cTraerRecetas\x12\x0b.NuloReceta\x1a\x07.Receta0\x01\x12&\n\x10TraerRecetaPorId\x12\t.RecetaId\x1a\x07.Receta\x12\x30\n\x16TraerRecetasPorUsuario\x12\x0b.Usuariolog\x1a\x07.Receta0\x01\x12\x32\n\x18TraerRecetasPorCategoria\x12\x0b.Usuariolog\x1a\x07.Receta0\x01\x12/\n\x15TraerRecetasPorTitulo\x12\x0b.Usuariolog\x1a\x07.Receta0\x01\x12+\n\x15TraerRecetasPorTiempo\x12\x07.tiempo\x1a\x07.Receta0\x01\x12\x35\n\x1bTraerRecetasPorIngredientes\x12\x0b.Usuariolog\x1a\x07.Receta0\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0creceta.proto\"\xd8\x01\n\x06Receta\x12\x10\n\x08idreceta\x18\x01 \x01(\x05\x12\x0e\n\x06titulo\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scripcion\x18\x03 \x01(\t\x12\x19\n\x11tiempoPreparacion\x18\x04 \x01(\x05\x12\x14\n\x0cingredientes\x18\x05 \x01(\t\x12\r\n\x05pasos\x18\x06 \x01(\t\x12\x11\n\turl_fotos\x18\x07 \x03(\t\x12\x14\n\x0cusuario_user\x18\x08 \x01(\t\x12\x17\n\x0fnombreCategoria\x18\t \x01(\t\x12\x15\n\rrecetaPopular\x18\n \x01(\x05\"\xc8\x01\n\x0cRecetaEditar\x12\x10\n\x08idreceta\x18\x01 \x01(\x05\x12\x0e\n\x06titulo\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scripcion\x18\x03 \x01(\t\x12\x19\n\x11tiempoPreparacion\x18\x04 \x01(\x05\x12\x14\n\x0cingredientes\x18\x05 \x01(\t\x12\r\n\x05pasos\x18\x06 \x01(\t\x12\x11\n\turl_fotos\x18\x07 \x03(\t\x12\x17\n\x0fnombreCategoria\x18\t \x01(\t\x12\x15\n\rrecetaPopular\x18\n \x01(\x05\"\x0c\n\nNuloReceta\".\n\tResponsea\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x10\n\x08idreceta\x18\x02 \x01(\x05\"&\n\nRecetaList\x12\x18\n\x07recetas\x18\x01 \x03(\x0b\x32\x07.Receta\"\x19\n\nUsuariolog\x12\x0b\n\x03usu\x18\x01 \x01(\t\"&\n\x06tiempo\x12\r\n\x05\x64\x65sde\x18\x01 \x01(\x05\x12\r\n\x05hasta\x18\x02 \x01(\x05\"\x1c\n\x08RecetaId\x12\x10\n\x08idreceta\x18\x01 \x01(\x05\x32\xd3\x03\n\x07Recetas\x12!\n\nAltaReceta\x12\x07.Receta\x1a\n.Responsea\x12)\n\x0c\x45\x64itarReceta\x12\r.RecetaEditar\x1a\n.Responsea\x12&\n\x0cTraerRecetas\x12\x0b.NuloReceta\x1a\x07.Receta0\x01\x12&\n\x10TraerRecetaPorId\x12\t.RecetaId\x1a\x07.Receta\x12\x30\n\x16TraerRecetasPorUsuario\x12\x0b.Usuariolog\x1a\x07.Receta0\x01\x12\x32\n\x18TraerRecetasPorCategoria\x12\x0b.Usuariolog\x1a\x07.Receta0\x01\x12/\n\x15TraerRecetasPorTitulo\x12\x0b.Usuariolog\x1a\x07.Receta0\x01\x12+\n\x15TraerRecetasPorTiempo\x12\x07.tiempo\x1a\x07.Receta0\x01\x12\x35\n\x1bTraerRecetasPorIngredientes\x12\x0b.Usuariolog\x1a\x07.Receta0\x01\x12/\n\x15TraerRecetasPopulares\x12\x0b.NuloReceta\x1a\x07.Receta0\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,21 +22,21 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   _globals['_RECETA']._serialized_start=17
-  _globals['_RECETA']._serialized_end=210
-  _globals['_RECETAEDITAR']._serialized_start=213
-  _globals['_RECETAEDITAR']._serialized_end=390
-  _globals['_NULORECETA']._serialized_start=392
-  _globals['_NULORECETA']._serialized_end=404
-  _globals['_RESPONSEA']._serialized_start=406
-  _globals['_RESPONSEA']._serialized_end=452
-  _globals['_RECETALIST']._serialized_start=454
-  _globals['_RECETALIST']._serialized_end=492
-  _globals['_USUARIOLOG']._serialized_start=494
-  _globals['_USUARIOLOG']._serialized_end=519
-  _globals['_TIEMPO']._serialized_start=521
-  _globals['_TIEMPO']._serialized_end=559
-  _globals['_RECETAID']._serialized_start=561
-  _globals['_RECETAID']._serialized_end=589
-  _globals['_RECETAS']._serialized_start=592
-  _globals['_RECETAS']._serialized_end=1010
+  _globals['_RECETA']._serialized_end=233
+  _globals['_RECETAEDITAR']._serialized_start=236
+  _globals['_RECETAEDITAR']._serialized_end=436
+  _globals['_NULORECETA']._serialized_start=438
+  _globals['_NULORECETA']._serialized_end=450
+  _globals['_RESPONSEA']._serialized_start=452
+  _globals['_RESPONSEA']._serialized_end=498
+  _globals['_RECETALIST']._serialized_start=500
+  _globals['_RECETALIST']._serialized_end=538
+  _globals['_USUARIOLOG']._serialized_start=540
+  _globals['_USUARIOLOG']._serialized_end=565
+  _globals['_TIEMPO']._serialized_start=567
+  _globals['_TIEMPO']._serialized_end=605
+  _globals['_RECETAID']._serialized_start=607
+  _globals['_RECETAID']._serialized_end=635
+  _globals['_RECETAS']._serialized_start=638
+  _globals['_RECETAS']._serialized_end=1105
 # @@protoc_insertion_point(module_scope)

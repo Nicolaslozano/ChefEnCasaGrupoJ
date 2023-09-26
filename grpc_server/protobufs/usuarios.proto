@@ -10,6 +10,9 @@ message Usuario {
     
 }
 
+
+
+
 message Username {
     string user = 1;
     string password = 2;  
@@ -43,4 +46,5 @@ service Usuarios {
     rpc AltaUsuario(Usuario) returns (Response);
     rpc SeguirUsuario (Seguidores) returns (Responseaa);
     rpc EliminarSeguidor(Seguidores) returns (Responseaa);
+    rpc TraerUsuarioPopular(Nulo) returns (stream Usuario);
 }

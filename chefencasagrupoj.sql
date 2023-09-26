@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `receta` (
   `url_foto5` TEXT NULL DEFAULT NULL,
   `usuario_user` VARCHAR(45) NOT NULL,
   `nombreCategoria1` VARCHAR(45) NOT NULL,
+  `recetaPopular` INT NOT NULL,
   PRIMARY KEY (`idreceta`),
   INDEX `fk_receta_usuario1_idx` (`usuario_user` ASC),
   CONSTRAINT `fk_receta_usuario1`
@@ -77,3 +78,13 @@ CREATE TABLE IF NOT EXISTS `suscripcion` (
     REFERENCES `usuario` (`user`)
     ON UPDATE NO ACTION
 );
+
+
+CREATE TABLE IF NOT EXISTS `comentarios` (
+  `idcomentarios` INT NOT NULL AUTO_INCREMENT,
+  `recet` INT NULL,
+  `usuario_comen` VARCHAR(45) NOT NULL,
+  `comentario` VARCHAR(600) NOT NULL,
+  PRIMARY KEY (`idcomentarios`)
+);
+

@@ -50,6 +50,7 @@ namespace grpc_client.Controllers
                     Pasos = receta.pasos,
                     UsuarioUser = receta.usuario_user,
                     NombreCategoria = receta.nombreCategoria1,
+                    RecetaPopular = receta.recetaPopular,
                     
 
                 };
@@ -104,6 +105,39 @@ namespace grpc_client.Controllers
 
                 List<Receta> recetas = new();
                 using (var call = cliente.TraerRecetas(new NuloReceta()))
+                    while (await call.ResponseStream.MoveNext())
+                    {
+                        var currentRecipe = call.ResponseStream.Current;
+                        recetas.Add(currentRecipe);
+                    }
+                response = JsonConvert.SerializeObject(recetas);
+            }
+            catch (Exception e)
+            {
+                return e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
+
+
+
+
+        [HttpGet]
+        [Route("GetRecetasPopulares")]
+        public async Task<string> GetRecetasPopularesAsync()
+        {
+            string response;
+            try
+            {
+                // This switch must be set before creating the GrpcChannel/HttpClient.
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Recetas.RecetasClient(channel);
+
+                List<Receta> recetas = new();
+                using (var call = cliente.TraerRecetasPopulares(new NuloReceta()))
                     while (await call.ResponseStream.MoveNext())
                     {
                         var currentRecipe = call.ResponseStream.Current;

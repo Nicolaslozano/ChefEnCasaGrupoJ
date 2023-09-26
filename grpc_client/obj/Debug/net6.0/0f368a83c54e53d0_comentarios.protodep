@@ -1,0 +1,2 @@
+obj\Debug\net6.0/Comentarios.cs \
+obj\Debug\net6.0/ComentariosGrpc.cs: ../gRPC_server/protobufs/comentarios.proto

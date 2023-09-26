@@ -10,6 +10,7 @@ message Receta {
     repeated string url_fotos = 7;
     string usuario_user = 8;
     string nombreCategoria = 9;
+    int32 recetaPopular = 10;
     
 }
 
@@ -22,6 +23,7 @@ message RecetaEditar {
     string pasos = 6; 
     repeated string url_fotos = 7;
     string nombreCategoria = 9;
+    int32 recetaPopular = 10;
     
 }
 message NuloReceta {
@@ -60,4 +62,5 @@ service Recetas {
     rpc TraerRecetasPorTitulo(Usuariolog) returns (stream Receta);
     rpc TraerRecetasPorTiempo(tiempo) returns (stream Receta);
     rpc TraerRecetasPorIngredientes(Usuariolog) returns (stream Receta);
+    rpc TraerRecetasPopulares(NuloReceta) returns (stream Receta);
 }

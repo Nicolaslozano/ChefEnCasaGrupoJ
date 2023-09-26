@@ -29,12 +29,13 @@ public static partial class UsuariosReflection {
           "c2USDwoHbWVzc2FnZRgBIAEoCRIRCglpZHVzdWFyaW8YAiABKAUiBgoETnVs",
           "byIpCgpTZWd1aWRvcmVzEgwKBHVzZXIYASABKAkSDQoFc2VndWkYAiABKAki",
           "KgoGc2VndWlzEhAKCGlkU2VndWlzGAEgASgFEg4KBnNlZ3VpchgCIAEoCSId",
-          "CgpSZXNwb25zZWFhEg8KB21lc3NhZ2UYASABKAkywwEKCFVzdWFyaW9zEhUK",
+          "CgpSZXNwb25zZWFhEg8KB21lc3NhZ2UYASABKAky7QEKCFVzdWFyaW9zEhUK",
           "BUxpc3RvEgUuTnVsbxoFLk51bG8SIwoMVHJhZXJVc3VhcmlvEgkuVXNlcm5h",
           "bWUaCC5Vc3VhcmlvEiIKC0FsdGFVc3VhcmlvEgguVXN1YXJpbxoJLlJlc3Bv",
           "bnNlEikKDVNlZ3VpclVzdWFyaW8SCy5TZWd1aWRvcmVzGgsuUmVzcG9uc2Vh",
           "YRIsChBFbGltaW5hclNlZ3VpZG9yEgsuU2VndWlkb3JlcxoLLlJlc3BvbnNl",
-          "YWFiBnByb3RvMw=="));
+          "YWESKAoTVHJhZXJVc3VhcmlvUG9wdWxhchIFLk51bG8aCC5Vc3VhcmlvMAFi",
+          "BnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Confluent.Kafka;
+using Google.Protobuf.WellKnownTypes;
 
 namespace grpc.Controllers
 {
@@ -95,6 +96,39 @@ namespace grpc.Controllers
 
             return response;
         }
+
+        [HttpGet]
+        [Route("GetUsuarioPopular")]
+        public async Task<string> GetUsuarioPopularAsync()
+        {
+            string response;
+            try
+            {
+                // This switch must be set before creating the GrpcChannel/HttpClient.
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Usuarios.UsuariosClient(channel);
+
+                List<Usuario> usuarios = new();
+                using (var call = cliente.TraerUsuarioPopular(new Nulo()))
+                    while (await call.ResponseStream.MoveNext())
+                    {
+                        var currentRecipe = call.ResponseStream.Current;
+                        usuarios.Add(currentRecipe);
+                    }
+                response = JsonConvert.SerializeObject(usuarios);
+            }
+            catch (Exception e)
+            {
+                return e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
+        
+        
+        
 
         [HttpPost]
         [Route("PostSeguidor")]

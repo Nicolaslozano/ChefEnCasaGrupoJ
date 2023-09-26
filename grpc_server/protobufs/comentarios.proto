@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+message Comentarios {
+    int32 idcomentarios = 1;
+    int32 recet = 2;
+    string usuario_comen = 3;
+    string comentario = 4;    
+}
+
+
+message Va {
+}
+
+
+service Comentarios1 {
+    rpc AgregarComentario(Comentarios) returns (Va);
+}
+
