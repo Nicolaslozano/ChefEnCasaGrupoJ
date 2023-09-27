@@ -3,6 +3,10 @@ using grpc_client.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Grpc.Core;
+using Confluent.Kafka;
+using System;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace grpc_client.Controllers
 {
@@ -10,35 +14,75 @@ namespace grpc_client.Controllers
     [ApiController]
     public class ComentariosController
     {
-        [HttpPost]
-        public string PostComentarios(ComentariosClass comenta)
+
+        private readonly IProducer<string, string> kafkaProducer;
+
+
+        public ComentariosController()
         {
-            string response;
+            // Configura el productor de Kafka
+            var config = new ProducerConfig
+            {
+                BootstrapServers = "localhost:9092" // dirección de tu servidor Kafka
+            };
+
+            kafkaProducer = new ProducerBuilder<string, string>(config).Build();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> PostComentarios(ComentariosClass comenta)
+        {
+            
             try
             {
                 AppContext.SetSwitch(
                     "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
                 var cliente = new Comentarios1.Comentarios1Client(channel);
+                var cliente2 = new Recetas.RecetasClient(channel);
 
-                var postRecipeFav = new Comentarios
+                // Enviar comentario al topic "Comentarios" de Kafka
+                var comentarioMessage = new
                 {
-                    Idcomentarios = comenta.idcomentarios,
-                    Recet = comenta.recet,
-                    UsuarioComen = comenta.usuario_comen,
-                    Comentario = comenta.comentario,
+                    Usuario = comenta.usuario_comen,
+                    Receta = comenta.recet,
+                    Comentario = comenta.comentario
+                };
+                
+                var comentarioMessageJson = JsonConvert.SerializeObject(comentarioMessage);
+                await kafkaProducer.ProduceAsync("Comentarios", new Message<string, string> { Key = Guid.NewGuid().ToString(), Value = comentarioMessageJson });
 
+                var postIdReceta = new RecetaId
+                {
+                    Idreceta = comenta.recet
                 };
 
-                var recetaResponse = cliente.AgregarComentario(postRecipeFav);
-                response = JsonConvert.SerializeObject(recetaResponse);
+
+                var recetaResponse = await cliente2.TraerRecetaPorIdAsync(postIdReceta);
+
+                
+                // Comparar el string con comenta.usuario_comen
+                 if (!comenta.usuario_comen.Equals(recetaResponse.UsuarioUser))
+                {
+                    // Enviar mensaje al topic "PopularidadReceta" de Kafka
+                    var popularidadMessage = new
+                    {
+                        IdReceta = comenta.recet,
+                        Puntaje = 1
+                    };
+
+                    var popularidadMessageJson = JsonConvert.SerializeObject(popularidadMessage);
+                    await kafkaProducer.ProduceAsync("PopularidadReceta", new Message<string, string> { Key = Guid.NewGuid().ToString(), Value = popularidadMessageJson });
+                }
+
+                return new OkResult();
             }
             catch (Exception e)
             {
-                response = e.Message + e.StackTrace;
+                return new BadRequestObjectResult(e.Message + e.StackTrace);
             }
-
-            return response;
+      
         }
 
 

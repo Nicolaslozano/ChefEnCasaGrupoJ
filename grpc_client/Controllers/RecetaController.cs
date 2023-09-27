@@ -397,6 +397,58 @@ namespace grpc_client.Controllers
 
             return response;
         }
+
+
+
+        [HttpPost]
+        [Route("PostCalificacion")]
+        public async Task<IActionResult> PostCalificacion(int idRec, string nomusu, int califi)
+        {
+            
+            try
+            {
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Recetas.RecetasClient(channel);
+
+                
+                var postIdReceta = new RecetaId
+                {
+                    Idreceta = idRec
+                };
+                
+                var recetaResponse = await cliente.TraerRecetaPorIdAsync(postIdReceta);
+
+                // Comparar el string 
+                if (!nomusu.Equals(recetaResponse.UsuarioUser))
+                {
+                    // Enviar mensaje al topic "PopularidadReceta" de Kafka
+                    var popularidadMessage = new
+                    {
+                        IdReceta = idRec,
+                        Puntaje = califi
+                    };
+
+                    var popularidadMessageJson = JsonConvert.SerializeObject(popularidadMessage);
+                    await kafkaProducer.ProduceAsync("PopularidadReceta", new Message<string, string> { Key = Guid.NewGuid().ToString(), Value = popularidadMessageJson });
+                    return new OkObjectResult("La calificación fue exitosa");
+                }
+                else
+                {
+                    return new OkObjectResult("No puedes calificar tu propia receta");
+                }
+
+            }
+            catch (Exception e)
+            {
+                return new BadRequestObjectResult(e.Message + e.StackTrace);
+            }
+      
+        }
+
+
+
     }
 }
 

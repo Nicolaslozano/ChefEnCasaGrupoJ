@@ -27,8 +27,18 @@ message Nulos {
 message Usuariologueado{
     string nombreUsuario = 1;
 }
+
+message SeguiRece {
+    int32 rec = 1;
+    string us = 2;
+}
+
+message Resp {
+    string message = 1;
+}
+
 service RecetaFav {
     rpc AgregarRecetaFav(RecetaFavoritas) returns (Nulos);
     rpc TraerRecetasFav(Usuariologueado) returns (stream RecetaFavCompleta);
-   
+    rpc EliminarRecetaFav(SeguiRece) returns (Resp);
 }

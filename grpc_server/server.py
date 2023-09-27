@@ -411,6 +411,31 @@ class ServicioRecetasFav(RecetaFavServicer):
         cursor.close()
         cnx.close()
         return resp
+
+
+    def EliminarRecetaFav(self, request, context):
+        cnx = mysql.connector.connect(user='root', password='root',
+                                      host='localhost', port='3306',
+                                      database='chefencasagrupoj')
+        cursor = cnx.cursor()
+
+        try:
+            query = (f"DELETE FROM recetaFavoritas WHERE recetasFavoritasCol = '{request.rec}' AND usuario_userfav = '{request.us}'") 
+            cursor.execute(query)
+            cnx.commit()
+            if cursor.rowcount > 0:
+                resp = Response(message="Se pudo eliminar la receta")
+            else:
+                resp = Response(message="No se encontro la receta que quiere eliminar de sus favoritos")
+        except mysql.connector.Error as err:
+            resp = Response(message=f"Error en la base de datos: {err}")
+        finally:
+            cursor.close()
+            cnx.close()
+        return resp
+
+
+
     
     def TraerRecetasFav(self, request, context):
         print("ID de usuario recibido:", request.nombreUsuario)
