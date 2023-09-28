@@ -69,15 +69,23 @@ class ServicioUsuarios(UsuariosServicer):
         cursor = cnx.cursor()
 
         try:
+            chequear = (f"SELECT COUNT(*) FROM suscripcion "
+                        f"WHERE followed_user = '{request.segui}' AND my_user = '{request.user}'")
+            cursor.execute(chequear)
+            result = cursor.fetchone()
 
-            query = (f"INSERT INTO suscripcion (`followed_user`, `my_user`) VALUES "
-                    f"('{request.segui}', '{request.user}')")
-            cursor.execute(query)
-            cnx.commit()
-            if cursor.rowcount > 0:
-                resp = Response(message="Se pudo seguir el usuario")
+            if result and result[0] > 0:
+                resp = Response(message="Ya sigues a esta persona")
             else:
-                resp = Response(message="No se pudo seguir el usuario")
+
+                query = (f"INSERT INTO suscripcion (`followed_user`, `my_user`) VALUES "
+                        f"('{request.segui}', '{request.user}')")
+                cursor.execute(query)
+                cnx.commit()
+                if cursor.rowcount > 0:
+                    resp = Response(message="Se pudo seguir el usuario")
+                else:
+                    resp = Response(message="No se pudo seguir el usuario")
         except mysql.connector.Error as err:
             resp = Response(message=f"Error en la base de datos: {err}")        
         finally:        
