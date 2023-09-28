@@ -20,6 +20,9 @@ namespace grpc_client.Models
 
         public string nombreCategoria1 { get; set; }
         public int recetaPopular { get; set; }
+        public int puntuacion { get; set; }
+        public int cantPuntuacion { get; set; }
+
 
     }
 }

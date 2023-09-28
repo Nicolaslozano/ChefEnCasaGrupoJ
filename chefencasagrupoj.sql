@@ -38,6 +38,8 @@ CREATE TABLE IF NOT EXISTS `receta` (
   `usuario_user` VARCHAR(45) NOT NULL,
   `nombreCategoria1` VARCHAR(45) NOT NULL,
   `recetaPopular` INT NOT NULL,
+  `puntuacion` INT NOT NULL,
+  `cantPuntuacion` INT NOT NULL,
   PRIMARY KEY (`idreceta`),
   INDEX `fk_receta_usuario1_idx` (`usuario_user` ASC),
   CONSTRAINT `fk_receta_usuario1`

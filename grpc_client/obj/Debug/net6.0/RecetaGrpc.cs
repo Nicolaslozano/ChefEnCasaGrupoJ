@@ -58,6 +58,10 @@ public static partial class Recetas
   static readonly grpc::Marshaller<global::Usuariolog> __Marshaller_Usuariolog = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Usuariolog.Parser));
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Marshaller<global::tiempo> __Marshaller_tiempo = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::tiempo.Parser));
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Marshaller<global::Puntua> __Marshaller_Puntua = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Puntua.Parser));
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Marshaller<global::Prommmm> __Marshaller_Prommmm = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Prommmm.Parser));
 
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Method<global::Receta, global::Responsea> __Method_AltaReceta = new grpc::Method<global::Receta, global::Responsea>(
@@ -139,6 +143,22 @@ public static partial class Recetas
       __Marshaller_NuloReceta,
       __Marshaller_Receta);
 
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Method<global::Puntua, global::NuloReceta> __Method_AgregarPuntuacion = new grpc::Method<global::Puntua, global::NuloReceta>(
+      grpc::MethodType.Unary,
+      __ServiceName,
+      "AgregarPuntuacion",
+      __Marshaller_Puntua,
+      __Marshaller_NuloReceta);
+
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Method<global::RecetaId, global::Prommmm> __Method_TraerPromedioPuntuacion = new grpc::Method<global::RecetaId, global::Prommmm>(
+      grpc::MethodType.Unary,
+      __ServiceName,
+      "TraerPromedioPuntuacion",
+      __Marshaller_RecetaId,
+      __Marshaller_Prommmm);
+
   /// <summary>Service descriptor</summary>
   public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
   {
@@ -205,6 +225,18 @@ public static partial class Recetas
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     public virtual global::System.Threading.Tasks.Task TraerRecetasPopulares(global::NuloReceta request, grpc::IServerStreamWriter<global::Receta> responseStream, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::System.Threading.Tasks.Task<global::NuloReceta> AgregarPuntuacion(global::Puntua request, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::System.Threading.Tasks.Task<global::Prommmm> TraerPromedioPuntuacion(global::RecetaId request, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
@@ -368,6 +400,46 @@ public static partial class Recetas
     {
       return CallInvoker.AsyncServerStreamingCall(__Method_TraerRecetasPopulares, null, options, request);
     }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::NuloReceta AgregarPuntuacion(global::Puntua request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return AgregarPuntuacion(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::NuloReceta AgregarPuntuacion(global::Puntua request, grpc::CallOptions options)
+    {
+      return CallInvoker.BlockingUnaryCall(__Method_AgregarPuntuacion, null, options, request);
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncUnaryCall<global::NuloReceta> AgregarPuntuacionAsync(global::Puntua request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return AgregarPuntuacionAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncUnaryCall<global::NuloReceta> AgregarPuntuacionAsync(global::Puntua request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncUnaryCall(__Method_AgregarPuntuacion, null, options, request);
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::Prommmm TraerPromedioPuntuacion(global::RecetaId request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return TraerPromedioPuntuacion(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::Prommmm TraerPromedioPuntuacion(global::RecetaId request, grpc::CallOptions options)
+    {
+      return CallInvoker.BlockingUnaryCall(__Method_TraerPromedioPuntuacion, null, options, request);
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncUnaryCall<global::Prommmm> TraerPromedioPuntuacionAsync(global::RecetaId request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return TraerPromedioPuntuacionAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncUnaryCall<global::Prommmm> TraerPromedioPuntuacionAsync(global::RecetaId request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncUnaryCall(__Method_TraerPromedioPuntuacion, null, options, request);
+    }
     /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     protected override RecetasClient NewInstance(ClientBaseConfiguration configuration)
@@ -391,7 +463,9 @@ public static partial class Recetas
         .AddMethod(__Method_TraerRecetasPorTitulo, serviceImpl.TraerRecetasPorTitulo)
         .AddMethod(__Method_TraerRecetasPorTiempo, serviceImpl.TraerRecetasPorTiempo)
         .AddMethod(__Method_TraerRecetasPorIngredientes, serviceImpl.TraerRecetasPorIngredientes)
-        .AddMethod(__Method_TraerRecetasPopulares, serviceImpl.TraerRecetasPopulares).Build();
+        .AddMethod(__Method_TraerRecetasPopulares, serviceImpl.TraerRecetasPopulares)
+        .AddMethod(__Method_AgregarPuntuacion, serviceImpl.AgregarPuntuacion)
+        .AddMethod(__Method_TraerPromedioPuntuacion, serviceImpl.TraerPromedioPuntuacion).Build();
   }
 
   /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -411,6 +485,8 @@ public static partial class Recetas
     serviceBinder.AddMethod(__Method_TraerRecetasPorTiempo, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::tiempo, global::Receta>(serviceImpl.TraerRecetasPorTiempo));
     serviceBinder.AddMethod(__Method_TraerRecetasPorIngredientes, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Usuariolog, global::Receta>(serviceImpl.TraerRecetasPorIngredientes));
     serviceBinder.AddMethod(__Method_TraerRecetasPopulares, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::NuloReceta, global::Receta>(serviceImpl.TraerRecetasPopulares));
+    serviceBinder.AddMethod(__Method_AgregarPuntuacion, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Puntua, global::NuloReceta>(serviceImpl.AgregarPuntuacion));
+    serviceBinder.AddMethod(__Method_TraerPromedioPuntuacion, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::RecetaId, global::Prommmm>(serviceImpl.TraerPromedioPuntuacion));
   }
 
 }

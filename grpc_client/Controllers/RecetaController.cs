@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Grpc.Net.Client;
+using static Google.Rpc.Context.AttributeContext.Types;
+using System.Net;
+
 
 namespace grpc_client.Controllers
 {
@@ -51,8 +54,8 @@ namespace grpc_client.Controllers
                     UsuarioUser = receta.usuario_user,
                     NombreCategoria = receta.nombreCategoria1,
                     RecetaPopular = receta.recetaPopular,
-                    
-
+                    Puntuacion = receta.puntuacion,
+                    CantPuntuacion = receta.cantPuntuacion,
                 };
                 foreach (var stringUrl in receta.url_fotos)
                 {
@@ -212,8 +215,7 @@ namespace grpc_client.Controllers
                 {
                     Idreceta = idreceta
                 };
-                var recetaporid = cliente.TraerRecetaPorId(postIdReceta);
-                response = JsonConvert.SerializeObject(recetaporid);
+                response = JsonConvert.SerializeObject(cliente.TraerRecetaPorId(postIdReceta));
             }
             catch (Exception e)
             {
@@ -404,7 +406,7 @@ namespace grpc_client.Controllers
         [Route("PostCalificacion")]
         public async Task<IActionResult> PostCalificacion(int idRec, string nomusu, int califi)
         {
-            
+            string response;
             try
             {
                 AppContext.SetSwitch(
@@ -430,8 +432,15 @@ namespace grpc_client.Controllers
                         Puntaje = califi
                     };
 
+                    var postRecipe = new Puntua
+                    {
+                        Idreceta = idRec,
+                        Puntuacion = califi,
+                    };
+
                     var popularidadMessageJson = JsonConvert.SerializeObject(popularidadMessage);
                     await kafkaProducer.ProduceAsync("PopularidadReceta", new Message<string, string> { Key = Guid.NewGuid().ToString(), Value = popularidadMessageJson });
+                    cliente.AgregarPuntuacion(postRecipe);
                     return new OkObjectResult("La calificación fue exitosa");
                 }
                 else
@@ -447,6 +456,35 @@ namespace grpc_client.Controllers
       
         }
 
+        [HttpGet]
+        [Route("GetPromedioCalificacion")]
+        public async Task<IActionResult> GetPromedioCalificacionAsync(int idRec)
+        {
+            
+            try
+            {
+                // This switch must be set before creating the GrpcChannel/HttpClient.
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Recetas.RecetasClient(channel);
+                
+                var postRecipe = new RecetaId
+                {
+                    Idreceta = idRec
+                };
+                var promed = cliente.TraerPromedioPuntuacion(postRecipe);
+                var promedio = promed.Promedio;
+                return new JsonResult(promed);
+            }
+            catch (Exception e)
+            {
+                return new ObjectResult(new { error = e.Message + e.StackTrace })
+                {
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                };
+            }
+        }
 
 
     }

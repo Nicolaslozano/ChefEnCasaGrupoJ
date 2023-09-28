@@ -22,42 +22,50 @@ public static partial class RecetaReflection {
   static RecetaReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CgxyZWNldGEucHJvdG8i2AEKBlJlY2V0YRIQCghpZHJlY2V0YRgBIAEoBRIO",
+          "CgxyZWNldGEucHJvdG8ihAIKBlJlY2V0YRIQCghpZHJlY2V0YRgBIAEoBRIO",
           "CgZ0aXR1bG8YAiABKAkSEwoLZGVzY3JpcGNpb24YAyABKAkSGQoRdGllbXBv",
           "UHJlcGFyYWNpb24YBCABKAUSFAoMaW5ncmVkaWVudGVzGAUgASgJEg0KBXBh",
           "c29zGAYgASgJEhEKCXVybF9mb3RvcxgHIAMoCRIUCgx1c3VhcmlvX3VzZXIY",
           "CCABKAkSFwoPbm9tYnJlQ2F0ZWdvcmlhGAkgASgJEhUKDXJlY2V0YVBvcHVs",
-          "YXIYCiABKAUiyAEKDFJlY2V0YUVkaXRhchIQCghpZHJlY2V0YRgBIAEoBRIO",
-          "CgZ0aXR1bG8YAiABKAkSEwoLZGVzY3JpcGNpb24YAyABKAkSGQoRdGllbXBv",
-          "UHJlcGFyYWNpb24YBCABKAUSFAoMaW5ncmVkaWVudGVzGAUgASgJEg0KBXBh",
-          "c29zGAYgASgJEhEKCXVybF9mb3RvcxgHIAMoCRIXCg9ub21icmVDYXRlZ29y",
-          "aWEYCSABKAkSFQoNcmVjZXRhUG9wdWxhchgKIAEoBSIMCgpOdWxvUmVjZXRh",
-          "Ii4KCVJlc3BvbnNlYRIPCgdtZXNzYWdlGAEgASgJEhAKCGlkcmVjZXRhGAIg",
-          "ASgFIiYKClJlY2V0YUxpc3QSGAoHcmVjZXRhcxgBIAMoCzIHLlJlY2V0YSIZ",
-          "CgpVc3VhcmlvbG9nEgsKA3VzdRgBIAEoCSImCgZ0aWVtcG8SDQoFZGVzZGUY",
-          "ASABKAUSDQoFaGFzdGEYAiABKAUiHAoIUmVjZXRhSWQSEAoIaWRyZWNldGEY",
-          "ASABKAUy0wMKB1JlY2V0YXMSIQoKQWx0YVJlY2V0YRIHLlJlY2V0YRoKLlJl",
-          "c3BvbnNlYRIpCgxFZGl0YXJSZWNldGESDS5SZWNldGFFZGl0YXIaCi5SZXNw",
-          "b25zZWESJgoMVHJhZXJSZWNldGFzEgsuTnVsb1JlY2V0YRoHLlJlY2V0YTAB",
-          "EiYKEFRyYWVyUmVjZXRhUG9ySWQSCS5SZWNldGFJZBoHLlJlY2V0YRIwChZU",
-          "cmFlclJlY2V0YXNQb3JVc3VhcmlvEgsuVXN1YXJpb2xvZxoHLlJlY2V0YTAB",
-          "EjIKGFRyYWVyUmVjZXRhc1BvckNhdGVnb3JpYRILLlVzdWFyaW9sb2caBy5S",
-          "ZWNldGEwARIvChVUcmFlclJlY2V0YXNQb3JUaXR1bG8SCy5Vc3VhcmlvbG9n",
-          "GgcuUmVjZXRhMAESKwoVVHJhZXJSZWNldGFzUG9yVGllbXBvEgcudGllbXBv",
-          "GgcuUmVjZXRhMAESNQobVHJhZXJSZWNldGFzUG9ySW5ncmVkaWVudGVzEgsu",
-          "VXN1YXJpb2xvZxoHLlJlY2V0YTABEi8KFVRyYWVyUmVjZXRhc1BvcHVsYXJl",
-          "cxILLk51bG9SZWNldGEaBy5SZWNldGEwAWIGcHJvdG8z"));
+          "YXIYCiABKAUSEgoKcHVudHVhY2lvbhgLIAEoBRIWCg5jYW50UHVudHVhY2lv",
+          "bhgMIAEoBSL0AQoMUmVjZXRhRWRpdGFyEhAKCGlkcmVjZXRhGAEgASgFEg4K",
+          "BnRpdHVsbxgCIAEoCRITCgtkZXNjcmlwY2lvbhgDIAEoCRIZChF0aWVtcG9Q",
+          "cmVwYXJhY2lvbhgEIAEoBRIUCgxpbmdyZWRpZW50ZXMYBSABKAkSDQoFcGFz",
+          "b3MYBiABKAkSEQoJdXJsX2ZvdG9zGAcgAygJEhcKD25vbWJyZUNhdGVnb3Jp",
+          "YRgJIAEoCRIVCg1yZWNldGFQb3B1bGFyGAogASgFEhIKCnB1bnR1YWNpb24Y",
+          "CyABKAUSFgoOY2FudFB1bnR1YWNpb24YDCABKAUiDAoKTnVsb1JlY2V0YSIu",
+          "CglSZXNwb25zZWESDwoHbWVzc2FnZRgBIAEoCRIQCghpZHJlY2V0YRgCIAEo",
+          "BSImCgpSZWNldGFMaXN0EhgKB3JlY2V0YXMYASADKAsyBy5SZWNldGEiGQoK",
+          "VXN1YXJpb2xvZxILCgN1c3UYASABKAkiJgoGdGllbXBvEg0KBWRlc2RlGAEg",
+          "ASgFEg0KBWhhc3RhGAIgASgFIhwKCFJlY2V0YUlkEhAKCGlkcmVjZXRhGAEg",
+          "ASgFIhsKB1Byb21tbW0SEAoIcHJvbWVkaW8YASABKAIiLgoGUHVudHVhEhAK",
+          "CGlkcmVjZXRhGAEgASgFEhIKCnB1bnR1YWNpb24YAiABKAUyrgQKB1JlY2V0",
+          "YXMSIQoKQWx0YVJlY2V0YRIHLlJlY2V0YRoKLlJlc3BvbnNlYRIpCgxFZGl0",
+          "YXJSZWNldGESDS5SZWNldGFFZGl0YXIaCi5SZXNwb25zZWESJgoMVHJhZXJS",
+          "ZWNldGFzEgsuTnVsb1JlY2V0YRoHLlJlY2V0YTABEiYKEFRyYWVyUmVjZXRh",
+          "UG9ySWQSCS5SZWNldGFJZBoHLlJlY2V0YRIwChZUcmFlclJlY2V0YXNQb3JV",
+          "c3VhcmlvEgsuVXN1YXJpb2xvZxoHLlJlY2V0YTABEjIKGFRyYWVyUmVjZXRh",
+          "c1BvckNhdGVnb3JpYRILLlVzdWFyaW9sb2caBy5SZWNldGEwARIvChVUcmFl",
+          "clJlY2V0YXNQb3JUaXR1bG8SCy5Vc3VhcmlvbG9nGgcuUmVjZXRhMAESKwoV",
+          "VHJhZXJSZWNldGFzUG9yVGllbXBvEgcudGllbXBvGgcuUmVjZXRhMAESNQob",
+          "VHJhZXJSZWNldGFzUG9ySW5ncmVkaWVudGVzEgsuVXN1YXJpb2xvZxoHLlJl",
+          "Y2V0YTABEi8KFVRyYWVyUmVjZXRhc1BvcHVsYXJlcxILLk51bG9SZWNldGEa",
+          "By5SZWNldGEwARIpChFBZ3JlZ2FyUHVudHVhY2lvbhIHLlB1bnR1YRoLLk51",
+          "bG9SZWNldGESLgoXVHJhZXJQcm9tZWRpb1B1bnR1YWNpb24SCS5SZWNldGFJ",
+          "ZBoILlByb21tbW1iBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::Receta), global::Receta.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos", "UrlFotos", "UsuarioUser", "NombreCategoria", "RecetaPopular" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::RecetaEditar), global::RecetaEditar.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos", "UrlFotos", "NombreCategoria", "RecetaPopular" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Receta), global::Receta.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos", "UrlFotos", "UsuarioUser", "NombreCategoria", "RecetaPopular", "Puntuacion", "CantPuntuacion" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RecetaEditar), global::RecetaEditar.Parser, new[]{ "Idreceta", "Titulo", "Descripcion", "TiempoPreparacion", "Ingredientes", "Pasos", "UrlFotos", "NombreCategoria", "RecetaPopular", "Puntuacion", "CantPuntuacion" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NuloReceta), global::NuloReceta.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Responsea), global::Responsea.Parser, new[]{ "Message", "Idreceta" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RecetaList), global::RecetaList.Parser, new[]{ "Recetas" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Usuariolog), global::Usuariolog.Parser, new[]{ "Usu" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::tiempo), global::tiempo.Parser, new[]{ "Desde", "Hasta" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::RecetaId), global::RecetaId.Parser, new[]{ "Idreceta" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::RecetaId), global::RecetaId.Parser, new[]{ "Idreceta" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Prommmm), global::Prommmm.Parser, new[]{ "Promedio" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Puntua), global::Puntua.Parser, new[]{ "Idreceta", "Puntuacion" }, null, null, null, null)
         }));
   }
   #endregion
@@ -108,6 +116,8 @@ public sealed partial class Receta : pb::IMessage<Receta>
     usuarioUser_ = other.usuarioUser_;
     nombreCategoria_ = other.nombreCategoria_;
     recetaPopular_ = other.recetaPopular_;
+    puntuacion_ = other.puntuacion_;
+    cantPuntuacion_ = other.cantPuntuacion_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -236,6 +246,30 @@ public sealed partial class Receta : pb::IMessage<Receta>
     }
   }
 
+  /// <summary>Field number for the "puntuacion" field.</summary>
+  public const int PuntuacionFieldNumber = 11;
+  private int puntuacion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int Puntuacion {
+    get { return puntuacion_; }
+    set {
+      puntuacion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "cantPuntuacion" field.</summary>
+  public const int CantPuntuacionFieldNumber = 12;
+  private int cantPuntuacion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CantPuntuacion {
+    get { return cantPuntuacion_; }
+    set {
+      cantPuntuacion_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -261,6 +295,8 @@ public sealed partial class Receta : pb::IMessage<Receta>
     if (UsuarioUser != other.UsuarioUser) return false;
     if (NombreCategoria != other.NombreCategoria) return false;
     if (RecetaPopular != other.RecetaPopular) return false;
+    if (Puntuacion != other.Puntuacion) return false;
+    if (CantPuntuacion != other.CantPuntuacion) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -278,6 +314,8 @@ public sealed partial class Receta : pb::IMessage<Receta>
     if (UsuarioUser.Length != 0) hash ^= UsuarioUser.GetHashCode();
     if (NombreCategoria.Length != 0) hash ^= NombreCategoria.GetHashCode();
     if (RecetaPopular != 0) hash ^= RecetaPopular.GetHashCode();
+    if (Puntuacion != 0) hash ^= Puntuacion.GetHashCode();
+    if (CantPuntuacion != 0) hash ^= CantPuntuacion.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -333,6 +371,14 @@ public sealed partial class Receta : pb::IMessage<Receta>
       output.WriteRawTag(80);
       output.WriteInt32(RecetaPopular);
     }
+    if (Puntuacion != 0) {
+      output.WriteRawTag(88);
+      output.WriteInt32(Puntuacion);
+    }
+    if (CantPuntuacion != 0) {
+      output.WriteRawTag(96);
+      output.WriteInt32(CantPuntuacion);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -380,6 +426,14 @@ public sealed partial class Receta : pb::IMessage<Receta>
       output.WriteRawTag(80);
       output.WriteInt32(RecetaPopular);
     }
+    if (Puntuacion != 0) {
+      output.WriteRawTag(88);
+      output.WriteInt32(Puntuacion);
+    }
+    if (CantPuntuacion != 0) {
+      output.WriteRawTag(96);
+      output.WriteInt32(CantPuntuacion);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -417,6 +471,12 @@ public sealed partial class Receta : pb::IMessage<Receta>
     }
     if (RecetaPopular != 0) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(RecetaPopular);
+    }
+    if (Puntuacion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Puntuacion);
+    }
+    if (CantPuntuacion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(CantPuntuacion);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -457,6 +517,12 @@ public sealed partial class Receta : pb::IMessage<Receta>
     }
     if (other.RecetaPopular != 0) {
       RecetaPopular = other.RecetaPopular;
+    }
+    if (other.Puntuacion != 0) {
+      Puntuacion = other.Puntuacion;
+    }
+    if (other.CantPuntuacion != 0) {
+      CantPuntuacion = other.CantPuntuacion;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -511,6 +577,14 @@ public sealed partial class Receta : pb::IMessage<Receta>
         }
         case 80: {
           RecetaPopular = input.ReadInt32();
+          break;
+        }
+        case 88: {
+          Puntuacion = input.ReadInt32();
+          break;
+        }
+        case 96: {
+          CantPuntuacion = input.ReadInt32();
           break;
         }
       }
@@ -568,6 +642,14 @@ public sealed partial class Receta : pb::IMessage<Receta>
           RecetaPopular = input.ReadInt32();
           break;
         }
+        case 88: {
+          Puntuacion = input.ReadInt32();
+          break;
+        }
+        case 96: {
+          CantPuntuacion = input.ReadInt32();
+          break;
+        }
       }
     }
   }
@@ -618,6 +700,8 @@ public sealed partial class RecetaEditar : pb::IMessage<RecetaEditar>
     urlFotos_ = other.urlFotos_.Clone();
     nombreCategoria_ = other.nombreCategoria_;
     recetaPopular_ = other.recetaPopular_;
+    puntuacion_ = other.puntuacion_;
+    cantPuntuacion_ = other.cantPuntuacion_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -734,6 +818,30 @@ public sealed partial class RecetaEditar : pb::IMessage<RecetaEditar>
     }
   }
 
+  /// <summary>Field number for the "puntuacion" field.</summary>
+  public const int PuntuacionFieldNumber = 11;
+  private int puntuacion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int Puntuacion {
+    get { return puntuacion_; }
+    set {
+      puntuacion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "cantPuntuacion" field.</summary>
+  public const int CantPuntuacionFieldNumber = 12;
+  private int cantPuntuacion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CantPuntuacion {
+    get { return cantPuntuacion_; }
+    set {
+      cantPuntuacion_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -758,6 +866,8 @@ public sealed partial class RecetaEditar : pb::IMessage<RecetaEditar>
     if(!urlFotos_.Equals(other.urlFotos_)) return false;
     if (NombreCategoria != other.NombreCategoria) return false;
     if (RecetaPopular != other.RecetaPopular) return false;
+    if (Puntuacion != other.Puntuacion) return false;
+    if (CantPuntuacion != other.CantPuntuacion) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -774,6 +884,8 @@ public sealed partial class RecetaEditar : pb::IMessage<RecetaEditar>
     hash ^= urlFotos_.GetHashCode();
     if (NombreCategoria.Length != 0) hash ^= NombreCategoria.GetHashCode();
     if (RecetaPopular != 0) hash ^= RecetaPopular.GetHashCode();
+    if (Puntuacion != 0) hash ^= Puntuacion.GetHashCode();
+    if (CantPuntuacion != 0) hash ^= CantPuntuacion.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -825,6 +937,14 @@ public sealed partial class RecetaEditar : pb::IMessage<RecetaEditar>
       output.WriteRawTag(80);
       output.WriteInt32(RecetaPopular);
     }
+    if (Puntuacion != 0) {
+      output.WriteRawTag(88);
+      output.WriteInt32(Puntuacion);
+    }
+    if (CantPuntuacion != 0) {
+      output.WriteRawTag(96);
+      output.WriteInt32(CantPuntuacion);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -868,6 +988,14 @@ public sealed partial class RecetaEditar : pb::IMessage<RecetaEditar>
       output.WriteRawTag(80);
       output.WriteInt32(RecetaPopular);
     }
+    if (Puntuacion != 0) {
+      output.WriteRawTag(88);
+      output.WriteInt32(Puntuacion);
+    }
+    if (CantPuntuacion != 0) {
+      output.WriteRawTag(96);
+      output.WriteInt32(CantPuntuacion);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -902,6 +1030,12 @@ public sealed partial class RecetaEditar : pb::IMessage<RecetaEditar>
     }
     if (RecetaPopular != 0) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(RecetaPopular);
+    }
+    if (Puntuacion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Puntuacion);
+    }
+    if (CantPuntuacion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(CantPuntuacion);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -939,6 +1073,12 @@ public sealed partial class RecetaEditar : pb::IMessage<RecetaEditar>
     }
     if (other.RecetaPopular != 0) {
       RecetaPopular = other.RecetaPopular;
+    }
+    if (other.Puntuacion != 0) {
+      Puntuacion = other.Puntuacion;
+    }
+    if (other.CantPuntuacion != 0) {
+      CantPuntuacion = other.CantPuntuacion;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -991,6 +1131,14 @@ public sealed partial class RecetaEditar : pb::IMessage<RecetaEditar>
           RecetaPopular = input.ReadInt32();
           break;
         }
+        case 88: {
+          Puntuacion = input.ReadInt32();
+          break;
+        }
+        case 96: {
+          CantPuntuacion = input.ReadInt32();
+          break;
+        }
       }
     }
   #endif
@@ -1040,6 +1188,14 @@ public sealed partial class RecetaEditar : pb::IMessage<RecetaEditar>
         }
         case 80: {
           RecetaPopular = input.ReadInt32();
+          break;
+        }
+        case 88: {
+          Puntuacion = input.ReadInt32();
+          break;
+        }
+        case 96: {
+          CantPuntuacion = input.ReadInt32();
           break;
         }
       }
@@ -2200,6 +2356,421 @@ public sealed partial class RecetaId : pb::IMessage<RecetaId>
           break;
         case 8: {
           Idreceta = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+public sealed partial class Prommmm : pb::IMessage<Prommmm>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<Prommmm> _parser = new pb::MessageParser<Prommmm>(() => new Prommmm());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<Prommmm> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RecetaReflection.Descriptor.MessageTypes[8]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public Prommmm() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public Prommmm(Prommmm other) : this() {
+    promedio_ = other.promedio_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public Prommmm Clone() {
+    return new Prommmm(this);
+  }
+
+  /// <summary>Field number for the "promedio" field.</summary>
+  public const int PromedioFieldNumber = 1;
+  private float promedio_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public float Promedio {
+    get { return promedio_; }
+    set {
+      promedio_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as Prommmm);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(Prommmm other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Promedio, other.Promedio)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Promedio != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Promedio);
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Promedio != 0F) {
+      output.WriteRawTag(13);
+      output.WriteFloat(Promedio);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Promedio != 0F) {
+      output.WriteRawTag(13);
+      output.WriteFloat(Promedio);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Promedio != 0F) {
+      size += 1 + 4;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(Prommmm other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Promedio != 0F) {
+      Promedio = other.Promedio;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 13: {
+          Promedio = input.ReadFloat();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 13: {
+          Promedio = input.ReadFloat();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+public sealed partial class Puntua : pb::IMessage<Puntua>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<Puntua> _parser = new pb::MessageParser<Puntua>(() => new Puntua());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<Puntua> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RecetaReflection.Descriptor.MessageTypes[9]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public Puntua() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public Puntua(Puntua other) : this() {
+    idreceta_ = other.idreceta_;
+    puntuacion_ = other.puntuacion_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public Puntua Clone() {
+    return new Puntua(this);
+  }
+
+  /// <summary>Field number for the "idreceta" field.</summary>
+  public const int IdrecetaFieldNumber = 1;
+  private int idreceta_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int Idreceta {
+    get { return idreceta_; }
+    set {
+      idreceta_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "puntuacion" field.</summary>
+  public const int PuntuacionFieldNumber = 2;
+  private int puntuacion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int Puntuacion {
+    get { return puntuacion_; }
+    set {
+      puntuacion_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as Puntua);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(Puntua other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Idreceta != other.Idreceta) return false;
+    if (Puntuacion != other.Puntuacion) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Idreceta != 0) hash ^= Idreceta.GetHashCode();
+    if (Puntuacion != 0) hash ^= Puntuacion.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Idreceta != 0) {
+      output.WriteRawTag(8);
+      output.WriteInt32(Idreceta);
+    }
+    if (Puntuacion != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(Puntuacion);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Idreceta != 0) {
+      output.WriteRawTag(8);
+      output.WriteInt32(Idreceta);
+    }
+    if (Puntuacion != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(Puntuacion);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Idreceta != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Idreceta);
+    }
+    if (Puntuacion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Puntuacion);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(Puntua other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Idreceta != 0) {
+      Idreceta = other.Idreceta;
+    }
+    if (other.Puntuacion != 0) {
+      Puntuacion = other.Puntuacion;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Idreceta = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          Puntuacion = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Idreceta = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          Puntuacion = input.ReadInt32();
           break;
         }
       }
