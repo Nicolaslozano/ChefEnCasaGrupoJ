@@ -12,11 +12,13 @@ namespace kafkaConsumerApp.Data
 
         public DbSet<User> Usuario { get; set; }
         public DbSet<Rece> Receta { get; set; }
+        public DbSet<Comen> Comentarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasKey(u => u.idusuario);//configura clave primaria de usuario
-            modelBuilder.Entity<Rece>().HasKey(r => r.idreceta);//configura clave primaria de usuario
+            modelBuilder.Entity<Rece>().HasKey(r => r.idreceta);//configura clave primaria de receta
+            modelBuilder.Entity<Comen>().HasKey(c => c.idcomentarios);//configura clave primaria de comentarios
         }
     }
 }

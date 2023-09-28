@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using kafkaConsumerApp.Data;
 using System.Text.Json;
+using KafkaConsumerApp.Models;
 
 class Program
 {
@@ -25,16 +26,26 @@ class Program
             AutoOffsetReset = AutoOffsetReset.Earliest, // Reiniciar al principio cuando no hay un offset guardado
         };
 
+        var config3 = new ConsumerConfig
+        {
+            BootstrapServers = "localhost:9092", //direccion del kafka
+            GroupId = "popularidad_comentarios_group", //id del grupo de consumidores
+            AutoOffsetReset = AutoOffsetReset.Earliest, // Reiniciar al principio cuando no hay un offset guardado
+        };
+
         using var consumer = new ConsumerBuilder<string, string>(config).Build();  //creo el consumidor kafka para usuario
         consumer.Subscribe("PopularidadUsuario"); //me suscribo al topic "PopularidadUsuario"
 
-        using var consumerReceta = new ConsumerBuilder<string, string>(config2).Build();  //creo el consumidor kafka receta
+        using var consumerReceta = new ConsumerBuilder<string, string>(config3).Build();  //creo el consumidor kafka comentarios
         consumerReceta.Subscribe("PopularidadReceta"); //me suscribo al topic "PopularidadReceta"
+
+        using var consumerComentarios = new ConsumerBuilder<string, string>(config2).Build();  //creo el consumidor kafka receta
+        consumerComentarios.Subscribe("Comentarios"); //me suscribo al topic "Comentarios"
 
         var timer = new System.Timers.Timer(30000); // configuro el temporalizador cada 30 segundos
         timer.Elapsed += (sender, e) =>
         {
-            ConsumeMessagesTotales(consumer, consumerReceta);
+            ConsumeMessagesTotales(consumer, consumerReceta, consumerComentarios);
         };
         timer.Start();
 
@@ -43,6 +54,8 @@ class Program
         {
             consumer.Close(); // Cierre del consumidor al detener la aplicación
             consumerReceta.Close(); // Cierre del consumidor al detener la aplicación
+            consumerComentarios.Close(); // Cierre del consumidor al detener la aplicación
+
         };
 
         // Mantén la aplicación en funcionamiento hasta que se presione Enter
@@ -50,11 +63,12 @@ class Program
         Console.ReadLine();
     }
 
-    static void ConsumeMessagesTotales(IConsumer<string, string> consumerUsuario, IConsumer<string, string> consumerReceta)
+    static void ConsumeMessagesTotales(IConsumer<string, string> consumerUsuario, IConsumer<string, string> consumerReceta, IConsumer<string, string> consumerComentarios )
     {
 
         Task.Run(() => ConsumeMessagesRecetas(consumerReceta));
         Task.Run(() => ConsumeMessages(consumerUsuario));
+        Task.Run(() => ConsumeMessagesComentarios(consumerComentarios));
         Task.WaitAll();
     }
 
@@ -121,6 +135,61 @@ class Program
             
         }
     }
+
+    static void ConsumeMessagesComentarios(IConsumer<string, string> consumerComentarios)
+    {
+        while (true)
+        {
+            var result = consumerComentarios.Consume(); //agarro el mensaje kafka
+
+            var message = result.Message.Value;
+
+            try
+            {
+                // Deserializa el mensaje JSON en un objeto JsonDocument
+                using (JsonDocument doc = JsonDocument.Parse(message))
+                {
+                    // Obtén el objeto raíz
+                    JsonElement root = doc.RootElement;
+
+                    // Obtiene los valores de Usuario, Receta y Comentario
+                    if (root.TryGetProperty("Usuario", out var usuarioProp) && 
+                    root.TryGetProperty("Receta", out var recetaProp) && 
+                    root.TryGetProperty("Comentario", out var comentarioProp))
+                    {
+                        if (usuarioProp.ValueKind == JsonValueKind.String && 
+                            recetaProp.ValueKind == JsonValueKind.Number &&
+                            comentarioProp.ValueKind == JsonValueKind.String)
+                        {
+                            string usuario = usuarioProp.GetString();
+                            int receta = recetaProp.GetInt32();
+                            string comentario = comentarioProp.GetString();
+
+                            AddComentario(usuario, receta, comentario);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: Los valores no respetan el tipo correspondiente.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: El mensaje JSON debe contener las propiedades Usuario, Receta y Comentario.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al procesar el mensaje JSON: {ex.Message}");
+            }
+            
+        }
+    }
+
+
+
+
+
 
     static bool IsValidMessage(string message)
     {
@@ -212,4 +281,33 @@ class Program
     }
 
 
+    static void AddComentario(string usuario, int receta, string comentario1)
+    {
+        try
+        {
+            // Define tu cadena de conexión real aquí
+            var connectionString = "Server=localhost;Port=3306;Database=chefencasagrupoj;User=root;Password=root;";
+            // Configura el contexto de la BBDD
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 28));
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            optionsBuilder.UseMySql(connectionString, serverVersion);
+            
+            var comen = new Comen
+            {
+                recet = receta,
+                usuario_comen = usuario,
+                comentario = comentario1
+            };
+            using (var dbContext = new ApplicationDbContext(optionsBuilder.Options))
+            {
+                dbContext.Comentarios.Add(comen);
+                dbContext.SaveChanges();
+            }
+            Console.WriteLine($"Comentario recibido - Receta: {receta}, Usuario: {usuario}, Comentario: {comentario1}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al procesar el mensaje JSON: {ex.Message}");
+        }
+    }
 }
