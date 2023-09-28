@@ -77,7 +77,6 @@ class ServicioUsuarios(UsuariosServicer):
             if result and result[0] > 0:
                 resp = Response(message="Ya sigues a esta persona")
             else:
-
                 query = (f"INSERT INTO suscripcion (`followed_user`, `my_user`) VALUES "
                         f"('{request.segui}', '{request.user}')")
                 cursor.execute(query)

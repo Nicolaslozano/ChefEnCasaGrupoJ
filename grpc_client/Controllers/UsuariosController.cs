@@ -148,15 +148,18 @@ namespace grpc.Controllers
                     Segui = segui,
                 };
 
-                kafkaProducer.Produce("PopularidadUsuario", new Message<string, string>
+                var suscrip = cliente.SeguirUsuario(postRecipeFav);
+
+                if (suscrip.Message == "Se pudo seguir el usuario")
                 {
-                    Key = segui, // Utiliza el nombre de usuario como clave
-                    Value = "1" // El valor es +1
-                });
+                    kafkaProducer.Produce("PopularidadUsuario", new Message<string, string>
+                    {
+                        Key = segui, // Utiliza el nombre de usuario como clave
+                        Value = "1" // El valor es +1
+                    });
+                }
 
-
-                var suscripcionResponse = cliente.SeguirUsuario(postRecipeFav);
-                response = JsonConvert.SerializeObject(suscripcionResponse);
+                response = JsonConvert.SerializeObject(suscrip);
             }
             catch (Exception e)
             {
@@ -184,18 +187,18 @@ namespace grpc.Controllers
                     User = user,
                     Segui = segui,
                 };
-
-
-                
-                kafkaProducer.Produce("PopularidadUsuario", new Message<string, string>
+                var suscripri = cliente.EliminarSeguidor(postRecipeFav);
+                if (suscripri.Message == "Se pudo eliminar el seguidor")
                 {
-                    Key = segui, 
-                    Value = "-1" 
-                });
-
-
-                var suscripcionResponse = cliente.EliminarSeguidor(postRecipeFav);
-                response = JsonConvert.SerializeObject(suscripcionResponse);
+                     kafkaProducer.Produce("PopularidadUsuario", new Message<string, string>
+                    {
+                        Key = segui, 
+                        Value = "-1" 
+                    });
+                    
+                }
+                
+                response = JsonConvert.SerializeObject(suscripri);
             }
             catch (Exception e)
             {
