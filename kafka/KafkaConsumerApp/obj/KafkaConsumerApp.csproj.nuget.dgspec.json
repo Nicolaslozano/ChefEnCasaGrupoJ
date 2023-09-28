@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\kafkaConsumerApp\\KafkaConsumerApp.csproj": {}
+    "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\KafkaConsumerApp\\KafkaConsumerApp.csproj": {}
   },
   "projects": {
-    "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\kafkaConsumerApp\\KafkaConsumerApp.csproj": {
+    "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\KafkaConsumerApp\\KafkaConsumerApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\kafkaConsumerApp\\KafkaConsumerApp.csproj",
+        "projectUniqueName": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\KafkaConsumerApp\\KafkaConsumerApp.csproj",
         "projectName": "KafkaConsumerApp",
-        "projectPath": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\kafkaConsumerApp\\KafkaConsumerApp.csproj",
+        "projectPath": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\KafkaConsumerApp\\KafkaConsumerApp.csproj",
         "packagesPath": "C:\\Users\\Fiorda\\.nuget\\packages\\",
-        "outputPath": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\kafkaConsumerApp\\obj\\",
+        "outputPath": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\KafkaConsumerApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Fiorda\\AppData\\Roaming\\NuGet\\NuGet.Config",

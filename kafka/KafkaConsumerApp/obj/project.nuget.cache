@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZY/fhlICXbxO5Xmg5dE/ngbdxDH3rwK3Y/cDqQedp3dq6Pm3QBBv5PVOT2NpeP+9e2QUjg38Q50jMaKpx+sZrQ==",
+  "dgSpecHash": "b/NpgxNg6I+SbFzICJjmwkpuyOTs5PhVOBi5Qdvdjp3I4D+L/XKPRVZBTdj9m4n9TNrzVpIM9pXPeOm7bkjK5g==",
   "success": true,
-  "projectFilePath": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\kafkaConsumerApp\\KafkaConsumerApp.csproj",
+  "projectFilePath": "C:\\Distribuidos2023\\ChefEnCasaGrupoJ\\kafka\\KafkaConsumerApp\\KafkaConsumerApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Fiorda\\.nuget\\packages\\confluent.kafka\\2.2.0\\confluent.kafka.2.2.0.nupkg.sha512",
     "C:\\Users\\Fiorda\\.nuget\\packages\\librdkafka.redist\\2.2.0\\librdkafka.redist.2.2.0.nupkg.sha512",
