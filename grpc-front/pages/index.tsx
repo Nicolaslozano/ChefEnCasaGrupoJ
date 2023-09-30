@@ -9,23 +9,36 @@ import TablaUsuariosPop from "@/components/tablaUsuariosPopulares";
 export default function IndexPage() {
   const [cardsData, setCardsData] = useState([]);
   const [selectedSection, setSelectedSection] = useState("Listado Recetas"); 
+  const [hasData, setHasData] = useState(false); 
 
   useEffect(() => {
-    fetch("https://localhost:44323/api/Receta/GetRecetasPopulares")
-      .then((response) => response.json())
-      .then((data) => {
-        const mappedData = data.map((receta) => ({
-          title: receta.Titulo,
-          description: receta.Descripcion,
-          image: receta.UrlFotos,
-          id: receta.Idreceta,
-        }));
-        setCardsData(mappedData);
-      })
-      .catch((error) => {
-        console.error("Error al obtener los datos de la API", error);
-      });
+    const fetchData = () => {
+      fetch("https://localhost:44323/api/Receta/GetNovedades")
+        .then((response) => response.json())
+        .then((data) => {
+          const mappedData = data.map((receta) => ({
+            title: receta.Titulo,
+            description: receta.Descripcion,
+            image: receta.UrlFotos,
+            id: receta.Idreceta,
+          }));
+          setCardsData(mappedData);
+          setHasData(true); 
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error("Error al obtener los datos de la API", error);
+        });
+    };
+
+    fetchData();
+
+    const intervalId = setInterval(fetchData, 5000);
+
+    return () => clearInterval(intervalId);
   }, []);
+
+
 
  
   const handleSectionClick = (section) => {
@@ -34,8 +47,12 @@ export default function IndexPage() {
 
   return (
     <DefaultLayout>
+       <div className="text-center mt-8">
+        {hasData && <h1 className={title({ color: "violet" })}>¡Bienvenidos a ChefEnCasa !</h1>}
+      </div>
+
       <div className="text-center mt-8">
-        <h1 className={title({ color: "violet" })}>¡Últimas Novedades!</h1>
+        {hasData && <h1 className={title({ color: "violet" })}>¡Últimas Novedades!</h1>}
       </div>
       <div className="flex justify-center gap-4 mt-10">
         {cardsData.map((card, index) => (

@@ -27,7 +27,7 @@ const columns = [
   },
   {
     key: "TiempoPreparacion",
-    label: "Tiempo de Preparación(Minutos)",
+    label: "Tiempo de Preparación (Minutos)",
   },
 ];
 
@@ -40,7 +40,8 @@ export default function TablaGeneral() {
   const [selectedKeys, setSelectedKeys] = React.useState(
     new Set(["Filtrar Por:"])
   );
-  const [showFavorites, setShowFavorites] = useState(false); 
+  const [showFavorites, setShowFavorites] = useState(false);
+  const [showPopular, setShowPopular] = useState(false); // Nuevo filtro
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,9 +80,16 @@ export default function TablaGeneral() {
                   "usuario"
                 )}`
               );
+            case "Mas Populares":
+              return fetch(
+                `https://localhost:44323/api/Receta/GetRecetasPopulares?nombreUsuario=${Cookies.get(
+                  "usuario"
+                )}`
+              );
             default:
               return null;
           }
+          
         });
 
         let recetasFavoritasPromise = null;
@@ -115,7 +123,7 @@ export default function TablaGeneral() {
           return false;
         });
 
-        if (selectedCategoriesArray.length === 1 && !showFavorites) {
+        if (selectedCategoriesArray.length === 1 && !showFavorites && !showPopular) {
           const response = await fetch(
             `https://localhost:44323/api/Receta/GetRecetas?nombreUsuario=${Cookies.get(
               "usuario"
@@ -135,9 +143,9 @@ export default function TablaGeneral() {
     };
 
     fetchData();
-  }, [selectedKeys, showFavorites]);
+  }, [selectedKeys, showFavorites, showPopular]); // Actualizado para incluir showPopular
 
-  // Función para filtrar los datos en función del termino de busqueda
+  // Función para filtrar los datos en función del término de búsqueda
   const filterData = (data, searchTerm) => {
     return data.filter((item) =>
       Object.keys(item)
@@ -204,6 +212,7 @@ export default function TablaGeneral() {
           <DropdownItem key="Reposteria">Reposteria</DropdownItem>
           <DropdownItem key="Bebidas">Bebidas</DropdownItem>
           <DropdownItem key="Regionales">Regionales</DropdownItem>
+          <DropdownItem key="Mas Populares" onClick={() => setShowPopular(!showPopular)}>Mas Populares</DropdownItem> {/* Nuevo filtro */}
           <DropdownItem
             key="RecetasFavoritas"
             onClick={() => {

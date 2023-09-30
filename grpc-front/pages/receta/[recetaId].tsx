@@ -14,6 +14,7 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  Spacer,
 } from "@nextui-org/react";
 import DefaultLayout from "@/layouts/default";
 import Cookies from "js-cookie";
@@ -43,6 +44,7 @@ export default function Page() {
   const [selectedRating, setSelectedRating] = useState(0);
   const [averageRating, setAverageRating] = useState<number | null>(null);
   const [userComment, setUserComment] = useState("");
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     if (!recetaId) return;
@@ -78,6 +80,23 @@ export default function Page() {
         });
     }
   }, [recetaId]);
+
+  useEffect(() => {
+    if (!recetaId) return;
+
+    // Llamada a la API para obtener los comentarios
+    fetch(`https://localhost:44323/api/Comentarios/GetComentariosToReceta?reid=${recetaId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setComments(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error al obtener comentarios:", error);
+        setLoading(false);
+      });
+  }, [recetaId]);
+
 
   if (loading)
     return (
@@ -157,19 +176,19 @@ export default function Page() {
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
-  
+
     try {
       const recetaId = receta?.Idreceta;
       const usuarioComen = Cookies.get("usuario");
-  
+
       const data = {
         recet: recetaId,
         usuario_comen: usuarioComen,
         comentario: userComment,
       };
-  
+
       const commentUrl = "https://localhost:44323/api/Comentarios";
-  
+
       const response = await fetch(commentUrl, {
         method: "POST",
         headers: {
@@ -177,7 +196,7 @@ export default function Page() {
         },
         body: JSON.stringify(data),
       });
-  
+
       if (response.ok) {
 
         console.log("Comentario enviado correctamente");
@@ -283,6 +302,23 @@ export default function Page() {
             </Tabs>
           </AccordionItem>
         </Accordion>
+        <Card className="mt-8">
+          <CardHeader>Comentarios de usuario</CardHeader>
+          <CardBody>
+            {comments.length === 0 ? (
+              <p>No hay comentarios disponibles.</p>
+            ) : (
+              <ul>
+                {comments.map((comment, index) => (
+                  <li key={index}>
+                    <strong>{comment.usuario}</strong>: {comment.texto}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </CardBody>
+        </Card>
+        <Spacer />
         <h1 className={title({ color: "pink", size: "sm" })}>
           ¿Que opinas de la receta?
         </h1>
@@ -317,9 +353,8 @@ export default function Page() {
               <div
                 key={index}
                 onClick={() => handleRating(index + 1)}
-                className={`cursor-pointer ${
-                  isFilled ? "text-yellow-400 fill-current" : "text-gray-300"
-                }`}
+                className={`cursor-pointer ${isFilled ? "text-yellow-400 fill-current" : "text-gray-300"
+                  }`}
                 style={{ width: "40px", height: "40px" }}
               >
                 <FavIconFilled className={isFilled ? "" : "hidden"} />
