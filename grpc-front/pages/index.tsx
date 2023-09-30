@@ -7,7 +7,7 @@ import TablaGeneral from "@/components/tablaGeneral";
 import TablaUsuariosPop from "@/components/tablaUsuariosPopulares"; 
 
 export default function IndexPage() {
-  const [cardsData, setCardsData] = useState([]);
+  const [buffer, setBuffer] = useState([]);
   const [selectedSection, setSelectedSection] = useState("Listado Recetas"); 
   const [hasData, setHasData] = useState(false); 
 
@@ -22,7 +22,17 @@ export default function IndexPage() {
             image: receta.UrlFotos,
             id: receta.Idreceta,
           }));
-          setCardsData(mappedData);
+
+          // Obtén los últimos 5 elementos del estado actual
+          const currentBuffer = [...buffer];
+          currentBuffer.push(...mappedData);
+
+          // Si hay más de 5 elementos, elimina los más antiguos
+          if (currentBuffer.length > 5) {
+            currentBuffer.splice(0, currentBuffer.length - 5);
+          }
+
+          setBuffer(currentBuffer);
           setHasData(true); 
           console.log(data);
         })
@@ -36,11 +46,8 @@ export default function IndexPage() {
     const intervalId = setInterval(fetchData, 5000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [buffer]);
 
-
-
- 
   const handleSectionClick = (section) => {
     setSelectedSection(section);
   };
@@ -54,24 +61,27 @@ export default function IndexPage() {
       <div className="text-center mt-8">
         {hasData && <h1 className={title({ color: "violet" })}>¡Últimas Novedades!</h1>}
       </div>
-      <div className="flex justify-center gap-4 mt-10">
-        {cardsData.map((card, index) => (
-          <Card key={index} className="w-72">
-            <CardHeader className="p-4 flex justify-center">
-              {card.title}
-            </CardHeader>
-            <CardBody>
-              <Image
-                src={card.image[0]}
-                style={{
-                  width: "300px",
-                  height: "20vh",
-                }}
-              />
-            </CardBody>
-          </Card>
-        ))}
-      </div>
+      {buffer.length > 0 && (
+  <div className="flex justify-center gap-4 mt-10">
+    {buffer.map((card, index) => (
+      <Card key={index} className="w-72">
+        <CardHeader className="p-4 flex justify-center">
+          {card.title}
+        </CardHeader>
+        <CardBody>
+          <Image
+            src={card.image[0]}
+            style={{
+              width: "300px",
+              height: "20vh",
+            }}
+          />
+        </CardBody>
+      </Card>
+    ))}
+  </div>
+)}
+
       <Spacer y={8}/>
       <div className="flex">
         <div className="flex-1 p-4 ">

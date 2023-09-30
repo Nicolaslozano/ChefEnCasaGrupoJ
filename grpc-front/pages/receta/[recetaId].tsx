@@ -15,6 +15,7 @@ import {
   CardBody,
   CardFooter,
   Spacer,
+  Avatar
 } from "@nextui-org/react";
 import DefaultLayout from "@/layouts/default";
 import Cookies from "js-cookie";
@@ -41,7 +42,7 @@ export default function Page() {
   const [isFollowing, setIsFollowing] = useState(false);
   const [isFollowed, setIsFollowed] = useState(false);
   const [rating, setRating] = useState([false, false, false, false, false]);
-  const [selectedRating, setSelectedRating] = useState(0);
+  const [setSelectedRating] = useState(0);
   const [averageRating, setAverageRating] = useState<number | null>(null);
   const [userComment, setUserComment] = useState("");
   const [comments, setComments] = useState([]);
@@ -90,6 +91,7 @@ export default function Page() {
       .then((data) => {
         setComments(data);
         setLoading(false);
+        console.log(data);
       })
       .catch((error) => {
         console.error("Error al obtener comentarios:", error);
@@ -111,68 +113,99 @@ export default function Page() {
   if (error) return <p>ERROR AL CONSEGUIR RECETA!</p>;
 
   const handleFollowClick = () => {
-    const checkFollowUrl = `https://localhost:44323/api/Suscripciones/GetSeg?seg=${Cookies.get(
-      "usuario"
-    )}`;
-    fetch(checkFollowUrl)
-      .then((response) => {
-        if (response.ok) {
-          const followUrl = `https://localhost:44323/api/Usuarios/PostSeguidor?user=${Cookies.get(
-            "usuario"
-          )}&segui=${receta.UsuarioUser}`;
-          fetch(followUrl, {
-            method: "POST",
-          })
-            .then((followResponse) => {
-              if (followResponse.ok) {
-                setIsFollowing(true);
-                console.log(
-                  `Siguiendo correctamente al usuario ${receta.UsuarioUser}`
-                );
-              } else {
-                console.error(`error al seguir usuario ${receta.UsuarioUser}`);
-              }
-            })
-            .catch((followError) => {
-              console.error("error al seguir usuario:", followError);
-            });
-        } else {
-        }
+    const user = Cookies.get("usuario");
+    const userToFollow = receta.UsuarioUser;
+
+    if (isFollowing) {
+      // Si ya estás siguiendo al usuario, realiza unfollow
+      const unfollowUrl = `https://localhost:44323/api/Usuarios/DeleteSeguidor?user=${user}&segui=${userToFollow}`;
+      fetch(unfollowUrl, {
+        method: "DELETE",
       })
-      .catch((error) => {
-        console.error("Error al chequear si el usuario existe:", error);
-      });
+        .then((unfollowResponse) => {
+          if (unfollowResponse.ok) {
+            setIsFollowing(false);
+            console.log(`Dejaste de seguir al usuario ${userToFollow}`);
+          } else {
+            console.error(`Error al dejar de seguir al usuario ${userToFollow}`);
+          }
+        })
+        .catch((unfollowError) => {
+          console.error("Error al dejar de seguir al usuario:", unfollowError);
+        });
+    } else {
+      // Si no estás siguiendo al usuario, realiza follow
+      const followUrl = `https://localhost:44323/api/Usuarios/PostSeguidor?user=${user}&segui=${userToFollow}`;
+      fetch(followUrl, {
+        method: "POST",
+      })
+        .then((followResponse) => {
+          if (followResponse.ok) {
+            setIsFollowing(true);
+            console.log(`Siguiendo correctamente al usuario ${userToFollow}`);
+          } else {
+            console.error(`Error al seguir al usuario ${userToFollow}`);
+          }
+        })
+        .catch((followError) => {
+          console.error("Error al seguir al usuario:", followError);
+        });
+    }
   };
+
 
   const handleFollowRecipe = async () => {
     try {
       const recetaId = receta?.Idreceta;
+      const usuario = Cookies.get("usuario");
 
-      const data = {
-        recetasFavoritascol: recetaId,
-        usuario_userfav: Cookies.get("usuario"),
-      };
-
-      const followRecipeUrl = "https://localhost:44323/api/RecetaFavoritas";
-
-      const response = await fetch(followRecipeUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        setIsFollowed(true);
-        console.log(`Siguiendo Correctamente a la receta ${recetaId}`);
+      if (isFollowed) {
+        // Si ya estás siguiendo la receta, realiza unfollow
+        const unfollowRecipeUrl = `https://localhost:44323/api/RecetaFavoritas/DeleteRecetaFav?rec=${recetaId}&us=${usuario}`;
+        fetch(unfollowRecipeUrl, {
+          method: "DELETE",
+        })
+          .then((unfollowResponse) => {
+            if (unfollowResponse.ok) {
+              setIsFollowed(false);
+              console.log(`Dejaste de seguir la receta ${recetaId}`);
+            } else {
+              console.error(`Error al dejar de seguir la receta ${recetaId}`);
+            }
+          })
+          .catch((unfollowError) => {
+            console.error("Error al dejar de seguir la receta:", unfollowError);
+          });
       } else {
-        console.error(`Fallo al seguir receta ${recetaId}`);
+        // Si no estás siguiendo la receta, realiza follow
+        const data = {
+          recetasFavoritascol: recetaId,
+          usuario_userfav: usuario,
+        };
+
+        const followRecipeUrl = "https://localhost:44323/api/RecetaFavoritas";
+
+        const response = await fetch(followRecipeUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          setIsFollowed(true);
+          console.log(`Siguiendo Correctamente a la receta ${recetaId}`);
+        } else {
+          console.error(`Fallo al seguir la receta ${recetaId}`);
+        }
       }
     } catch (error) {
-      console.error("Error al seguir receta:", error);
+      console.error("Error al seguir/recuperar la receta:", error);
     }
   };
+
+
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -250,7 +283,7 @@ export default function Page() {
           <h1 className="">{receta?.UsuarioUser}</h1>
         </div>
         <Button className="flex ml-2" size="sm" onClick={handleFollowClick}>
-          {isFollowing ? "Following" : "Follow"}
+          {isFollowing ? "Dejar de Seguir" : "Seguir"}
         </Button>
       </div>
       <div className="inline-block  text-center w-full justify-center ">
@@ -259,7 +292,7 @@ export default function Page() {
           <div className="flex justify-end items-end ">
             <div className="flex justify-end items-end ">
               {isFollowed ? (
-                <FavIconFilled />
+                <FavIconFilled onClick={handleFollowRecipe} />
               ) : (
                 <FavIcon onClick={handleFollowRecipe} />
               )}
@@ -310,8 +343,14 @@ export default function Page() {
             ) : (
               <ul>
                 {comments.map((comment, index) => (
-                  <li key={index}>
-                    <strong>{comment.usuario}</strong>: {comment.texto}
+                  <li key={index} className="mb-4">
+                    <div className="flex items-center mb-2">
+                      <Avatar size="small" className="mr-2" />
+                      <div>
+                        <strong className="text-lg">{comment.UsuarioComen}</strong>
+                      </div>
+                    </div>
+                    <div className="ml-10">{comment.Comentario}</div>
                   </li>
                 ))}
               </ul>
@@ -331,7 +370,7 @@ export default function Page() {
                 </div>
               ))}
           </CardBody>
-          <CardFooter className="flex justify-center">
+          <CardFooter className="flex justify-c enter">
             <form className="w-full" onSubmit={handleSubmitComment}>
               <textarea
                 rows="4"
