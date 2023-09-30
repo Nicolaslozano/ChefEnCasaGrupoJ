@@ -48,6 +48,8 @@ public static partial class Comentarios1
   static readonly grpc::Marshaller<global::Comentarios> __Marshaller_Comentarios = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Comentarios.Parser));
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Marshaller<global::Va> __Marshaller_Va = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Va.Parser));
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Marshaller<global::Rid> __Marshaller_Rid = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Rid.Parser));
 
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Method<global::Comentarios, global::Va> __Method_AgregarComentario = new grpc::Method<global::Comentarios, global::Va>(
@@ -56,6 +58,14 @@ public static partial class Comentarios1
       "AgregarComentario",
       __Marshaller_Comentarios,
       __Marshaller_Va);
+
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Method<global::Rid, global::Comentarios> __Method_TraerComentariosPorIdReceta = new grpc::Method<global::Rid, global::Comentarios>(
+      grpc::MethodType.ServerStreaming,
+      __ServiceName,
+      "TraerComentariosPorIdReceta",
+      __Marshaller_Rid,
+      __Marshaller_Comentarios);
 
   /// <summary>Service descriptor</summary>
   public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -69,6 +79,12 @@ public static partial class Comentarios1
   {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     public virtual global::System.Threading.Tasks.Task<global::Va> AgregarComentario(global::Comentarios request, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::System.Threading.Tasks.Task TraerComentariosPorIdReceta(global::Rid request, grpc::IServerStreamWriter<global::Comentarios> responseStream, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
@@ -122,6 +138,16 @@ public static partial class Comentarios1
     {
       return CallInvoker.AsyncUnaryCall(__Method_AgregarComentario, null, options, request);
     }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncServerStreamingCall<global::Comentarios> TraerComentariosPorIdReceta(global::Rid request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return TraerComentariosPorIdReceta(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncServerStreamingCall<global::Comentarios> TraerComentariosPorIdReceta(global::Rid request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncServerStreamingCall(__Method_TraerComentariosPorIdReceta, null, options, request);
+    }
     /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     protected override Comentarios1Client NewInstance(ClientBaseConfiguration configuration)
@@ -136,7 +162,8 @@ public static partial class Comentarios1
   public static grpc::ServerServiceDefinition BindService(Comentarios1Base serviceImpl)
   {
     return grpc::ServerServiceDefinition.CreateBuilder()
-        .AddMethod(__Method_AgregarComentario, serviceImpl.AgregarComentario).Build();
+        .AddMethod(__Method_AgregarComentario, serviceImpl.AgregarComentario)
+        .AddMethod(__Method_TraerComentariosPorIdReceta, serviceImpl.TraerComentariosPorIdReceta).Build();
   }
 
   /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -147,6 +174,7 @@ public static partial class Comentarios1
   public static void BindService(grpc::ServiceBinderBase serviceBinder, Comentarios1Base serviceImpl)
   {
     serviceBinder.AddMethod(__Method_AgregarComentario, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Comentarios, global::Va>(serviceImpl.AgregarComentario));
+    serviceBinder.AddMethod(__Method_TraerComentariosPorIdReceta, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Rid, global::Comentarios>(serviceImpl.TraerComentariosPorIdReceta));
   }
 
 }

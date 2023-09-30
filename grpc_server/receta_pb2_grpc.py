@@ -74,6 +74,11 @@ class RecetasStub(object):
                 request_serializer=receta__pb2.RecetaId.SerializeToString,
                 response_deserializer=receta__pb2.Prommmm.FromString,
                 )
+        self.TraerRecetasPorTituloyUsuario = channel.unary_unary(
+                '/Recetas/TraerRecetasPorTituloyUsuario',
+                request_serializer=receta__pb2.doble.SerializeToString,
+                response_deserializer=receta__pb2.Receta.FromString,
+                )
 
 
 class RecetasServicer(object):
@@ -151,6 +156,12 @@ class RecetasServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def TraerRecetasPorTituloyUsuario(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_RecetasServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -213,6 +224,11 @@ def add_RecetasServicer_to_server(servicer, server):
                     servicer.TraerPromedioPuntuacion,
                     request_deserializer=receta__pb2.RecetaId.FromString,
                     response_serializer=receta__pb2.Prommmm.SerializeToString,
+            ),
+            'TraerRecetasPorTituloyUsuario': grpc.unary_unary_rpc_method_handler(
+                    servicer.TraerRecetasPorTituloyUsuario,
+                    request_deserializer=receta__pb2.doble.FromString,
+                    response_serializer=receta__pb2.Receta.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -425,5 +441,22 @@ class Recetas(object):
         return grpc.experimental.unary_unary(request, target, '/Recetas/TraerPromedioPuntuacion',
             receta__pb2.RecetaId.SerializeToString,
             receta__pb2.Prommmm.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TraerRecetasPorTituloyUsuario(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Recetas/TraerRecetasPorTituloyUsuario',
+            receta__pb2.doble.SerializeToString,
+            receta__pb2.Receta.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -19,12 +19,23 @@ class Comentarios1Stub(object):
                 request_serializer=comentarios__pb2.Comentarios.SerializeToString,
                 response_deserializer=comentarios__pb2.Va.FromString,
                 )
+        self.TraerComentariosPorIdReceta = channel.unary_stream(
+                '/Comentarios1/TraerComentariosPorIdReceta',
+                request_serializer=comentarios__pb2.Rid.SerializeToString,
+                response_deserializer=comentarios__pb2.Comentarios.FromString,
+                )
 
 
 class Comentarios1Servicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def AgregarComentario(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TraerComentariosPorIdReceta(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -37,6 +48,11 @@ def add_Comentarios1Servicer_to_server(servicer, server):
                     servicer.AgregarComentario,
                     request_deserializer=comentarios__pb2.Comentarios.FromString,
                     response_serializer=comentarios__pb2.Va.SerializeToString,
+            ),
+            'TraerComentariosPorIdReceta': grpc.unary_stream_rpc_method_handler(
+                    servicer.TraerComentariosPorIdReceta,
+                    request_deserializer=comentarios__pb2.Rid.FromString,
+                    response_serializer=comentarios__pb2.Comentarios.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -62,5 +78,22 @@ class Comentarios1(object):
         return grpc.experimental.unary_unary(request, target, '/Comentarios1/AgregarComentario',
             comentarios__pb2.Comentarios.SerializeToString,
             comentarios__pb2.Va.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TraerComentariosPorIdReceta(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/Comentarios1/TraerComentariosPorIdReceta',
+            comentarios__pb2.Rid.SerializeToString,
+            comentarios__pb2.Comentarios.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -472,6 +472,52 @@ class ServicioRecetas(RecetasServicer):
             context.set_details("Receta no encontrada.")
         return Empty()
 
+
+    def TraerRecetasPorTituloyUsuario(self, request, context):
+        print("usuario recibido:", request.uer)
+        print("titulo recibido recibido:", request.tit)
+        cnx = mysql.connector.connect(user='root', password='root', 
+                                      host='localhost', port='3306',
+                                      database='chefencasagrupoj')
+        cursor = cnx.cursor(named_tuple=True)
+        query = (f"SELECT * FROM receta WHERE receta.usuario_user = '{request.uer}' AND receta.titulo = '{request.tit}'")
+        cursor.execute(query)
+
+        recetas = []  # Inicializa una lista para almacenar las recetas encontradas
+
+        for row in cursor.fetchall():
+            fotos = []
+            if row.url_foto1 is not None:
+                fotos.append(row.url_foto1)
+            if row.url_foto2 is not None:
+                fotos.append(row.url_foto2)
+            if row.url_foto3 is not None:
+                fotos.append(row.url_foto3)
+            if row.url_foto4 is not None:
+                fotos.append(row.url_foto4)
+            if row.url_foto5 is not None:
+                fotos.append(row.url_foto5)
+
+            receta = Receta(
+                idreceta=row.idreceta,
+                titulo=row.titulo,
+                descripcion=row.descripcion,
+                tiempoPreparacion=row.tiempoPreparacion,
+                ingredientes=row.ingredientes,
+                pasos=row.pasos,
+                url_fotos=fotos,
+                nombreCategoria=row.nombreCategoria1,
+                usuario_user=row.usuario_user,
+                recetaPopular=row.recetaPopular,
+                puntuacion=row.puntuacion,
+                cantPuntuacion=row.cantPuntuacion
+            )
+
+            recetas.append(receta)
+
+        return receta
+
+
 class ServicioRecetasFav(RecetaFavServicer):
 
     def AgregarRecetaFav(self, request, context):
@@ -555,7 +601,17 @@ class ServicioComentarios(Comentarios1Servicer):
         return resp
 
 
-
+    def TraerComentariosPorIdReceta(self, request, context):
+        print("IdReceta recibida para comentario:", request.reid)
+        cnx = mysql.connector.connect(user='root', password='root', 
+                              host='localhost', port='3306',
+                              database='chefencasagrupoj')
+        cursor = cnx.cursor(named_tuple=True)
+        query = (f"SELECT * FROM comentarios AS c WHERE c.recet = '{request.reid}' ")
+        cursor.execute(query)
+        records = cursor.fetchall()
+        for row in records:
+            yield Comentarios(idcomentarios = row.idcomentarios, recet = row.recet, usuario_comen = row.usuario_comen, comentario = row.comentario)
 
 
 

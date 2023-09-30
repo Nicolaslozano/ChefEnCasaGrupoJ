@@ -86,5 +86,40 @@ namespace grpc_client.Controllers
         }
 
 
+        [HttpGet]
+        [Route("GetComentariosToReceta")]
+        public async Task<string> GetComentariosToRecetaAsync(int reid)
+        {
+            string response;
+            try
+            {
+                // This switch must be set before creating the GrpcChannel/HttpClient.
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Comentarios1.Comentarios1Client(channel);
+                
+                var postRecipe = new Rid
+                {
+                    Reid = reid
+                };
+                List<Comentarios> comentarios = new();
+                using (var call = cliente.TraerComentariosPorIdReceta(postRecipe))
+                    while (await call.ResponseStream.MoveNext())
+                    {
+                        var currentRecipe = call.ResponseStream.Current;
+                        comentarios.Add(currentRecipe);
+                    }
+                response = JsonConvert.SerializeObject(comentarios);
+            }
+            catch (Exception e)
+            {
+                return e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
+
+
     }
 }

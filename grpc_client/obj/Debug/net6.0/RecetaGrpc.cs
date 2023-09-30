@@ -62,6 +62,8 @@ public static partial class Recetas
   static readonly grpc::Marshaller<global::Puntua> __Marshaller_Puntua = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Puntua.Parser));
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Marshaller<global::Prommmm> __Marshaller_Prommmm = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Prommmm.Parser));
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Marshaller<global::doble> __Marshaller_doble = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::doble.Parser));
 
   [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
   static readonly grpc::Method<global::Receta, global::Responsea> __Method_AltaReceta = new grpc::Method<global::Receta, global::Responsea>(
@@ -159,6 +161,14 @@ public static partial class Recetas
       __Marshaller_RecetaId,
       __Marshaller_Prommmm);
 
+  [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+  static readonly grpc::Method<global::doble, global::Receta> __Method_TraerRecetasPorTituloyUsuario = new grpc::Method<global::doble, global::Receta>(
+      grpc::MethodType.Unary,
+      __ServiceName,
+      "TraerRecetasPorTituloyUsuario",
+      __Marshaller_doble,
+      __Marshaller_Receta);
+
   /// <summary>Service descriptor</summary>
   public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
   {
@@ -237,6 +247,12 @@ public static partial class Recetas
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     public virtual global::System.Threading.Tasks.Task<global::Prommmm> TraerPromedioPuntuacion(global::RecetaId request, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::System.Threading.Tasks.Task<global::Receta> TraerRecetasPorTituloyUsuario(global::doble request, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
@@ -440,6 +456,26 @@ public static partial class Recetas
     {
       return CallInvoker.AsyncUnaryCall(__Method_TraerPromedioPuntuacion, null, options, request);
     }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::Receta TraerRecetasPorTituloyUsuario(global::doble request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return TraerRecetasPorTituloyUsuario(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual global::Receta TraerRecetasPorTituloyUsuario(global::doble request, grpc::CallOptions options)
+    {
+      return CallInvoker.BlockingUnaryCall(__Method_TraerRecetasPorTituloyUsuario, null, options, request);
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncUnaryCall<global::Receta> TraerRecetasPorTituloyUsuarioAsync(global::doble request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return TraerRecetasPorTituloyUsuarioAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public virtual grpc::AsyncUnaryCall<global::Receta> TraerRecetasPorTituloyUsuarioAsync(global::doble request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncUnaryCall(__Method_TraerRecetasPorTituloyUsuario, null, options, request);
+    }
     /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     protected override RecetasClient NewInstance(ClientBaseConfiguration configuration)
@@ -465,7 +501,8 @@ public static partial class Recetas
         .AddMethod(__Method_TraerRecetasPorIngredientes, serviceImpl.TraerRecetasPorIngredientes)
         .AddMethod(__Method_TraerRecetasPopulares, serviceImpl.TraerRecetasPopulares)
         .AddMethod(__Method_AgregarPuntuacion, serviceImpl.AgregarPuntuacion)
-        .AddMethod(__Method_TraerPromedioPuntuacion, serviceImpl.TraerPromedioPuntuacion).Build();
+        .AddMethod(__Method_TraerPromedioPuntuacion, serviceImpl.TraerPromedioPuntuacion)
+        .AddMethod(__Method_TraerRecetasPorTituloyUsuario, serviceImpl.TraerRecetasPorTituloyUsuario).Build();
   }
 
   /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -487,6 +524,7 @@ public static partial class Recetas
     serviceBinder.AddMethod(__Method_TraerRecetasPopulares, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::NuloReceta, global::Receta>(serviceImpl.TraerRecetasPopulares));
     serviceBinder.AddMethod(__Method_AgregarPuntuacion, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Puntua, global::NuloReceta>(serviceImpl.AgregarPuntuacion));
     serviceBinder.AddMethod(__Method_TraerPromedioPuntuacion, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::RecetaId, global::Prommmm>(serviceImpl.TraerPromedioPuntuacion));
+    serviceBinder.AddMethod(__Method_TraerRecetasPorTituloyUsuario, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::doble, global::Receta>(serviceImpl.TraerRecetasPorTituloyUsuario));
   }
 
 }

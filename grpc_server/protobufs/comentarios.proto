@@ -11,8 +11,12 @@ message Comentarios {
 message Va {
 }
 
+message Rid {
+    int32 reid = 1;
+}
 
 service Comentarios1 {
     rpc AgregarComentario(Comentarios) returns (Va);
+    rpc TraerComentariosPorIdReceta(Rid) returns (stream Comentarios);
 }
 

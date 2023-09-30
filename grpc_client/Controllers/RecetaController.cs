@@ -19,6 +19,7 @@ namespace grpc_client.Controllers
     {
 
         private readonly IProducer<string, string> kafkaProducer;
+        private readonly ConsumerConfig kafkaConsumerConfig;
 
 
         public RecetaController()
@@ -27,6 +28,7 @@ namespace grpc_client.Controllers
             var config = new ProducerConfig
             {
                 BootstrapServers = "localhost:9092" // Reemplaza con la dirección de tu servidor Kafka
+
             };
 
             kafkaProducer = new ProducerBuilder<string, string>(config).Build();
@@ -42,7 +44,7 @@ namespace grpc_client.Controllers
                 AppContext.SetSwitch(
                     "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
-                var cliente = new Recetas.RecetasClient(channel);  
+                var cliente = new Recetas.RecetasClient(channel);
 
                 var postRecipe = new Receta
                 {
@@ -156,7 +158,7 @@ namespace grpc_client.Controllers
             return response;
         }
 
-       
+
 
         [HttpPut]
         [Route("EditarReceta")]
@@ -171,7 +173,7 @@ namespace grpc_client.Controllers
                 var cliente = new Recetas.RecetasClient(channel);
 
 
-                
+
                 var editRecipe = new RecetaEditar
                 {
                     Idreceta = receta.idreceta,
@@ -228,7 +230,8 @@ namespace grpc_client.Controllers
 
         [HttpGet]
         [Route("GetRecetasToUser")]
-        public async Task<string> GetRecetasToUserAsync(string usu) {
+        public async Task<string> GetRecetasToUserAsync(string usu)
+        {
             string response;
             try
             {
@@ -256,9 +259,9 @@ namespace grpc_client.Controllers
                 response = e.Message + e.StackTrace;
             }
 
-            return response; 
+            return response;
         }
-       
+
 
 
         [HttpGet]
@@ -273,7 +276,7 @@ namespace grpc_client.Controllers
                     "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
                 var cliente = new Recetas.RecetasClient(channel);
-                
+
                 var postRecipe = new Usuariolog
                 {
                     Usu = usu
@@ -308,7 +311,7 @@ namespace grpc_client.Controllers
                     "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
                 var cliente = new Recetas.RecetasClient(channel);
-                
+
                 var postRecipe = new Usuariolog
                 {
                     Usu = usu
@@ -333,7 +336,7 @@ namespace grpc_client.Controllers
 
         [HttpGet]
         [Route("GetRecetasToTime")]
-        public async Task<string> GetRecetasToTimeAsync(int desde , int hasta)
+        public async Task<string> GetRecetasToTimeAsync(int desde, int hasta)
         {
             string response;
             try
@@ -343,7 +346,7 @@ namespace grpc_client.Controllers
                     "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
                 var cliente = new Recetas.RecetasClient(channel);
-                
+
                 var postRecipe = new tiempo
                 {
                     Desde = desde,
@@ -365,7 +368,7 @@ namespace grpc_client.Controllers
 
             return response;
         }
-        
+
         [HttpGet]
         [Route("GetRecetasToIngredients")]
         public async Task<string> GetRecetasToIngredientsAsync(string usu)
@@ -378,7 +381,7 @@ namespace grpc_client.Controllers
                     "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
                 var cliente = new Recetas.RecetasClient(channel);
-                
+
                 var postRecipe = new Usuariolog
                 {
                     Usu = usu
@@ -414,12 +417,12 @@ namespace grpc_client.Controllers
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
                 var cliente = new Recetas.RecetasClient(channel);
 
-                
+
                 var postIdReceta = new RecetaId
                 {
                     Idreceta = idRec
                 };
-                
+
                 var recetaResponse = await cliente.TraerRecetaPorIdAsync(postIdReceta);
 
                 // Comparar el string 
@@ -453,14 +456,14 @@ namespace grpc_client.Controllers
             {
                 return new BadRequestObjectResult(e.Message + e.StackTrace);
             }
-      
+
         }
 
         [HttpGet]
         [Route("GetPromedioCalificacion")]
         public async Task<IActionResult> GetPromedioCalificacionAsync(int idRec)
         {
-            
+
             try
             {
                 // This switch must be set before creating the GrpcChannel/HttpClient.
@@ -468,7 +471,7 @@ namespace grpc_client.Controllers
                     "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
                 var channel = GrpcChannel.ForAddress("http://localhost:50051");
                 var cliente = new Recetas.RecetasClient(channel);
-                
+
                 var postRecipe = new RecetaId
                 {
                     Idreceta = idRec
@@ -487,6 +490,89 @@ namespace grpc_client.Controllers
         }
 
 
+
+
+
+        [HttpGet]
+        [Route("GetNovedades")]
+        public async Task<string> GetNovedadesAsync()
+        {
+            string response;
+            try
+            {
+                // This switch must be set before creating the GrpcChannel/HttpClient.
+                AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                var cliente = new Recetas.RecetasClient(channel);
+
+                // Crear un consumidor de Kafka
+                var conf = new ConsumerConfig
+                {
+                    BootstrapServers = "localhost:9092",
+                    GroupId = "my-consumer-group",
+                    AutoOffsetReset = AutoOffsetReset.Earliest // Cambia esto por la dirección de tu servidor Kafka
+                };
+
+                List<Receta> recetas = new();
+
+                using (var c = new ConsumerBuilder<Ignore, string>(conf).Build())
+                {
+                    c.Subscribe("Novedades");
+
+                    // Configurar un temporizador para que la operación termine después de 2 segundos
+                    //var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+                    //var cancellationToken = cancellationTokenSource.Token;
+
+                    while (true)
+                    {
+                        
+                        var cr = c.Consume(TimeSpan.FromMilliseconds(10000));
+
+                        if (cr == null)
+                        {
+                            break; // Sal del bucle si no hay más mensajes
+                        }
+
+                        try
+                        {
+                            var kafkaData = JsonConvert.DeserializeObject<KafkaData>(cr.Value);
+
+                            // Continuar con el procesamiento de kafkaData
+                            string TituloReceta = kafkaData.TituloReceta;
+                            string uuusu = kafkaData.NombreUsuario;
+
+                            var postRecipe = new doble
+                            {
+                                Tit = TituloReceta,
+                                Uer = uuusu
+                            };
+                            recetas.Add(cliente.TraerRecetasPorTituloyUsuario(postRecipe));
+
+                        }
+                        catch (JsonSerializationException jsonEx)
+                        {
+                            // Captura las excepciones de deserialización JSON
+                            Console.WriteLine("Error de deserialización JSON: " + jsonEx.Message);
+                            Console.WriteLine("Mensaje Kafka recibido: " + cr.Value);
+                        }
+                        catch (Exception ex)
+                        {
+                            // Captura otras excepciones
+                            Console.WriteLine("Error inesperado: " + ex.Message);
+                            Console.WriteLine("Mensaje Kafka recibido: " + cr.Value);
+                        }
+                    }
+                }
+
+                response = JsonConvert.SerializeObject(recetas);
+            }
+            catch (Exception e)
+            {
+                return e.Message + e.StackTrace;
+            }
+
+            return response;
+        }
     }
 }
-
