@@ -42,7 +42,7 @@ export default function Page() {
   const [isFollowing, setIsFollowing] = useState(false);
   const [isFollowed, setIsFollowed] = useState(false);
   const [rating, setRating] = useState([false, false, false, false, false]);
-  const [setSelectedRating] = useState(0);
+  const [selectedRating,setSelectedRating] = useState(0);
   const [averageRating, setAverageRating] = useState<number | null>(null);
   const [userComment, setUserComment] = useState("");
   const [comments, setComments] = useState([]);
